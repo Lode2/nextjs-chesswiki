@@ -1,6 +1,6 @@
 // import Image from 'next/image'
 // import styles from './layout.module.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Chess from '../node_modules/chess.js'
 import Image from 'next/image'
 
@@ -8,14 +8,21 @@ import Image from 'next/image'
 // export const siteTitle = 'Chesswiki'
 
 export default function Chessboard(props) {
+    // console.log(props)
     const [boardpos, setBoardpos] = useState(props.position)
+    // find difference between current boardpos and previous one
+
     // setBoardpos('chessjnewpos')
     const boardSize = 400;
+    useEffect(() => {
+        console.log("update")
+    });
 
     const chessgame = new Chess();
+    chessgame.load(boardpos)
     // the current chessgame position, rendered into 1 list
-    const [pieces, setPieces] = useState([].concat.apply([], chessgame.board()))
-    console.log(pieces)
+    const [pieces, setPieces] = useState([].concat.apply([], chessgame.board().reverse()))
+    // console.log(pieces)
 
     // const [chesspos, setChesspos] = useState(chessgame.load());
     // list with the piece for every square
