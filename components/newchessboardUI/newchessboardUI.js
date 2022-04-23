@@ -1,18 +1,12 @@
+import Newchessboard from "./newchessboard"
+
 export default function NewchessboardUI(props) {
     return (
-        <div style={{
-            display: "flex",
-            flexDirection: "row",
-            flexWrap: "wrap-reverse",
-            width: props.size,
-            height: props.size,
-            backgroundColor: props.squareColor === 'dark' ? '#a52a2a' : '#f5f5dc',
-            // border: '2px black solid',
-            // margin: '5px'
-        }}>
+        <div>
             {props.chessPiece ? props.chessPiece : 'no piece'}
             {/* <br></br> */}
             {props.squareNumber}
+            <Newchessboard FENNotation={props.FENNotation} interactive={props.interactive} windowSize={props.windowSize != undefined ? props.windowSize : 1280} />
         </div >
     )
 }

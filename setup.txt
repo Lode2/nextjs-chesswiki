@@ -1,1 +1,3 @@
 start the website on localhost: npm run dev
+
+usereducer() ipv usestate() als de nieuwe waarde afhangt van de vorige
