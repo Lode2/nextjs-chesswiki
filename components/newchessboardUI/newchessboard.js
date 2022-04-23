@@ -1,7 +1,7 @@
 import Newchessboardsquare from "./newchessboardsquare";
 
 export default function Newchessboard(props) {
-    const boardSize = props.windowSize > 1000 ? 0.8 * props.windowSize : 800;
+    // const boardSize = props.windowSize > 1000 ? 0.8 * props.windowSize : 800;
     // const currentPos = props.FENNotation;
     const d = 'dark';
     const l = 'light';
@@ -9,7 +9,7 @@ export default function Newchessboard(props) {
 
     // create the 64 squares list
     const boardSquares = Array.from(Array(64).keys()).map(item => {
-        return <Newchessboardsquare key={item} squareNumber={item} chessPiece={'Q'} squareColor={squareColors[item]} size={boardSize * 0.6 * 0.125} />
+        return <Newchessboardsquare key={item} squareNumber={item} chessPiece={'Q'} squareColor={squareColors[item]} size={props.chessboardSize * 0.6 * 0.125} />
     })
 
     function fenToComputerNotation(pos) {
@@ -18,50 +18,13 @@ export default function Newchessboard(props) {
 
     return (
         <div style={{
-            border: 'black 3px solid',
-            float: 'right',
-            height: 'auto',
-            width: boardSize
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap-reverse",
+            width: '70%',
+            height: 'auto'
         }}>
-            <div style={{
-                display: "flex",
-                flexDirection: "row",
-                border: 'red 3px solid',
-                margin: '5px'
-
-            }}>
-                {/* chessboard */}
-                <div style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    flexWrap: "wrap-reverse",
-                    width: '80%',
-                    height: 'auto'
-                }}>
-                    {boardSquares}
-                </div >
-
-                {/* move list */}
-                <div style={{
-                    width: '40%',
-                    border: 'solid 3px orange',
-                    margin: '5px',
-                    padding: '3px'
-                }}>
-                    move list
-                </div>
-            </div>
-
-            {/* actionbar */}
-            <div style={{
-                border: 'solid 3px green',
-                margin: '5px',
-                padding: '3px',
-                height: boardSize * 0.1
-            }}>
-                actionbar
-            </div>
-
-        </div>
+            {boardSquares}
+        </div >
     )
 }

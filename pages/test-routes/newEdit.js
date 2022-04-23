@@ -58,7 +58,7 @@ export default function FirstPost() {
                 setChessboard('London system')
             }} size="small" variant="contained">Update position</Button>
             {chessboard}
-            <NewchessboardUI FENNotation={chessboard} interactive={true} windowSize={size.width != undefined ? size.width : 1280} />
+            <NewchessboardUI chessboardUISize={size.width != undefined ? size.width : 1280} />
         </>
     )
 }

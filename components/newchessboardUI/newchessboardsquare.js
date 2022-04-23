@@ -10,7 +10,7 @@ export default function Newchessboardsquare(props) {
             // border: '2px black solid',
             // margin: '5px'
         }}>
-            {props.chessPiece ? props.chessPiece : 'no piece'}
+            {/* {props.chessPiece ? props.chessPiece : 'no piece'} */}
             {/* <br></br> */}
             {props.squareNumber}
         </div >
