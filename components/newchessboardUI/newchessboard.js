@@ -1,7 +1,7 @@
 import Newchessboardsquare from "./newchessboardsquare";
 
 export default function Newchessboard(props) {
-    const boardSize = 0.6 * props.windowSize;
+    const boardSize = props.windowSize > 1000 ? 0.8 * props.windowSize : 800;
     // const currentPos = props.FENNotation;
     const d = 'dark';
     const l = 'light';

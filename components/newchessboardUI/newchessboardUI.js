@@ -1,11 +1,4 @@
-export default function Newchessboardsquare(props) {
-    const squareSize = 50;
-    const boardSquares = props.FENNotation;
-
-    function fenToComputerNotation(pos) {
-        return pos
-    }
-
+export default function NewchessboardUI(props) {
     return (
         <div style={{
             display: "flex",
@@ -13,7 +6,7 @@ export default function Newchessboardsquare(props) {
             flexWrap: "wrap-reverse",
             width: props.size,
             height: props.size,
-            backgroundColor: props.squareColor === 'dark' ? 'brown' : 'yellow',
+            backgroundColor: props.squareColor === 'dark' ? '#a52a2a' : '#f5f5dc',
             // border: '2px black solid',
             // margin: '5px'
         }}>
