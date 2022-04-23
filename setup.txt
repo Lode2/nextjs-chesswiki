@@ -1,0 +1,1 @@
+start the website on localhost: npm run dev

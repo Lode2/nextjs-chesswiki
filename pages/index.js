@@ -16,7 +16,8 @@ export default function Home() {
           <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
         </p>
       </section>
-      <Link href="/test-routes/edit"><a>Edit js</a></Link>
+      <Link href="/test-routes/edit"><a>Edit js</a></Link><br></br>
+      <Link href="/test-routes/newEdit"><a>new Edit js</a></Link>
     </Layout>
   )
 }
