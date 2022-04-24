@@ -1,3 +1,5 @@
+import Chesspiece from "./chesspiece"
+
 export default function Newchessboardsquare(props) {
     return (
         <div style={{
@@ -10,9 +12,9 @@ export default function Newchessboardsquare(props) {
             // border: '2px black solid',
             // margin: '5px'
         }}>
-            {/* {props.chessPiece ? props.chessPiece : 'no piece'} */}
-            {/* <br></br> */}
-            {props.squareNumber}
+            {/* place a piece image if there is a piece on this square */}
+            {props.chessPiece === null ? '' : <Chesspiece src={props.chessPiece} size={props.size} />}
+            {/* {props.squareNumber} */}
         </div >
     )
 }

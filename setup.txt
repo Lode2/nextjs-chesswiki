@@ -1,3 +1,7 @@
 start the website on localhost: npm run dev
 
 usereducer() ipv usestate() als de nieuwe waarde afhangt van de vorige
+
+https://www.chessprogramming.org/Stockfish#Evaluation_Guide stockfish Evaluation Guide using javascript
+
+https://jsfiddle.net/ for browser testing of javascript
