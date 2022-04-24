@@ -18,17 +18,17 @@ export default function Newchessboard(props) {
     })
 
     function fenToComputerNotation(dirtyFEN) {
-        const cleanFEN = dirtyFEN.split(' ')[0].split('/').join('')
+        const cleanFEN = dirtyFEN.split(' ')[0].split('/').reverse().join('')
         let posArray = Array(64).fill(null);
         for (let i = 0, j = 0; i < posArray.length; i++, j++) {
             if (isNaN(cleanFEN[j])) {
                 // console.log(fenpos[j] + ' is a letter')
                 // change notation
                 if (cleanFEN[j] === cleanFEN[j].toUpperCase()) {
-                    posArray[i] = cleanFEN[j].toLowerCase() + 'b' // black piece
+                    posArray[i] = cleanFEN[j].toLowerCase() + 'w' // white piece
                 }
                 else {
-                    posArray[i] = cleanFEN[j] + 'w' // white piece 
+                    posArray[i] = cleanFEN[j] + 'b' // black piece 
                 }
             } else {
                 // console.log(fenpos[j] + ' is a number, so skip iterator i by this amount')

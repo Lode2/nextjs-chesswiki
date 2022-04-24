@@ -14,7 +14,7 @@ export default function Newchessboardsquare(props) {
         }}>
             {/* place a piece image if there is a piece on this square */}
             {props.chessPiece === null ? '' : <Chesspiece src={props.chessPiece} size={props.size} />}
-            {/* {props.squareNumber} */}
+            {props.squareNumber}
         </div >
     )
 }
