@@ -1,7 +1,10 @@
 import Newchessboard from "./newchessboard"
+import Button from '@mui/material/Button';
+import { useState, useEffect } from 'react'
 
 export default function NewchessboardUI(props) {
     const boardSize = props.chessboardUISize > 1000 ? 0.6 * props.chessboardUISize : 600;
+    const [posFEN, setposFEN] = useState('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')
     return (
         <div style={{
             border: 'black 3px solid',
@@ -17,8 +20,10 @@ export default function NewchessboardUI(props) {
                 margin: '5px'
 
             }}>
-
-                <Newchessboard chessboardSize={boardSize} />
+                {/*     const startFEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+    const startposPieceArray = fenToComputerNotation(startFEN)
+    const exampleFEN = 'r1b1k2r/pp1p1ppp/2n1p3/8/2Bb1B2/2n2P2/P2K2PP/7R w kq - 0 15' */}
+                <Newchessboard chessboardSize={boardSize} FEN={posFEN} />
 
                 {/* move list */}
                 <div style={{
@@ -39,6 +44,11 @@ export default function NewchessboardUI(props) {
                 height: boardSize * 0.1
             }}>
                 actionbar
+                <br></br>
+                <Button onClick={() => {
+                    // console.log('Update position button hit')
+                    setposFEN('r1b1k2r/pp1p1ppp/2n1p3/8/2Bb1B2/2n2P2/P2K2PP/7R w kq - 0 15')
+                }} size="small" variant="contained">Update position fen</Button>
             </div>
 
         </div>

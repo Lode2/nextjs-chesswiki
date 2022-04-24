@@ -7,14 +7,11 @@ export default function Newchessboard(props) {
     const l = 'light';
     const squareColors = [d, l, d, l, d, l, d, l, l, d, l, d, l, d, l, d, d, l, d, l, d, l, d, l, l, d, l, d, l, d, l, d, d, l, d, l, d, l, d, l, l, d, l, d, l, d, l, d, d, l, d, l, d, l, d, l, l, d, l, d, l, d, l, d,];
 
-    const startFEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
-    const startposPieceArray = fenToComputerNotation(startFEN)
-    const exampleFEN = 'r1b1k2r/pp1p1ppp/2n1p3/8/2Bb1B2/2n2P2/P2K2PP/7R w kq - 0 15'
-    const exampleposPieceArray = fenToComputerNotation(exampleFEN)
+    const positionPieceArray = fenToComputerNotation(props.FEN)
 
     // create the 64 squares list
     const boardSquares = Array.from(Array(64).keys()).map(item => {
-        return <Newchessboardsquare key={item} squareNumber={item} chessPiece={exampleposPieceArray[item]} squareColor={squareColors[item]} size={props.chessboardSize * 0.6 * 0.125} />
+        return <Newchessboardsquare key={item} squareNumber={item} chessPiece={positionPieceArray[item]} squareColor={squareColors[item]} size={props.chessboardSize * 0.6 * 0.125} />
     })
 
     function fenToComputerNotation(dirtyFEN) {
