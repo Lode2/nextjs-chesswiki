@@ -1,7 +1,7 @@
 import Image from 'next/image'
 
 export default function Chesspiece(props) {
-    const imgsrc = '/../public/images/' + props.src + '.png';
+    const imgsrc = '/images/' + props.src + '.png';
     const pieceName = (props.src[0] === 'b' ? 'black' : 'white') + ' ' + shorthandToPieceName(props.src[1]);
 
     function shorthandToPieceName(shorthand) {

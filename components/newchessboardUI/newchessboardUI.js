@@ -12,6 +12,9 @@ export default function NewchessboardUI(props) {
             height: 'auto',
             width: boardSize
         }}>
+            explanationdiv
+            board and interaction wrapper div
+            move history div
 
             <div style={{
                 display: "flex",
