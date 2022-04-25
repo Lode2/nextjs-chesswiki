@@ -24,8 +24,8 @@ export default function NewchessboardUI(props) {
 
             }}>
                 {/*     const startFEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
-    const startposPieceArray = fenToComputerNotation(startFEN)
-    const exampleFEN = 'r1b1k2r/pp1p1ppp/2n1p3/8/2Bb1B2/2n2P2/P2K2PP/7R w kq - 0 15' */}
+        const startposPieceArray = fenToComputerNotation(startFEN)
+        const exampleFEN = 'r1b1k2r/pp1p1ppp/2n1p3/8/2Bb1B2/2n2P2/P2K2PP/7R w kq - 0 15' */}
                 <Newchessboard chessboardSize={boardSize} FEN={posFEN} />
 
                 {/* move list */}
@@ -54,6 +54,21 @@ export default function NewchessboardUI(props) {
                 }} size="small" variant="contained">Update position fen</Button>
             </div>
 
-        </div>
+        </div >
+        // <div style={{
+        //     display: 'flex',
+        //     flexDirection: "row",
+        //     border: 'black 3px solid',
+        //     float: 'right',
+        //     height: 'auto',
+        //     width: boardSize
+        // }}>
+        //     <div>explanation</div>
+        //     <div>
+        //         <Newchessboard chessboardSize={boardSize} FEN={posFEN} />
+        //         <div>interaction</div>
+        //     </div>
+        //     <div>move history</div>
+        // </div>
     )
 }
