@@ -11,7 +11,7 @@ export default function Newchessboard(props) {
 
     // create the 64 squares list
     const boardSquares = Array.from(Array(64).keys()).map(item => {
-        return <Newchessboardsquare key={item} squareNumber={item} chessPiece={positionPieceArray[item]} squareColor={squareColors[item]} size={props.chessboardSize * 0.6 * 0.125} />
+        return <Newchessboardsquare key={item} squareNumber={item} chessPiece={positionPieceArray[item]} squareColor={squareColors[item]} size={props.chessboardSize * 0.5 * 0.125} />
     })
 
     function fenToComputerNotation(dirtyFEN) {
@@ -40,7 +40,7 @@ export default function Newchessboard(props) {
             display: "flex",
             flexDirection: "row",
             flexWrap: "wrap-reverse",
-            width: '70%',
+            width: props.chessboardSize * 0.5,
             height: 'auto'
         }}>
             {boardSquares}
