@@ -1,11 +1,9 @@
 import Chesspiece from "./chesspiece"
+import { memo } from 'react'
 
-export default function Newchessboardsquare(props) {
+function Newchessboardsquare(props) {
     return (
         <div style={{
-            // display: "flex",
-            // flexDirection: "row",
-            // flexWrap: "wrap-reverse",
             position: 'relative',
             width: props.size,
             height: props.size,
@@ -15,6 +13,8 @@ export default function Newchessboardsquare(props) {
             <div style={{ position: "absolute", }}>
                 {props.chessPiece === null ? '' : <Chesspiece src={props.chessPiece} size={props.size} />}
             </div>
+
+            {/* the square id on the bottom left */}
             <div style={{
                 position: "absolute",
                 bottom: 0,
@@ -24,8 +24,18 @@ export default function Newchessboardsquare(props) {
                 color: "transparent"
             }}>
                 {props.squareNumber}
+                {/* Dit random getal zorgt voor problemen: de server en client vinden verschillende waarden */}
+                {/* dit betekent dat dit twee keer wordt gerund wat niet goed is */}
+                {/* {Math.floor(Math.random() * 11)} */}
             </div>
 
         </div >
     )
 }
+
+function areEqual() {
+    return false
+}
+
+// export default memo(Newchessboardsquare, areEqual)
+export default Newchessboardsquare
