@@ -2,11 +2,13 @@ import Newchessboard from "./newchessboard"
 import Positionexplanationcanvas from "./positionexplanationcanvas"
 import Button from '@mui/material/Button';
 import { useState, useReducer } from 'react'
-import * as ChessJS from "chess.js";
+// import * as ChessJS from "chess.js";
 
-const Chess = typeof ChessJS === "function" ? ChessJS : ChessJS.Chess;
+// const Chess = typeof ChessJS === "function" ? ChessJS : ChessJS.Chess;
 
-const chess = new Chess();
+// const chess = new Chess();
+import { Chess } from 'chess.js'
+const chess = new Chess
 
 export default function NewchessboardUI(props) {
     const boardSize = props.chessboardUISize > 1000 ? 0.8 * props.chessboardUISize : 800;
