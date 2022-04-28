@@ -18,7 +18,8 @@ export default function NewchessboardUI(props) {
     // const chess = Chess
     // chessGame.load(posFEN)
     chess.load(posFEN)
-    console.log(chess.ascii())
+    chess.move(1. e4 Nf6 2. e5 d5 3. exd6 e6 4. Bd3 Be7 5. Nf3 O - O 6. O - O *)
+    console.log([].concat.apply([], chess.board().reverse()))
 
     return (
         <div style={{
