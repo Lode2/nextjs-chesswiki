@@ -13,6 +13,7 @@ const moves = '1. e4 Nf6 2. e5 d5 3. exd6 e6 4. Bd3 Be7 5. Nf3 O-O 6. O-O *'
 
 const chessgame = new Chessgame(exampleFEN, moves)
 chessgame.loadOpening()
+console.log(chessgame.getStartingPosition())
 // chessgame.getChangeOnMove()
 
 export default function FirstPost() {

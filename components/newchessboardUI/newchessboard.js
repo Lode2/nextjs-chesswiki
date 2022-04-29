@@ -1,5 +1,13 @@
 import { useEffect } from "react";
 import Newchessboardsquare from "./newchessboardsquare";
+import Chessgame from '../../public/model/chess'
+
+const exampleFEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+const moves = '1. e4 Nf6 2. e5 d5 3. exd6 e6 4. Bd3 Be7 5. Nf3 O-O 6. O-O *'
+
+const chessgame = new Chessgame(exampleFEN, moves)
+chessgame.loadOpening()
+const startpos = chessgame.getStartingPosition()
 
 export default function Newchessboard(props) {
     const d = 'dark';
@@ -7,6 +15,10 @@ export default function Newchessboard(props) {
     const squareColors = [d, l, d, l, d, l, d, l, l, d, l, d, l, d, l, d, d, l, d, l, d, l, d, l, l, d, l, d, l, d, l, d, d, l, d, l, d, l, d, l, l, d, l, d, l, d, l, d, d, l, d, l, d, l, d, l, l, d, l, d, l, d, l, d,];
 
     const positionPieceArray = fenToComputerNotation(props.FEN)
+
+    // const boardSquares = Array.from(Array(64).keys()).map(item => {
+    //     return <Newchessboardsquare key={item} squareNumber={item} chessPiece={startpos[item][1]} squareColor={startpos[item][0]} size={props.chessboardSize * 0.5 * 0.125} />
+    // })
 
     // create the 64 squares list
     const boardSquares = Array.from(Array(64).keys()).map(item => {

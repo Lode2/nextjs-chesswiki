@@ -12,7 +12,7 @@ export default class Chessgame {
     // load the position, make all the moves in the variation and save the changes to the affected squares after every move
     loadOpening() {
         this.chess.load(this.FEN)
-        // split the moves by recognizing the types of chessmoves, credit: https://8bitclassroom.com/2020/08/16/chess-in-regex/
+        // split the moves by recognizing the types of chess moves, credit: https://8bitclassroom.com/2020/08/16/chess-in-regex/
         const moveArray = this.nextMoves.match(/[O](-[O]){1,2}|[KQRBN]?[a-h]?[1-8]?x?[a-h][1-8](\=[QRBN])?[+#]?/g)
 
         this.squareChangeOnMove = moveArray.map((item) => {
@@ -53,33 +53,20 @@ export default class Chessgame {
         // console.log(this.squareChangeOnMove)
     }
 
+    getStartingPosition() {
+        const chess = new Chess(this.FEN)
+        // 0=light, 1=dark
+        const squareColors = [1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1,]
+        return [].concat.apply([], chess.board().reverse()).map((item, index) => {
+            return [squareColors[index] === 0 ? 'light' : 'dark', item === null ? null : item.type + item.color]
+        })
+    }
+
     getBoardSquares() {
         const squaresArray = this.chess.board()
         const boardSquares = [].concat.apply([], squaresArray.reverse())
         return boardSquares
         // return the 64-length array containing all the info for the board squares (color, piece or not, square id)
-    }
-
-    getChangeOnMove() {
-        // return the array that contains which square changes for every move 
-        // using this.chess, this.nextMoves and this.FEN
-        // keys: from (0, 1, ..., 63), to (0, 1, ..., 63), piecename (bb, bw, pb, ...), movenumber (1, 1.5, 2, ...)
-        // so :
-        // [[movenumber, [from, to, piecename, piececolor], [from, to, piecename, piececolor]],
-        // ...,
-        // [movenumber, [from, to, piecename, piececolor], [from, to, piecename, piececolor]]]
-        // const boardSquares = Array.from(Array(64).keys()).map(item => {
-
-        //     return [movenumber, [from, to, piecename, piececolor], [from, to, piecename, piececolor]]
-        //     // return <Newchessboardsquare key={item} squareNumber={item} chessPiece={positionPieceArray[item]} squareColor={squareColors[item]} size={props.chessboardSize * 0.5 * 0.125} />
-        // })
-        console.log(this.chess.history({ verbose: true }))
-        [squareid, previousvalue, newvalue]
-        const squareChangeOnMove = this.chess.history({ verbose: true }).map(({ captured, color, flags, from, piece, san, to }) => {
-            return from + to
-            // return [movenumber, [from, to, piecename, piececolor], [from, to, piecename, piececolor]]
-        })
-        console.log(squareChangeOnMove)
     }
 
     nextMove() {
