@@ -12,9 +12,12 @@ export default class Chessgame {
     // load the position, make all the moves in the variation and save the changes to the affected squares after every move
     loadOpening() {
         this.chess.load(this.FEN)
+        if (this.nextMoves === '') {
+            return console.error('No next moves have been found.')
+        }
         // split the moves by recognizing the types of chess moves, credit: https://8bitclassroom.com/2020/08/16/chess-in-regex/
         const moveArray = this.nextMoves.match(/[O](-[O]){1,2}|[KQRBN]?[a-h]?[1-8]?x?[a-h][1-8](\=[QRBN])?[+#]?/g)
-
+        // console.log(moveArray)
         this.squareChangeOnMove = moveArray.map((item) => {
             const newMove = this.chess.move(item) // execute the half move
             // return: [[square1, prevvalue1, newvalue1], [square2, prevvalue2, newvalue2], ...]
@@ -57,8 +60,9 @@ export default class Chessgame {
         const chess = new Chess(this.FEN)
         // 0=light, 1=dark
         const squareColors = [1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1,]
+        const squareIds = ['a1', 'b1', 'c1', 'd1', 'e1', 'f1', 'g1', 'h1', 'a2', 'b2', 'c2', 'd2', 'e2', 'f2', 'g2', 'h2', 'a3', 'b3', 'c3', 'd3', 'e3', 'f3', 'g3', 'h3', 'a4', 'b4', 'c4', 'd4', 'e4', 'f4', 'g4', 'h4', 'a5', 'b5', 'c5', 'd5', 'e5', 'f5', 'g5', 'h5', 'a6', 'b6', 'c6', 'd6', 'e6', 'f6', 'g6', 'h6', 'a7', 'b7', 'c7', 'd7', 'e7', 'f7', 'g7', 'h7', 'a8', 'b8', 'c8', 'd8', 'e8', 'f8', 'g8', 'h8',]
         return [].concat.apply([], chess.board().reverse()).map((item, index) => {
-            return [squareColors[index] === 0 ? 'light' : 'dark', item === null ? null : item.type + item.color]
+            return [squareIds[index], squareColors[index] === 0 ? 'light' : 'dark', item === null ? null : item.type + item.color]
         })
     }
 

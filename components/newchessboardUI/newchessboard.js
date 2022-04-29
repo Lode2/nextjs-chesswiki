@@ -3,27 +3,30 @@ import Newchessboardsquare from "./newchessboardsquare";
 import Chessgame from '../../public/model/chess'
 
 const exampleFEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+const newFEN = '7R/Bk2n3/5p1p/p5pb/5P1b/1P2P1P1/P6K/8 w - - 2 40'
 const moves = '1. e4 Nf6 2. e5 d5 3. exd6 e6 4. Bd3 Be7 5. Nf3 O-O 6. O-O *'
 
 const chessgame = new Chessgame(exampleFEN, moves)
 chessgame.loadOpening()
-const startpos = chessgame.getStartingPosition()
+const positionPieceArray = chessgame.getStartingPosition()
+// console.log(chessgame.squareChangeOnMove)
+
+const [pieces, setPieces] = useState([])
 
 export default function Newchessboard(props) {
-    const d = 'dark';
-    const l = 'light';
-    const squareColors = [d, l, d, l, d, l, d, l, l, d, l, d, l, d, l, d, d, l, d, l, d, l, d, l, l, d, l, d, l, d, l, d, d, l, d, l, d, l, d, l, l, d, l, d, l, d, l, d, d, l, d, l, d, l, d, l, l, d, l, d, l, d, l, d,];
-
-    const positionPieceArray = fenToComputerNotation(props.FEN)
-
-    // const boardSquares = Array.from(Array(64).keys()).map(item => {
-    //     return <Newchessboardsquare key={item} squareNumber={item} chessPiece={startpos[item][1]} squareColor={startpos[item][0]} size={props.chessboardSize * 0.5 * 0.125} />
-    // })
-
     // create the 64 squares list
     const boardSquares = Array.from(Array(64).keys()).map(item => {
-        return <Newchessboardsquare key={item} squareNumber={item} chessPiece={positionPieceArray[item]} squareColor={squareColors[item]} size={props.chessboardSize * 0.5 * 0.125} />
+        return <Newchessboardsquare key={item} squareNumber={item} squareId={positionPieceArray[item][0]} chessPiece={positionPieceArray[item][2]} squareColor={positionPieceArray[item][1]} size={props.chessboardSize * 0.5 * 0.125} />
     })
+    // console.log(boardSquares[0].props.squareId)
+    // chessgame.squareChangeOnMove[props.moveCounter].forEach(item => {
+    //     // console.log(item)
+    //     const needsUpdateIndex = boardSquares.find(x => x.props.squareId === item[0]).props.squareNumber
+    //     boardSquares[needsUpdateIndex].props.chessPiece = item[2]
+    //     // = <Newchessboardsquare key={needsUpdateIndex} squareNumber={needsUpdateIndex} squareId={item[0]} chessPiece={item[2]} squareColor={'dark'} size={props.chessboardSize * 0.5 * 0.125} />
+    //     // console.log(needsUpdateIndex)
+    // })
+    // console.log(props.moveCounter)
 
     // trying to update a single square, found out that you should use react.memo to check whether the props have been changed
     // and if they are, the square component should update
@@ -44,45 +47,4 @@ export default function Newchessboard(props) {
             {boardSquares}
         </div >
     )
-}
-
-function fenToComputerNotation(dirtyFEN) {
-    const cleanFEN = dirtyFEN.split(' ')[0].split('/').reverse().join('')
-    let posArray = Array(64).fill(null);
-    for (let i = 0, j = 0; i < posArray.length; i++, j++) {
-        if (isNaN(cleanFEN[j])) {
-            // console.log(fenpos[j] + ' is a letter')
-            // change notation
-            if (cleanFEN[j] === cleanFEN[j].toUpperCase()) {
-                posArray[i] = cleanFEN[j].toLowerCase() + 'w' // white piece
-            }
-            else {
-                posArray[i] = cleanFEN[j] + 'b' // black piece 
-            }
-        } else {
-            // console.log(fenpos[j] + ' is a number, so skip iterator i by this amount')
-            i += parseInt(cleanFEN[j]) - 1
-        }
-    }
-    return posArray
-}
-
-
-// `1. e4 d5 2. Nc3 d4 3. Nd5 e6 4. Nf4 e5 5. Nfe2 Qd6 6. c3 Na6 7. cxd4 Ne7 8. b3
-//                         Kd8 9. Bb2 b6 10. Nf3 f6 11. d5 c5 12. g3 Nb8 13. Bg2 g5 14. O-O b5 15. h4 a6
-//                         16. hxg5 Rg8 17. Nh4 Ke8 18. Nf5 Nxf5 19. exf5 Kf7 *`
-function moveToNewFEN(oldFEN, move) {
-    if (move[0].lowercase === move[0]) {
-        // pawn move
-    } else {
-        switch (move[0]) {
-            case 'N': return 'knight'
-            case 'B': return 'bishop'
-            case 'R': return 'rook'
-            case 'Q': return 'queen'
-            case 'K': return 'king'
-        }
-        // piece move
-    }
-    return newFEN
 }

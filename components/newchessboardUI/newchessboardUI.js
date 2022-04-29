@@ -14,6 +14,7 @@ export default function NewchessboardUI(props) {
     const boardSize = props.chessboardUISize > 1000 ? 0.8 * props.chessboardUISize : 800;
     const [posFEN, setposFEN] = useState('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')
     const [posMoves, setposMoves] = useState(``)
+    const [moveCounter, setMoveCounter] = useState(0)
     // const chess = new Chess()
     // const chess = Chess
     // chessGame.load(posFEN)
@@ -36,7 +37,7 @@ export default function NewchessboardUI(props) {
             <div style={{
                 width: '50%',
             }}>
-                <Newchessboard chessboardSize={boardSize} FEN={posFEN} theoryMoves={posMoves} />
+                <Newchessboard chessboardSize={boardSize} FEN={posFEN} theoryMoves={posMoves} moveCounter={moveCounter} />
                 <div>
                     <Button onClick={() => {
                         setposFEN('r1b1k2r/pp1p1ppp/2n1p3/8/2Bb1B2/2n2P2/P2K2PP/7R w kq - 0 15')
@@ -52,7 +53,13 @@ export default function NewchessboardUI(props) {
                         // Kd8 9. Bb2 b6 10. Nf3 f6 11. d5 c5 12. g3 Nb8 13. Bg2 g5 14. O-O b5 15. h4 a6
                         // 16. hxg5 Rg8 17. Nh4 Ke8 18. Nf5 Nxf5 19. exf5 Kf7 *`)
                         console.log(chess)
-                    }} size="small" variant="contained">chess.js pos load</Button>
+                    }} size="small" variant="contained">chess.js pos load</Button><br></br>
+                    <Button onClick={() => {
+                        setMoveCounter(moveCounter > 0 ? (moveCounter - 1) : (moveCounter))
+                    }} size="small" variant="contained">Previous move</Button>
+                    <Button onClick={() => {
+                        setMoveCounter(moveCounter + 1)
+                    }} size="small" variant="contained">Next move</Button>
                 </div>
             </div>
             <div style={{
@@ -64,10 +71,4 @@ export default function NewchessboardUI(props) {
             </div>
         </div>
     )
-}
-
-function loadPos(chess, posFEN, posMoves) {
-    chess.load(posFEN)
-    setposFEN(posFEN)
-    setposMoves(posMoves)
 }
