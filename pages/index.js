@@ -17,7 +17,8 @@ export default function Home() {
         </p>
       </section>
       <Link href="/test-routes/edit"><a>Edit js</a></Link><br></br>
-      <Link href="/test-routes/newEdit"><a>new Edit js</a></Link>
+      <Link href="/test-routes/newEdit"><a>new Edit js</a></Link><br></br>
+      <Link href="/test-routes/chesstest"><a>chesstest</a></Link>
     </Layout>
   )
 }
