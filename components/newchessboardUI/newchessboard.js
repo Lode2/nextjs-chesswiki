@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Newchessboardsquare from "./newchessboardsquare";
 import Chessgame from '../../public/model/chess'
 
@@ -11,7 +11,7 @@ chessgame.loadOpening()
 const positionPieceArray = chessgame.getStartingPosition()
 // console.log(chessgame.squareChangeOnMove)
 
-const [pieces, setPieces] = useState([])
+// const [pieces, setPieces] = useState([])
 
 export default function Newchessboard(props) {
     // create the 64 squares list
@@ -19,13 +19,13 @@ export default function Newchessboard(props) {
         return <Newchessboardsquare key={item} squareNumber={item} squareId={positionPieceArray[item][0]} chessPiece={positionPieceArray[item][2]} squareColor={positionPieceArray[item][1]} size={props.chessboardSize * 0.5 * 0.125} />
     })
     // console.log(boardSquares[0].props.squareId)
-    // chessgame.squareChangeOnMove[props.moveCounter].forEach(item => {
-    //     // console.log(item)
-    //     const needsUpdateIndex = boardSquares.find(x => x.props.squareId === item[0]).props.squareNumber
-    //     boardSquares[needsUpdateIndex].props.chessPiece = item[2]
-    //     // = <Newchessboardsquare key={needsUpdateIndex} squareNumber={needsUpdateIndex} squareId={item[0]} chessPiece={item[2]} squareColor={'dark'} size={props.chessboardSize * 0.5 * 0.125} />
-    //     // console.log(needsUpdateIndex)
-    // })
+    chessgame.squareChangeOnMove[props.moveCounter].forEach(item => {
+        // console.log(item)
+        const needsUpdateIndex = boardSquares.find(x => x.props.squareId === item[0]).props.squareNumber
+        // boardSquares[needsUpdateIndex].props.chessPiece = item[2]
+        boardSquares[needsUpdateIndex] = <Newchessboardsquare key={needsUpdateIndex} squareNumber={needsUpdateIndex} squareId={item[0]} chessPiece={item[2]} squareColor={'dark'} size={props.chessboardSize * 0.5 * 0.125} />
+        // console.log(needsUpdateIndex)
+    })
     // console.log(props.moveCounter)
 
     // trying to update a single square, found out that you should use react.memo to check whether the props have been changed
