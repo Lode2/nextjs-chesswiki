@@ -2,25 +2,12 @@ import Newchessboard from "./newchessboard"
 import Positionexplanationcanvas from "./positionexplanationcanvas"
 import Button from '@mui/material/Button';
 import { useState, useReducer } from 'react'
-// import * as ChessJS from "chess.js";
-
-// const Chess = typeof ChessJS === "function" ? ChessJS : ChessJS.Chess;
-
-// const chess = new Chess();
-import { Chess } from 'chess.js'
-const chess = new Chess
 
 export default function NewchessboardUI(props) {
     const boardSize = props.chessboardUISize > 1000 ? 0.8 * props.chessboardUISize : 800;
     const [posFEN, setposFEN] = useState('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')
     const [posMoves, setposMoves] = useState(``)
     const [moveCounter, setMoveCounter] = useState(0)
-    // const chess = new Chess()
-    // const chess = Chess
-    // chessGame.load(posFEN)
-    chess.load(posFEN)
-    // chess.move(1. e4 Nf6 2. e5 d5 3. exd6 e6 4. Bd3 Be7 5. Nf3 O - O 6. O - O *)
-    // console.log([].concat.apply([], chess.board().reverse()))
 
     return (
         <div style={{

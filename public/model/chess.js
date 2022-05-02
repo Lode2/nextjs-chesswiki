@@ -61,24 +61,44 @@ export default class Chessgame {
         // 0=light, 1=dark
         const squareColors = [1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1,]
         const squareIds = ['a1', 'b1', 'c1', 'd1', 'e1', 'f1', 'g1', 'h1', 'a2', 'b2', 'c2', 'd2', 'e2', 'f2', 'g2', 'h2', 'a3', 'b3', 'c3', 'd3', 'e3', 'f3', 'g3', 'h3', 'a4', 'b4', 'c4', 'd4', 'e4', 'f4', 'g4', 'h4', 'a5', 'b5', 'c5', 'd5', 'e5', 'f5', 'g5', 'h5', 'a6', 'b6', 'c6', 'd6', 'e6', 'f6', 'g6', 'h6', 'a7', 'b7', 'c7', 'd7', 'e7', 'f7', 'g7', 'h7', 'a8', 'b8', 'c8', 'd8', 'e8', 'f8', 'g8', 'h8',]
-        return [].concat.apply([], chess.board().reverse()).map((item, index) => {
-            return [squareIds[index], squareColors[index] === 0 ? 'light' : 'dark', item === null ? null : item.type + item.color]
+        return this.startingPositionPieceArray = [].concat.apply([], chess.board().reverse()).map((item, index) => {
+            return {
+                squareId: squareIds[index],
+                squareColor: squareColors[index] === 0 ? 'light' : 'dark',
+                chessPiece: item === null ? null : item.type + item.color,
+                index: index
+            }
         })
     }
 
-    getBoardSquares() {
-        const squaresArray = this.chess.board()
-        const boardSquares = [].concat.apply([], squaresArray.reverse())
-        return boardSquares
-        // return the 64-length array containing all the info for the board squares (color, piece or not, square id)
-    }
-
-    nextMove() {
-        // functionality for what squares change and how for the next move
-
-    }
-
-    previousMove() {
-        // functionality for what squares change and how for the previous move
+    getUpdatedPosition(moveCounter) {
+        console.log(`De positie die wordt bepaald is van move ${moveCounter}`)
+        this.newMoveCounter = moveCounter
+        if (this.newMoveCounter === 0) {
+            this.oldMoveCounter = moveCounter
+            return this.updatedPositionPieceArray = this.startingPositionPieceArray
+        } else {
+            this.requestedMoveDirection = (this.newMoveCounter - this.oldMoveCounter) === 1 ? 'next' : 'previous'
+            // console.log(this.requestedMoveDirection)
+            this.oldMoveCounter = moveCounter
+        }
+        if (this.requestedMoveDirection === 'next') {
+            //find position after next move
+            this.squareChangeOnMove[this.newMoveCounter - 1].forEach((item) => {
+                const needsUpdate = this.updatedPositionPieceArray.find(x => x.squareId === item[0])
+                // console.log(needsUpdate)
+                this.updatedPositionPieceArray[needsUpdate.index].chessPiece = item[2]
+                console.log(this.updatedPositionPieceArray[needsUpdate.index])
+            })
+        } else if (this.requestedMoveDirection === 'previous') {
+            // find position after previous move
+            this.squareChangeOnMove[this.newMoveCounter].forEach((item) => {
+                const needsUpdate = this.updatedPositionPieceArray.find(x => x.squareId === item[0])
+                // console.log(needsUpdate)
+                this.updatedPositionPieceArray[needsUpdate.index].chessPiece = item[1]
+                console.log(this.updatedPositionPieceArray[needsUpdate.index])
+            })
+        }
+        return this.updatedPositionPieceArray
     }
 }
