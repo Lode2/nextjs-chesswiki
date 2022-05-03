@@ -23,10 +23,10 @@ function Newchessboardsquare(props) {
                 WebkitBackgroundClip: "text",
                 color: "transparent"
             }}>
-                {props.squareNumber}
+                {/* {props.squareNumber} */}
                 {/* Dit random getal zorgt voor problemen: de server en client vinden verschillende waarden */}
                 {/* dit betekent dat dit twee keer wordt gerund wat niet goed is */}
-                {/* {Math.floor(Math.random() * 11)} */}
+                {Math.floor(Math.random() * 11)}
             </div>
 
         </div >

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Newchessboardsquare from "./newchessboardsquare";
 import Chessgame from '../../public/model/chess'
 
@@ -11,19 +11,42 @@ chessgame.loadOpening()
 const startingPos = chessgame.getPosition()
 
 export default function Newchessboard(props) {
-
     const squareSize = props.chessboardSize * 0.5 * 0.125
-    // const [pieceArray, setPieceArray] = useState(startingPos)
+    const [pieceArray, setPieceArray] = useState(startingPos)
     const [boardSquares, setBoardSquares] = useState(createSquareProp(startingPos))
     const [moveCounter, setMoveCounter] = useState(props.moveCounter)
+    const [needsUpdatingIndex, setNeedsUpdatingIndex] = useState()
 
+    // Use pieceArray to find the difference in the position between the current position and the previous one.
+    // Next, for setBoardSquares, only replace the values that need replacing.
     useEffect(() => {
         setMoveCounter(moveCounterDirection)
         const currentPosArray = chessgame.positionArray
         // setPieceArray(currentPosArray)
-        const renderedPos = createSquareProp(currentPosArray)
-        setBoardSquares(renderedPos)
+        setPieceArray(findNeedsUpdatingIndex(currentPosArray))
+        setBoardSquares(updateBoardSquares(needsUpdatingIndex, currentPosArray))
+        // const renderedPos = createSquareProp(currentPosArray)
+        // const renderedPos = useMemo(() => createSquareProp(currentPosArray), [currentPosArray])
+        // setBoardSquares(renderedPos)
     }, [props.moveCounter])
+
+    function updateBoardSquares(index, pos) {
+        let list = [...boardSquares]
+        if (index === undefined) {
+            return list
+        }
+        index.forEach((item) => {
+            let target = [...list[item]]
+            target = createSingleSquareProp(pos[item])
+            list[item] = target
+        })
+
+        return list
+    }
+
+    function createSingleSquareProp(rawItem) {
+        return <Newchessboardsquare key={rawItem.index} squareNumber={rawItem.index} squareId={rawItem.squareId} chessPiece={rawItem.chessPiece} squareColor={rawItem.squareColor} size={squareSize} />
+    }
 
     function moveCounterDirection() {
         if (moveCounter < props.moveCounter) {
@@ -32,6 +55,15 @@ export default function Newchessboard(props) {
             chessgame.previousMove(props.moveCounter)
         }
         return props.moveCounter
+    }
+
+    function findNeedsUpdatingIndex(newArray) {
+        let difference = newArray.filter(x => !pieceArray.includes(x));
+        difference.map((item) => {
+            return newArray.indexOf(item)
+        })
+        setNeedsUpdatingIndex(difference)
+        return newArray
     }
 
     function createSquareProp(rawList) {
