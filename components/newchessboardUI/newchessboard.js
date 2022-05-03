@@ -15,37 +15,65 @@ export default function Newchessboard(props) {
     const [pieceArray, setPieceArray] = useState(startingPos)
     const [boardSquares, setBoardSquares] = useState(createSquareProp(startingPos))
     const [moveCounter, setMoveCounter] = useState(props.moveCounter)
-    const [needsUpdatingIndex, setNeedsUpdatingIndex] = useState()
-
     // Use pieceArray to find the difference in the position between the current position and the previous one.
     // Next, for setBoardSquares, only replace the values that need replacing.
     useEffect(() => {
         setMoveCounter(moveCounterDirection)
         const currentPosArray = chessgame.positionArray
-        // setPieceArray(currentPosArray)
-        setPieceArray(findNeedsUpdatingIndex(currentPosArray))
-        setBoardSquares(updateBoardSquares(needsUpdatingIndex, currentPosArray))
         // const renderedPos = createSquareProp(currentPosArray)
-        // const renderedPos = useMemo(() => createSquareProp(currentPosArray), [currentPosArray])
         // setBoardSquares(renderedPos)
+
+        // so here we have the old pos: pieceArray, and the new pos: currentPosArray
+        // we want to update boardSquares only with the squares that changed
+
+        // PLAN:
+        // 1. find the squares that change between old and new pos
+        // 2. render these squares using the square component
+        // 3. update boardSquares with the new items for the 
+
+        const changedSquares = arrayDiff(currentPosArray, pieceArray)
+        console.log(changedSquares)
+        if (changedSquares.length === 0) {
+            console.log('no changes')
+            const renderedPos = createSquareProp(currentPosArray)
+            setBoardSquares(renderedPos)
+        }
+        else {
+            console.log('yes changes')
+            const renderedChangedSquares = createSquareProp(changedSquares)
+            console.log(renderedChangedSquares)
+            setBoardSquares(updateChangedSquares(renderedChangedSquares))
+        }
+
+        // setPieceArray(currentPosArray)
+        // setPieceArray(squareNeedsUpdating(currentPosArray))
+
     }, [props.moveCounter])
 
-    function updateBoardSquares(index, pos) {
-        let list = [...boardSquares]
-        if (index === undefined) {
-            return list
+    function arrayDiff(arrayA, arrayB) {
+        let diff = []
+        for (let i = 0; i < arrayA.length; i++) {
+            if (!(arrayA[i].chessPiece === arrayB[i].chessPiece)) {
+                diff.push(arrayA[i])
+            }
         }
-        index.forEach((item) => {
-            let target = [...list[item]]
-            target = createSingleSquareProp(pos[item])
-            list[item] = target
-        })
-
-        return list
+        return diff
     }
 
-    function createSingleSquareProp(rawItem) {
-        return <Newchessboardsquare key={rawItem.index} squareNumber={rawItem.index} squareId={rawItem.squareId} chessPiece={rawItem.chessPiece} squareColor={rawItem.squareColor} size={squareSize} />
+    function updateChangedSquares(changedSquares) {
+        // 1. Make a shallow copy of the items
+        let items = [...boardSquares];
+        changedSquares.forEach((square) => {
+            // 2. Make a shallow copy of the item you want to mutate
+            let item = { ...items[square.props.squareNumber] };
+            console.log(item)
+            // 3. Replace the property you're intested in
+            item = square;
+            // 4. Put it back into our array. N.B. we *are* mutating the array here, but that's why we made a copy first
+            items[square.props.squareNumber] = item;
+        })
+
+        return items
     }
 
     function moveCounterDirection() {
@@ -55,15 +83,6 @@ export default function Newchessboard(props) {
             chessgame.previousMove(props.moveCounter)
         }
         return props.moveCounter
-    }
-
-    function findNeedsUpdatingIndex(newArray) {
-        let difference = newArray.filter(x => !pieceArray.includes(x));
-        difference.map((item) => {
-            return newArray.indexOf(item)
-        })
-        setNeedsUpdatingIndex(difference)
-        return newArray
     }
 
     function createSquareProp(rawList) {
