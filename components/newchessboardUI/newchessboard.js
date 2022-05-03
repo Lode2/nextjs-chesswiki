@@ -8,26 +8,31 @@ const moves = '1. e4 Nf6 2. e5 d5 3. exd6 e6 4. Bd3 Be7 5. Nf3 O-O 6. O-O *'
 
 const chessgame = new Chessgame(exampleFEN, moves)
 chessgame.loadOpening()
-const startingPositionPieceArray = chessgame.getStartingPosition()
+const startingPos = chessgame.getPosition()
 
 export default function Newchessboard(props) {
+
     const squareSize = props.chessboardSize * 0.5 * 0.125
-    const [pieceArray, setPieceArray] = useState(startingPositionPieceArray)
-    const [boardSquares, setBoardSquares] = useState()
-    // the bug is that the position shown on screen is the position that has been calculated on the previous
-    // rerender caused by moveCounter
-    // this might be because usestate is asynchronous and the state is not updated yet before re-render
-    // a solution could be useStateCallback, but I dont know how that would work.
-    // another solution, which could actually work, is to add the buttons in this component, setting a function in them
-    // onPress, which should be pretty easy to implement.
+    // const [pieceArray, setPieceArray] = useState(startingPos)
+    const [boardSquares, setBoardSquares] = useState(createSquareProp(startingPos))
+    const [moveCounter, setMoveCounter] = useState(props.moveCounter)
+
     useEffect(() => {
-        setPieceArray(startingPositionPieceArray)
-        setBoardSquares(createSquareProp(pieceArray))
-    }, [])
-    useEffect(() => {
-        setPieceArray(chessgame.getUpdatedPosition(props.moveCounter))
-        setBoardSquares(createSquareProp(pieceArray))
+        setMoveCounter(moveCounterDirection)
+        const currentPosArray = chessgame.positionArray
+        // setPieceArray(currentPosArray)
+        const renderedPos = createSquareProp(currentPosArray)
+        setBoardSquares(renderedPos)
     }, [props.moveCounter])
+
+    function moveCounterDirection() {
+        if (moveCounter < props.moveCounter) {
+            chessgame.nextMove(props.moveCounter - 1)
+        } else {
+            chessgame.previousMove(props.moveCounter)
+        }
+        return props.moveCounter
+    }
 
     function createSquareProp(rawList) {
         return rawList.map(item => {
@@ -43,11 +48,8 @@ export default function Newchessboard(props) {
             width: props.chessboardSize * 0.5,
             height: 'auto'
         }}>
-            {/* {createSquareProp(boardSquares)} */}
-            {/* {positionPieceArray} */}
             {boardSquares}
             {`currentmove: ${props.moveCounter}`}
-            {pieceArray[12].chessPiece}
         </div >
     )
 }
