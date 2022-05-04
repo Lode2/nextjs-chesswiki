@@ -15,39 +15,31 @@ export default function Newchessboard(props) {
     const [pieceArray, setPieceArray] = useState(startingPos)
     const [boardSquares, setBoardSquares] = useState(createSquareProp(startingPos))
     const [moveCounter, setMoveCounter] = useState(props.moveCounter)
-    // Use pieceArray to find the difference in the position between the current position and the previous one.
-    // Next, for setBoardSquares, only replace the values that need replacing.
+
     useEffect(() => {
+        // find whether to update the position by playing the next or the previous move. Make that move.
         setMoveCounter(moveCounterDirection)
         const currentPosArray = chessgame.positionArray
-        // const renderedPos = createSquareProp(currentPosArray)
-        // setBoardSquares(renderedPos)
 
-        // so here we have the old pos: pieceArray, and the new pos: currentPosArray
-        // we want to update boardSquares only with the squares that changed
-
-        // PLAN:
-        // 1. find the squares that change between old and new pos
-        // 2. render these squares using the square component
-        // 3. update boardSquares with the new items for the 
-
+        // find the squares that change between the old and the new position, currentPosArray is new position
         const changedSquares = arrayDiff(currentPosArray, pieceArray)
-        console.log(changedSquares)
+        // update pieceArray so the current pos can be used as the old pos when there is a move being made again
+        setPieceArray(currentPosArray)
+        // console.log(changedSquares)
+
+        // the same position, happens when a position is first loaded: render the position and update the state
         if (changedSquares.length === 0) {
             console.log('no changes')
             const renderedPos = createSquareProp(currentPosArray)
             setBoardSquares(renderedPos)
         }
+        // something changed in the position: render the squares that are changed and change boardSquares to only change those changed squares
         else {
             console.log('yes changes')
             const renderedChangedSquares = createSquareProp(changedSquares)
             console.log(renderedChangedSquares)
             setBoardSquares(updateChangedSquares(renderedChangedSquares))
         }
-
-        // setPieceArray(currentPosArray)
-        // setPieceArray(squareNeedsUpdating(currentPosArray))
-
     }, [props.moveCounter])
 
     function arrayDiff(arrayA, arrayB) {
@@ -60,6 +52,7 @@ export default function Newchessboard(props) {
         return diff
     }
 
+    // updates a state so that items in the list that stay the same don't have to be re-rendered
     function updateChangedSquares(changedSquares) {
         // 1. Make a shallow copy of the items
         let items = [...boardSquares];
