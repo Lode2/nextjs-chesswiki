@@ -1,8 +1,8 @@
-export default function Positionexplanationcanvas() {
+export default function Positionexplanationcanvas(props) {
+    const newInfo = props.info[props.move - 1]
     return (
         <div>
-            position explanation canvas
-            {Math.floor(Math.random() * 11)}
+            {newInfo}
         </div>
     )
 }

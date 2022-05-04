@@ -20,6 +20,7 @@ export default function Newchessboard(props) {
         // find whether to update the position by playing the next or the previous move. Make that move.
         setMoveCounter(moveCounterDirection)
         const currentPosArray = chessgame.positionArray
+        props.updateMoveList(chessgame.moveArray.slice(0, props.moveCounter))
 
         // find the squares that change between the old and the new position, currentPosArray is new position
         const changedSquares = arrayDiff(currentPosArray, pieceArray)
@@ -29,15 +30,15 @@ export default function Newchessboard(props) {
 
         // the same position, happens when a position is first loaded: render the position and update the state
         if (changedSquares.length === 0) {
-            console.log('no changes')
+            // console.log('no changes')
             const renderedPos = createSquareProp(currentPosArray)
             setBoardSquares(renderedPos)
         }
         // something changed in the position: render the squares that are changed and change boardSquares to only change those changed squares
         else {
-            console.log('yes changes')
+            // console.log('yes changes')
             const renderedChangedSquares = createSquareProp(changedSquares)
-            console.log(renderedChangedSquares)
+            // console.log(renderedChangedSquares)
             setBoardSquares(updateChangedSquares(renderedChangedSquares))
         }
     }, [props.moveCounter])
@@ -59,7 +60,7 @@ export default function Newchessboard(props) {
         changedSquares.forEach((square) => {
             // 2. Make a shallow copy of the item you want to mutate
             let item = { ...items[square.props.squareNumber] };
-            console.log(item)
+            // console.log(item)
             // 3. Replace the property you're intested in
             item = square;
             // 4. Put it back into our array. N.B. we *are* mutating the array here, but that's why we made a copy first
@@ -69,6 +70,7 @@ export default function Newchessboard(props) {
         return items
     }
 
+    // finds the direction the move counter is going by evaluating the previous move counter
     function moveCounterDirection() {
         if (moveCounter < props.moveCounter) {
             chessgame.nextMove(props.moveCounter - 1)
@@ -78,6 +80,7 @@ export default function Newchessboard(props) {
         return props.moveCounter
     }
 
+    // create a list of chessboard squares
     function createSquareProp(rawList) {
         return rawList.map(item => {
             return <Newchessboardsquare key={item.index} squareNumber={item.index} squareId={item.squareId} chessPiece={item.chessPiece} squareColor={item.squareColor} size={squareSize} />

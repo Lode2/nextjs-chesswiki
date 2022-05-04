@@ -2,9 +2,9 @@ import { memo } from 'react'
 import Image from 'next/image'
 
 function Chesspiece(props) {
+    // console.log(props.size)
     const imgsrc = '/images/' + props.src + '.png';
     const pieceName = (props.src[1] === 'b' ? 'black' : 'white') + ' ' + shorthandToPieceName(props.src[0]);
-
     return (
         <>
             <Image src={imgsrc} alt={pieceName} width={props.size} height={props.size} />
