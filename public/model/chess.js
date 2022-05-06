@@ -411,6 +411,7 @@ export default class Chessgame {
 
     nextMove(moveCounter) {
         console.log(`making the move ${this.moveArray[moveCounter]}`)
+        // while moveCounter is not equal to the current move of position, make next move
         this.chess.move(this.moveArray[moveCounter])
         this.getPosition()
     }

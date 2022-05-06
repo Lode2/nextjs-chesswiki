@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import Newchessboardsquare from "./newchessboardsquare";
 import Chessgame from '../../public/model/chess'
 
@@ -16,11 +16,15 @@ export default function Newchessboard(props) {
     const [boardSquares, setBoardSquares] = useState(createSquareProp(startingPos))
     const [moveCounter, setMoveCounter] = useState(props.moveCounter)
 
+    const newMoveList = useMemo(() => props.updateMoveList(chessgame.moveArray.slice(0, props.moveCounter)), [props.moveCounter])
+    console.log('re-render newchessboard')
     useEffect(() => {
+
         // find whether to update the position by playing the next or the previous move. Make that move.
         setMoveCounter(moveCounterDirection)
         const currentPosArray = chessgame.positionArray
-        props.updateMoveList(chessgame.moveArray.slice(0, props.moveCounter))
+        newMoveList
+        // props.updateMoveList(chessgame.moveArray.slice(0, props.moveCounter))
 
         // find the squares that change between the old and the new position, currentPosArray is new position
         const changedSquares = arrayDiff(currentPosArray, pieceArray)
@@ -97,6 +101,6 @@ export default function Newchessboard(props) {
         }}>
             {boardSquares}
             {`currentmove: ${props.moveCounter}`}
-        </div >
+        </div>
     )
 }

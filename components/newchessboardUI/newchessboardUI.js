@@ -72,7 +72,7 @@ export default function NewchessboardUI(props) {
             }}>
                 Move history
                 <br></br>
-                <Movelistcanvas moveList={moveList} />
+                <Movelistcanvas moveList={moveList} changeCounter={setMoveCounter} />
                 {/* {Math.floor(Math.random() * 11)} */}
             </div>
         </div>
