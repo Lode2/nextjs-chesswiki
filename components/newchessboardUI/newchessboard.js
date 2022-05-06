@@ -11,19 +11,25 @@ chessgame.loadOpening()
 const startingPos = chessgame.getPosition()
 
 export default function Newchessboard(props) {
+    console.log('rendering newchessboard')
     const squareSize = props.chessboardSize * 0.5 * 0.125
     const [pieceArray, setPieceArray] = useState(startingPos)
     const [boardSquares, setBoardSquares] = useState(createSquareProp(startingPos))
     const [moveCounter, setMoveCounter] = useState(props.moveCounter)
 
-    const newMoveList = useMemo(() => props.updateMoveList(chessgame.moveArray.slice(0, props.moveCounter)), [props.moveCounter])
-    console.log('re-render newchessboard')
     useEffect(() => {
+        console.log('inside onmount useeffect')
+        props.moveListRef.current = chessgame.moveArray
+    }, [])
 
+    // const newMoveList = useMemo(() => props.updateMoveList(chessgame.moveArray.slice(0, props.moveCounter)), [props.moveCounter])
+    useEffect(() => {
+        console.log('inside newchessboard useeffect')
         // find whether to update the position by playing the next or the previous move. Make that move.
         setMoveCounter(moveCounterDirection)
         const currentPosArray = chessgame.positionArray
-        newMoveList
+
+        // the next line causes newchessboardui to re-render on every move
         // props.updateMoveList(chessgame.moveArray.slice(0, props.moveCounter))
 
         // find the squares that change between the old and the new position, currentPosArray is new position

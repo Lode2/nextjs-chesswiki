@@ -1,12 +1,13 @@
 import { useState, useMemo } from 'react'
 
 export default function Movelistcanvas(props) {
+    console.log('rendering movelistcanvas')
     const [oldListLength, setOldListLength] = useState(0)
     let newList = []
-    const buttonStyle = { all: 'unset', cursor: 'pointer', borderRadius: '3px', paddingLeft: '3px', paddingRight: '3px', marginLeft: '5px' }
+    const buttonStyle = { all: 'unset', cursor: 'pointer', borderRadius: '5px', paddingLeft: '3px', paddingRight: '3px', marginLeft: '5px' }
     // add condition that it only updates when previous value is smaller than the new one in case the user wants to go back a move
     // this condition will make it so that the moves that have been made up until then will remain there.
-    console.log(`oldlistlength is: ${oldListLength}, props.moveList.length is: ${props.moveList.length}`)
+    // console.log(`oldlistlength is: ${oldListLength}, props.moveList.length is: ${props.moveList.length}`)
     if (props.moveList.length !== 0 && oldListLength < props.moveList.length) {
         newList = props.moveList.map((item, index) => {
             // console.log(index)
@@ -36,7 +37,6 @@ export default function Movelistcanvas(props) {
 
     function mouseEnter(event) {
         event.target.style.background = 'gray';
-        event.target.style.borderRadius = '5px'
     }
 
     function mouseLeave(event) {
