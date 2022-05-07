@@ -409,16 +409,20 @@ export default class Chessgame {
         return this.positionArray
     }
 
-    nextMove(moveCounter) {
+    nextMove(moveCounter, moveDiff) {
         // console.log(`making the move ${this.moveArray[moveCounter]}`)
         // while moveCounter is not equal to the current move of position, make next move
-        this.chess.move(this.moveArray[moveCounter])
+        for (let i = moveDiff; i > 0; i--) {
+            this.chess.move(this.moveArray[moveCounter - i + 1])
+        }
         this.getPosition()
     }
 
-    previousMove(moveCounter) {
+    previousMove(moveCounter, moveDiff) {
         // console.log(`undoing the move ${this.moveArray[moveCounter]}`)
-        this.chess.undo()
+        for (let i = moveDiff; i > 0; i--) {
+            this.chess.undo()
+        }
         this.getPosition()
     }
 }

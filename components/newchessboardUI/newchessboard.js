@@ -83,9 +83,10 @@ export default function Newchessboard(props) {
     // finds the direction the move counter is going by evaluating the previous move counter
     function moveCounterDirection() {
         if (moveCounter < props.moveCounter) {
-            chessgame.nextMove(props.moveCounter - 1)
+            chessgame.nextMove(props.moveCounter - 1, props.moveCounter - moveCounter)
         } else {
-            chessgame.previousMove(props.moveCounter)
+            // console.log(`het verschil tussen de nieuwe en oude zet is ${moveCounter - props.moveCounter}`)
+            chessgame.previousMove(props.moveCounter, moveCounter - props.moveCounter)
         }
         return props.moveCounter
     }
