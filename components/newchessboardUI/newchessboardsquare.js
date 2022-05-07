@@ -1,5 +1,4 @@
 import Chesspiece from "./chesspiece"
-import { memo } from 'react'
 
 function Newchessboardsquare(props) {
     return (
@@ -28,13 +27,8 @@ function Newchessboardsquare(props) {
                 {/* dit betekent dat dit twee keer wordt gerund wat niet goed is */}
                 {/* {Math.floor(Math.random() * 11)} */}
             </div>
-
-        </div >
+        </div>
     )
-}
-
-function areEqual() {
-    return false
 }
 
 // export default memo(Newchessboardsquare, areEqual)

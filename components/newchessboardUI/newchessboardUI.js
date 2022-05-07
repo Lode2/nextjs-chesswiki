@@ -8,9 +8,8 @@ export default function NewchessboardUI(props) {
     console.log('rendering newchessboardui')
     const boardSize = props.chessboardUISize > 1000 ? 0.8 * props.chessboardUISize : 800;
     const [posFEN, setposFEN] = useState('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')
-    const [posMoves, setposMoves] = useState(``)
+    const [posMoves, setposMoves] = useState('1. e4 Nf6 2. e5 d5 3. exd6 e6 4. Bd3 Be7 5. Nf3 O-O 6. O-O *')
     const [moveCounter, setMoveCounter] = useState(0)
-    const amountOfMoves = 11
     const moveList = useRef([])
     // console.log(moveList)
     const positionInformation = ["1. e4, one of the most common opening moves.",

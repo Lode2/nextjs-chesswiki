@@ -7,15 +7,24 @@ const newFEN = '7R/Bk2n3/5p1p/p5pb/5P1b/1P2P1P1/P6K/8 w - - 2 40'
 const moves = '1. e4 Nf6 2. e5 d5 3. exd6 e6 4. Bd3 Be7 5. Nf3 O-O 6. O-O *'
 
 const chessgame = new Chessgame(exampleFEN, moves)
+// const chessgame = new Chessgame(props.FEN, props.theoryMoves) // ideally this would be uncommented, but it only works inside func
 chessgame.loadOpening()
 const startingPos = chessgame.getPosition()
 
 export default function Newchessboard(props) {
     console.log('rendering newchessboard')
+    // const chessgame = useMemo(() => new Chessgame(props.FEN, props.theoryMoves), [props.FEN, props.theoryMoves])
+    // useCallback(chessgame.loadOpening(), [props.FEN, props.theoryMoves])
+    // console.log(chessgame)
+    // const startingPos = useMemo(() => chessgame.getPosition(), [props.FEN, props.theoryMoves])
+    // console.log(startingPos)
+
     const squareSize = props.chessboardSize * 0.5 * 0.125
     const [pieceArray, setPieceArray] = useState(startingPos)
     const [boardSquares, setBoardSquares] = useState(createSquareProp(startingPos))
     const [moveCounter, setMoveCounter] = useState(props.moveCounter)
+
+
 
     useEffect(() => {
         console.log('inside onmount useeffect')
