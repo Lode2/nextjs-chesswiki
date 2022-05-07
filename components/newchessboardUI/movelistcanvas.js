@@ -1,16 +1,29 @@
-import { useState, useMemo } from 'react'
+import { useState, useRef, useMemo } from 'react'
 
 export default function Movelistcanvas(props) {
     console.log('rendering movelistcanvas')
-    const [oldListLength, setOldListLength] = useState(0)
-    let newList = []
+    const oldListLength = useRef(0)
+
     const buttonStyle = { all: 'unset', cursor: 'pointer', borderRadius: '5px', paddingLeft: '3px', paddingRight: '3px', marginLeft: '5px' }
-    // add condition that it only updates when previous value is smaller than the new one in case the user wants to go back a move
-    // this condition will make it so that the moves that have been made up until then will remain there.
-    // console.log(`oldlistlength is: ${oldListLength}, props.moveList.length is: ${props.moveList.length}`)
-    if (props.moveList.length !== 0 && oldListLength < props.moveList.length) {
-        newList = props.moveList.map((item, index) => {
-            // console.log(index)
+
+    // the list of styled moves remains the same for the entire game, until another game is loaded, so memoize
+    const newList = useMemo(() => createStyledMoveList(props.moveList), [props.moveList])
+
+    let useList = [...newList]
+
+    // find until what move the list should be displayed
+    if (props.currentCounter > oldListLength.current) {
+        useList = newList.slice(0, props.currentCounter)
+        oldListLength.current = props.currentCounter
+    } else {
+        useList = newList.slice(0, oldListLength.current)
+    }
+
+    function createStyledMoveList(list) {
+        if (list.length === 0) {
+            return []
+        }
+        const styledList = list.map((item, index) => {
             if (index % 2 !== 0) {
                 return <span style={{ width: 'auto', heigth: 'auto' }} key={`moveList ${index}`}>
                     <button style={buttonStyle} onClick={() => changeMove(index)} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
@@ -27,12 +40,12 @@ export default function Movelistcanvas(props) {
                 </span>
             }
         })
-        // setOldListLength(props.moveList.length)
+        return styledList
     }
 
     const changeMove = (moveNr) => {
         console.log(moveNr + 1)
-        props.changeCounter(moveNr)
+        props.changeCounter(moveNr + 1)
     }
 
     function mouseEnter(event) {
@@ -44,6 +57,6 @@ export default function Movelistcanvas(props) {
     }
 
     return (
-        <div style={{ whiteSpace: 'pre-line' }}>{newList}</div>
+        <div style={{ whiteSpace: 'pre-line' }}>{useList}</div>
     )
 }

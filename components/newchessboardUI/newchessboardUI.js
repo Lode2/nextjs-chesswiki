@@ -64,7 +64,7 @@ export default function NewchessboardUI(props) {
                         setMoveCounter(moveCounter > 0 ? (moveCounter - 1) : (moveCounter))
                     }} size="small" variant="contained">Previous move</Button>
                     <Button onClick={() => {
-                        setMoveCounter(moveCounter < (moveList.length) ? (moveCounter + 1) : moveCounter)
+                        setMoveCounter(moveCounter < (moveList.current.length) ? (moveCounter + 1) : moveCounter)
                     }} size="small" variant="contained">Next move</Button>
                 </div>
             </div>
@@ -73,7 +73,7 @@ export default function NewchessboardUI(props) {
             }}>
                 Move history
                 <br></br>
-                <Movelistcanvas moveList={moveList.current} changeCounter={setMoveCounter} />
+                <Movelistcanvas moveList={moveList.current} currentCounter={moveCounter} changeCounter={setMoveCounter} />
                 {/* {Math.floor(Math.random() * 11)} */}
             </div>
         </div>
