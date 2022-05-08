@@ -1,6 +1,6 @@
 import Chesspiece from "./chesspiece"
 
-function Newchessboardsquare(props) {
+export default function Newchessboardsquare(props) {
     return (
         <div style={{
             position: 'relative',
@@ -8,7 +8,6 @@ function Newchessboardsquare(props) {
             height: props.size,
             backgroundColor: props.squareColor === 'dark' ? '#a52a2a' : '#f5f5dc',
         }}>
-            {/* place a piece image if there is a piece on this square */}
             <div style={{ position: "absolute", }}>
                 {props.chessPiece === null ? '' : <Chesspiece src={props.chessPiece} size={props.size} />}
             </div>
@@ -30,6 +29,3 @@ function Newchessboardsquare(props) {
         </div>
     )
 }
-
-// export default memo(Newchessboardsquare, areEqual)
-export default Newchessboardsquare

@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo } from 'react'
+import { useRef, useMemo } from 'react'
 
 export default function Movelistcanvas(props) {
     console.log('rendering movelistcanvas')

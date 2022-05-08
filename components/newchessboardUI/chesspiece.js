@@ -1,8 +1,6 @@
-import { memo } from 'react'
 import Image from 'next/image'
 
-function Chesspiece(props) {
-    // console.log(props.size)
+export default function Chesspiece(props) {
     const imgsrc = '/images/' + props.src + '.png';
     const pieceName = (props.src[1] === 'b' ? 'black' : 'white') + ' ' + shorthandToPieceName(props.src[0]);
     return (
@@ -22,10 +20,3 @@ function shorthandToPieceName(shorthand) {
         case 'k': return 'king'
     }
 }
-
-function areEqual() {
-    return true
-}
-
-// export default memo(Chesspiece, areEqual)
-export default Chesspiece

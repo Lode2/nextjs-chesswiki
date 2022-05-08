@@ -1,10 +1,6 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Newchessboardsquare from "./newchessboardsquare";
 import Chessgame from '../../public/model/chess'
-
-const exampleFEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
-const newFEN = '7R/Bk2n3/5p1p/p5pb/5P1b/1P2P1P1/P6K/8 w - - 2 40'
-const moves = '1. e4 Nf6 2. e5 d5 3. exd6 e6 4. Bd3 Be7 5. Nf3 O-O 6. O-O *'
 
 export default function Newchessboard(props) {
     console.log('rendering newchessboard')
@@ -25,7 +21,6 @@ export default function Newchessboard(props) {
         props.moveListRef.current = chessgame.moveArray
     }, [])
 
-    // const newMoveList = useMemo(() => props.updateMoveList(chessgame.moveArray.slice(0, props.moveCounter)), [props.moveCounter])
     useEffect(() => {
         console.log('inside newchessboard useeffect')
         // find whether to update the position by playing the next or the previous move. Make that move.

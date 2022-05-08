@@ -22,7 +22,6 @@ export default class Chessgame {
         this.pieceArray = [].concat.apply([], this.chess.board().reverse()).map(item => {
             return item === null ? null : (item.type + item.color)
         })
-        // console.log(this.pieceArray)
         this.positionArray = [{
             "squareId": "a1",
             "squareColor": "dark",
