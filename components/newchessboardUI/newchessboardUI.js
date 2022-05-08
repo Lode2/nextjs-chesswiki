@@ -28,7 +28,9 @@ export default function NewchessboardUI(props) {
             display: 'flex',
             flexDirection: "row",
             // border: 'black 3px solid',
-            float: 'right',
+            // float: 'right',
+            marginLeft: '75px',
+            // marginRight: '100px',
             width: boardSize,
             height: 'auto',
         }}>

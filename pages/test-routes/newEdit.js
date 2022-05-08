@@ -5,10 +5,10 @@ import Button from '@mui/material/Button';
 import { useState, useEffect } from 'react'
 import Newchessboard from '../../components/newchessboardUI/newchessboard';
 import NewchessboardUI from '../../components/newchessboardUI/newchessboardUI';
+import Topnavbar from '../../components/topnavbar';
 
 export default function FirstPost() {
-    const [chessboard, setChessboard] = useState("starting position");
-    const [size, setSize] = useState({ heigth: 800, width: 800 })
+    const [size, setSize] = useState({ heigth: 8 * 140, width: 8 * 140 })
     // const size = useWindowSize();
     // Hook
     // function useWindowSize() {
@@ -44,23 +44,17 @@ export default function FirstPost() {
     //     return windowSize;
     // }
     return (
-        <>
+        <div style={{
+            backgroundColor: '#171717',
+            color: 'white',
+        }}>
             <Head>
                 <title>Chesswiki</title>
             </Head>
+            <Topnavbar />
             <h1>New edit page for Chesswiki</h1>
-            <h2>
-                <Link href="/">
-                    <a>Back to home</a>
-                </Link>
-            </h2>
-            <Button onClick={() => {
-                console.log('Update position button hit')
-                setChessboard('London system')
-            }} size="small" variant="contained">Update position</Button>
-            {chessboard}
             {/* <NewchessboardUI chessboardUISize={size.width != undefined ? size.width : 1280} /> */}
             {<NewchessboardUI chessboardUISize={size.width} />}
-        </>
+        </div>
     )
 }
