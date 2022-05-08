@@ -10,7 +10,6 @@ export default class Chessgame {
     // load the position, make all the moves in the variation and save the changes to the affected squares after every move
     loadOpening() {
         this.chess.load(this.FEN)
-        console.log('new opening loaded')
         if (this.nextMoves === '') {
             return console.error('No next moves have been found.')
         }

@@ -1,7 +1,7 @@
 import { useRef, useMemo } from 'react'
 
 export default function Movelistcanvas(props) {
-    console.log('rendering movelistcanvas')
+    // console.log('rendering movelistcanvas')
     const oldListLength = useRef(0)
 
     const buttonStyle = { all: 'unset', cursor: 'pointer', borderRadius: '5px', paddingLeft: '3px', paddingRight: '3px', marginLeft: '5px' }

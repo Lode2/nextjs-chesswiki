@@ -3,7 +3,7 @@ import Newchessboardsquare from "./newchessboardsquare";
 import Chessgame from '../../public/model/chess'
 
 export default function Newchessboard(props) {
-    console.log('rendering newchessboard')
+    // console.log('rendering newchessboard')
     // ik denk dat het probleem is dat de memoize niet werkt en dat de waarde toch elke render update, aangezien alles werkt,
     // alleen wordt de positie elke zet naar de beginpositie gezet.
     // het werkt allemaal als ik usememo gebruik voor loadopening ipv usecallback, heel raar
@@ -17,12 +17,12 @@ export default function Newchessboard(props) {
     const [moveCounter, setMoveCounter] = useState(props.moveCounter)
 
     useEffect(() => {
-        console.log('inside onmount useeffect')
+        // console.log('inside onmount useeffect')
         props.moveListRef.current = chessgame.moveArray
     }, [])
 
     useEffect(() => {
-        console.log('inside newchessboard useeffect')
+        // console.log('inside newchessboard useeffect')
         // find whether to update the position by playing the next or the previous move. Make that move.
         setMoveCounter(moveCounterDirection)
         const currentPosArray = chessgame.positionArray
