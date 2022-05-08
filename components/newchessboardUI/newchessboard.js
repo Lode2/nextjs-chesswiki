@@ -6,25 +6,19 @@ const exampleFEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
 const newFEN = '7R/Bk2n3/5p1p/p5pb/5P1b/1P2P1P1/P6K/8 w - - 2 40'
 const moves = '1. e4 Nf6 2. e5 d5 3. exd6 e6 4. Bd3 Be7 5. Nf3 O-O 6. O-O *'
 
-const chessgame = new Chessgame(exampleFEN, moves)
-// const chessgame = new Chessgame(props.FEN, props.theoryMoves) // ideally this would be uncommented, but it only works inside func
-chessgame.loadOpening()
-const startingPos = chessgame.getPosition()
-
 export default function Newchessboard(props) {
     console.log('rendering newchessboard')
-    // const chessgame = useMemo(() => new Chessgame(props.FEN, props.theoryMoves), [props.FEN, props.theoryMoves])
-    // useCallback(chessgame.loadOpening(), [props.FEN, props.theoryMoves])
-    // console.log(chessgame)
-    // const startingPos = useMemo(() => chessgame.getPosition(), [props.FEN, props.theoryMoves])
-    // console.log(startingPos)
+    // ik denk dat het probleem is dat de memoize niet werkt en dat de waarde toch elke render update, aangezien alles werkt,
+    // alleen wordt de positie elke zet naar de beginpositie gezet.
+    // het werkt allemaal als ik usememo gebruik voor loadopening ipv usecallback, heel raar
+    const chessgame = useMemo(() => new Chessgame(props.FEN, props.theoryMoves), [props.FEN, props.theoryMoves])
+    const cb = useMemo(() => chessgame.loadOpening(), [props.FEN, props.theoryMoves])
+    const startingPos = useMemo(() => chessgame.getPosition(), [props.FEN, props.theoryMoves])
 
     const squareSize = props.chessboardSize * 0.5 * 0.125
     const [pieceArray, setPieceArray] = useState(startingPos)
     const [boardSquares, setBoardSquares] = useState(createSquareProp(startingPos))
     const [moveCounter, setMoveCounter] = useState(props.moveCounter)
-
-
 
     useEffect(() => {
         console.log('inside onmount useeffect')
@@ -38,26 +32,19 @@ export default function Newchessboard(props) {
         setMoveCounter(moveCounterDirection)
         const currentPosArray = chessgame.positionArray
 
-        // the next line causes newchessboardui to re-render on every move
-        // props.updateMoveList(chessgame.moveArray.slice(0, props.moveCounter))
-
         // find the squares that change between the old and the new position, currentPosArray is new position
         const changedSquares = arrayDiff(currentPosArray, pieceArray)
         // update pieceArray so the current pos can be used as the old pos when there is a move being made again
         setPieceArray(currentPosArray)
-        // console.log(changedSquares)
 
         // the same position, happens when a position is first loaded: render the position and update the state
         if (changedSquares.length === 0) {
-            // console.log('no changes')
             const renderedPos = createSquareProp(currentPosArray)
             setBoardSquares(renderedPos)
         }
         // something changed in the position: render the squares that are changed and change boardSquares to only change those changed squares
         else {
-            // console.log('yes changes')
             const renderedChangedSquares = createSquareProp(changedSquares)
-            // console.log(renderedChangedSquares)
             setBoardSquares(updateChangedSquares(renderedChangedSquares))
         }
     }, [props.moveCounter])
@@ -79,7 +66,6 @@ export default function Newchessboard(props) {
         changedSquares.forEach((square) => {
             // 2. Make a shallow copy of the item you want to mutate
             let item = { ...items[square.props.squareNumber] };
-            // console.log(item)
             // 3. Replace the property you're intested in
             item = square;
             // 4. Put it back into our array. N.B. we *are* mutating the array here, but that's why we made a copy first
@@ -94,7 +80,6 @@ export default function Newchessboard(props) {
         if (moveCounter < props.moveCounter) {
             chessgame.nextMove(props.moveCounter - 1, props.moveCounter - moveCounter)
         } else {
-            // console.log(`het verschil tussen de nieuwe en oude zet is ${moveCounter - props.moveCounter}`)
             chessgame.previousMove(props.moveCounter, moveCounter - props.moveCounter)
         }
         return props.moveCounter
