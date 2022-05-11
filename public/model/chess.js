@@ -1,10 +1,10 @@
 import { Chess } from 'chess.js'
 
 export default class Chessgame {
-    constructor(FEN, nextMoves) {
+    constructor(FEN, moveArray) {
         this.chess = new Chess()
-        this.nextMoves = nextMoves
         this.FEN = FEN
+        this.moveArray = moveArray
     }
 
     // load the position, make all the moves in the variation and save the changes to the affected squares after every move
@@ -13,8 +13,6 @@ export default class Chessgame {
         if (this.nextMoves === '') {
             return console.error('No next moves have been found.')
         }
-        // split the moves by recognizing the types of chess moves, credit: https://8bitclassroom.com/2020/08/16/chess-in-regex/
-        this.moveArray = this.nextMoves.match(/[O](-[O]){1,2}|[KQRBN]?[a-h]?[1-8]?x?[a-h][1-8](\=[QRBN])?[+#]?/g)
     }
 
     getPosition() {

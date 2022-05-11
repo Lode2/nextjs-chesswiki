@@ -17,12 +17,6 @@ export default function Newchessboard(props) {
     const [moveCounter, setMoveCounter] = useState(props.moveCounter)
 
     useEffect(() => {
-        // console.log('inside onmount useeffect')
-        // props.moveListRef.current = chessgame.moveArray
-        props.moveListUpdate(chessgame.moveArray)
-    }, [props.FEN, props.theoryMoves])
-
-    useEffect(() => {
         // console.log('inside newchessboard useeffect')
         // find whether to update the position by playing the next or the previous move. Make that move.
         setMoveCounter(moveCounterDirection)

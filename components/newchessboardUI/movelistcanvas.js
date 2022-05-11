@@ -7,32 +7,36 @@ export default function Movelistcanvas(props) {
     // const oldListLength = useRef(0)
     const [oldListLength, setOldListLength] = useState()
 
-    const buttonStyle = { all: 'unset', cursor: 'pointer', borderRadius: '5px', paddingLeft: '3px', paddingRight: '3px', marginLeft: '5px' }
+    const buttonStyle = { all: 'unset', background: 'transparent', cursor: 'pointer', borderRadius: '5px', paddingLeft: '3px', paddingRight: '3px', marginLeft: '5px' }
+    const highlightedButtonStyle = { all: 'unset', background: 'transparent', textDecoration: 'underline', cursor: 'pointer', borderRadius: '5px', paddingLeft: '3px', paddingRight: '3px', marginLeft: '5px' }
 
     // the list of styled moves remains the same for the entire game, until another game is loaded, so memoize
     // const newList = useMemo(() => createStyledMoveList(props.moveList), [props.moveList])
     // useMemo(() => oldListLength.current = 0, [props.moveList])
     useMemo(() => {
-        console.log('memo')
         // oldListLength.current = 0
         setOldListLength(0)
         createStyledMoveList(props.moveList)
-        props.changeCounter(0)
+        // props.changeCounter(0)
     }, [props.moveList])
 
     // let useList = []
     useEffect(() => {
-        console.log('useeffect')
         if (props.currentCounter === 0 && oldListLength === 0) {
             setUseList('')
         } else if (props.currentCounter > oldListLength) {
-            // oldListLength.current = props.currentCounter
-            setOldListLength(props.currenCounter)
-            setUseList(newList.slice(0, props.currentCounter))
-            // useList = newList.slice(0, props.currentCounter)
+            setOldListLength(props.currentCounter)
+
+            const highLightedMoveList = [...newList].slice(0, props.currentCounter - 1)
+            highLightedMoveList[props.currentCounter] = createStyledMoveElement(props.moveList[props.currentCounter - 1], props.currentCounter - 1)
+
+            setUseList(highLightedMoveList)
         } else {
-            setUseList(newList.slice(0, oldListLength))
-            // useList = newList.slice(0, oldListLength.current)
+            // setUseList(newList.slice(0, oldListLength))
+            const highLightedMoveList = [...newList].slice(0, oldListLength)
+            highLightedMoveList[props.currentCounter - 1] = createStyledMoveElement(props.moveList[props.currentCounter - 1], props.currentCounter - 1)
+
+            setUseList(highLightedMoveList)
         }
     }, [props.currentCounter])
 
@@ -59,6 +63,23 @@ export default function Movelistcanvas(props) {
             }
         })
         setNewList(styledList)
+    }
+    function createStyledMoveElement(item, index) {
+        if (index % 2 !== 0) {
+            return <span style={{ width: 'auto', heigth: 'auto' }} key={`moveList ${index}`}>
+                <button style={highlightedButtonStyle} onClick={() => changeMove(index)}>
+                    {item}
+                </button>
+                {'\n'}
+            </span>
+        } else {
+            return <span style={{ width: 'auto', heigth: 'auto' }} key={`moveList ${index}`}>
+                {(index / 2) + 1 + '.'}
+                <button style={highlightedButtonStyle} onClick={() => changeMove(index)}>
+                    {item}
+                </button>
+            </span>
+        }
     }
 
     const changeMove = (moveNr) => {
