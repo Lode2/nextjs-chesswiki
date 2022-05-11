@@ -18,8 +18,9 @@ export default function Newchessboard(props) {
 
     useEffect(() => {
         // console.log('inside onmount useeffect')
-        props.moveListRef.current = chessgame.moveArray
-    }, [])
+        // props.moveListRef.current = chessgame.moveArray
+        props.moveListUpdate(chessgame.moveArray)
+    }, [props.FEN, props.theoryMoves])
 
     useEffect(() => {
         // console.log('inside newchessboard useeffect')
