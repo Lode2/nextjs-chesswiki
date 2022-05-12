@@ -9,10 +9,15 @@ export default function Movelistcanvas(props) {
 
     const buttonStyle = { all: 'unset', background: 'transparent', cursor: 'pointer', borderRadius: '5px', paddingLeft: '3px', paddingRight: '3px', marginLeft: '5px' }
     const highlightedButtonStyle = { all: 'unset', background: 'transparent', textDecoration: 'underline', cursor: 'pointer', borderRadius: '5px', paddingLeft: '3px', paddingRight: '3px', marginLeft: '5px' }
+    const spanStyle = {
+        width: 'auto', heigth: 'auto', WebkitUserSelect: 'none', MozUserSelect: 'none', msUserSelect: 'none', UserSelect: 'none'
+    }
 
     // the list of styled moves remains the same for the entire game, until another game is loaded, so memoize
     // const newList = useMemo(() => createStyledMoveList(props.moveList), [props.moveList])
     // useMemo(() => oldListLength.current = 0, [props.moveList])
+
+    // there is a bug where the move is still grayed when clicked on when its supposed to switch to underline only
     useMemo(() => {
         // oldListLength.current = 0
         setOldListLength(0)
@@ -47,14 +52,14 @@ export default function Movelistcanvas(props) {
         // oldListLength.current = 0
         const styledList = list.map((item, index) => {
             if (index % 2 !== 0) {
-                return <span style={{ width: 'auto', heigth: 'auto' }} key={`moveList ${index}`}>
+                return <span style={spanStyle} key={`moveList ${index}`}>
                     <button style={buttonStyle} onClick={() => changeMove(index)} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
                         {item}
                     </button>
                     {'\n'}
                 </span>
             } else {
-                return <span style={{ width: 'auto', heigth: 'auto' }} key={`moveList ${index}`}>
+                return <span style={spanStyle} key={`moveList ${index}`}>
                     {(index / 2) + 1 + '.'}
                     <button style={buttonStyle} onClick={() => changeMove(index)} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
                         {item}
@@ -66,16 +71,16 @@ export default function Movelistcanvas(props) {
     }
     function createStyledMoveElement(item, index) {
         if (index % 2 !== 0) {
-            return <span style={{ width: 'auto', heigth: 'auto' }} key={`moveList ${index}`}>
-                <button style={highlightedButtonStyle} onClick={() => changeMove(index)}>
+            return <span style={spanStyle} key={`moveList ${index}`}>
+                <button style={highlightedButtonStyle} onClick={() => changeMove(index)} onMouseLeave={mouseLeave}>
                     {item}
                 </button>
                 {'\n'}
             </span>
         } else {
-            return <span style={{ width: 'auto', heigth: 'auto' }} key={`moveList ${index}`}>
+            return <span style={spanStyle} key={`moveList ${index}`}>
                 {(index / 2) + 1 + '.'}
-                <button style={highlightedButtonStyle} onClick={() => changeMove(index)}>
+                <button style={highlightedButtonStyle} onClick={() => changeMove(index)} onMouseLeave={mouseLeave}>
                     {item}
                 </button>
             </span>
