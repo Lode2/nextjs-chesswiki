@@ -7,6 +7,10 @@ export default function Newchessboardsquare(props) {
             width: props.size,
             height: props.size,
             backgroundColor: props.squareColor === 'dark' ? '#a52a2a' : '#f5f5dc',
+            WebkitUserSelect: 'none',
+            MozUserSelect: 'none',
+            msUserSelect: 'none',
+            UserSelect: 'none'
         }}>
             <div style={{ position: "absolute", }}>
                 {props.chessPiece === null ? '' : <Chesspiece src={props.chessPiece} size={props.size} />}

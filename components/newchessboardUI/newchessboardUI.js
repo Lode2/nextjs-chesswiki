@@ -10,8 +10,6 @@ export default function NewchessboardUI(props) {
     const [posFEN, setposFEN] = useState('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')
     const [posMoves, setposMoves] = useState(makePosMovesList('1. e4 Nf6 2. e5 d5 3. exd6 e6 4. Bd3 Be7 5. Nf3 O-O 6. O-O *'))
     const [moveCounter, setMoveCounter] = useState(0)
-    // const moveList = useRef([])
-    // const [moveList, setMoveList] = useState([])
     const positionInformation = ["1. e4, one of the most common opening moves.",
         "Nf6 is not the most common responce.",
         "2. e5, attacking the knight.",

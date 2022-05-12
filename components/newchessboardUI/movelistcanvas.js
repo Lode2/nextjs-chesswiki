@@ -1,10 +1,9 @@
-import { useState, useRef, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 
 export default function Movelistcanvas(props) {
     // console.log('rendering movelistcanvas')
     const [newList, setNewList] = useState()
     const [useList, setUseList] = useState()
-    // const oldListLength = useRef(0)
     const [oldListLength, setOldListLength] = useState()
 
     const buttonStyle = { all: 'unset', background: 'transparent', cursor: 'pointer', borderRadius: '5px', paddingLeft: '3px', paddingRight: '3px', marginLeft: '5px' }
@@ -13,31 +12,22 @@ export default function Movelistcanvas(props) {
         width: 'auto', heigth: 'auto', WebkitUserSelect: 'none', MozUserSelect: 'none', msUserSelect: 'none', UserSelect: 'none'
     }
 
-    // the list of styled moves remains the same for the entire game, until another game is loaded, so memoize
-    // const newList = useMemo(() => createStyledMoveList(props.moveList), [props.moveList])
-    // useMemo(() => oldListLength.current = 0, [props.moveList])
-
-    // there is a bug where the move is still grayed when clicked on when its supposed to switch to underline only
     useMemo(() => {
-        // oldListLength.current = 0
         setOldListLength(0)
         createStyledMoveList(props.moveList)
-        // props.changeCounter(0)
     }, [props.moveList])
 
-    // let useList = []
     useEffect(() => {
-        if (props.currentCounter === 0 && oldListLength === 0) {
+        if (props.currentCounter === 0 && oldListLength === 0) { // new opening loaded
             setUseList('')
-        } else if (props.currentCounter > oldListLength) {
+        } else if (props.currentCounter > oldListLength) { // next move made
             setOldListLength(props.currentCounter)
 
             const highLightedMoveList = [...newList].slice(0, props.currentCounter - 1)
             highLightedMoveList[props.currentCounter] = createStyledMoveElement(props.moveList[props.currentCounter - 1], props.currentCounter - 1)
 
             setUseList(highLightedMoveList)
-        } else {
-            // setUseList(newList.slice(0, oldListLength))
+        } else { // previous move made
             const highLightedMoveList = [...newList].slice(0, oldListLength)
             highLightedMoveList[props.currentCounter - 1] = createStyledMoveElement(props.moveList[props.currentCounter - 1], props.currentCounter - 1)
 
@@ -49,7 +39,6 @@ export default function Movelistcanvas(props) {
         if (list.length === 0) {
             return []
         }
-        // oldListLength.current = 0
         const styledList = list.map((item, index) => {
             if (index % 2 !== 0) {
                 return <span style={spanStyle} key={`moveList ${index}`}>
