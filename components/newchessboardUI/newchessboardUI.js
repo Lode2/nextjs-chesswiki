@@ -1,7 +1,8 @@
 import Newchessboard from "./newchessboard"
 import Positionexplanationcanvas from "./positionexplanationcanvas"
 import Movelistcanvas from "./movelistcanvas"
-import { Button, TextField } from "@mui/material"
+import { IconButton, Button, TextField } from "@mui/material"
+import { Delete } from '@mui/icons-material'
 import { useState, useRef } from 'react'
 
 export default function NewchessboardUI(props) {
@@ -28,19 +29,18 @@ export default function NewchessboardUI(props) {
         <div style={{
             display: 'flex',
             flexDirection: "row",
-            marginLeft: '75px',
-            width: boardSize,
+            // marginLeft: '75px',
+            justifyContent: 'center',
+            flexFlow: 'wrap',
+            width: '100%',
             height: 'auto',
         }}>
-            <div style={{
-                width: '35%',
-            }}>
+            <div style={{ width: '25%', margin: '0 0 0 50px' }}>
                 <b>Position explanation canvas</b>
                 <Positionexplanationcanvas info={positionInformation} move={moveCounter} />
             </div>
-            <div style={{
-                width: '50%',
-            }}>
+            {/* {console.log(boardSize)} */}
+            <div style={{ width: 0.5 * boardSize + 'px', margin: '0 0 0 0', }}>
                 <Newchessboard chessboardSize={boardSize} FEN={posFEN} theoryMoves={posMoves} moveCounter={moveCounter} />
                 <div>
                     <Button onClick={() => {
@@ -49,17 +49,31 @@ export default function NewchessboardUI(props) {
                     <Button onClick={() => {
                         setMoveCounter(moveCounter < (posMoves.length) ? (moveCounter + 1) : moveCounter)
                     }} size="small" variant="contained">Next move</Button>
-                    <br></br>
-                    <TextField sx={{ input: { color: 'white' }, label: { color: 'white' } }} inputRef={inputPosRef} id="outlined-basic" label="Starting position" variant="outlined" />
-                    <TextField sx={{ input: { color: 'white' }, label: { color: 'white' } }} inputRef={inputMovesRef} id="outlined-basic" label="Theory moves" variant="outlined" />
-                    <br></br>
-                    <Button onClick={() => {
-                        console.log(inputPosRef.current.value, inputMovesRef.current.value)
-                        setposFEN(inputPosRef.current.value)
-                        setposMoves(makePosMovesList(inputMovesRef.current.value))
-                        setMoveCounter(0)
-                    }} size="small" variant="contained">Load new position</Button>
+                    <IconButton aria-label="delete">
+                        <Delete />
+                    </IconButton>
                 </div>
+            </div>
+            <div style={{ width: '15%', margin: '0 50px 0 25px' }}>
+                {/* Move history */}
+                {/* <br></br> */}
+                <Movelistcanvas moveList={posMoves} currentCounter={moveCounter} changeCounter={setMoveCounter} />
+                {/* {Math.floor(Math.random() * 11)} */}
+            </div>
+
+            {/* next divs for testing purposes */}
+            <div style={{ display: 'flex', flexBasis: '100%' }}>
+                <TextField sx={{ input: { color: 'white' }, label: { color: 'white' } }} inputRef={inputPosRef} id="outlined-basic" label="Starting position" variant="outlined" />
+                <TextField sx={{ input: { color: 'white' }, label: { color: 'white' } }} inputRef={inputMovesRef} id="outlined-basic" label="Theory moves" variant="outlined" />
+                <br></br>
+                <Button onClick={() => {
+                    console.log(inputPosRef.current.value, inputMovesRef.current.value)
+                    setposFEN(inputPosRef.current.value)
+                    setposMoves(makePosMovesList(inputMovesRef.current.value))
+                    setMoveCounter(0)
+                }} size="small" variant="contained">Load new position</Button>
+            </div>
+            <div style={{ display: 'flex', flexBasis: '100%' }}>
                 `1. d4 Nc6 2. Bf4 Nxd4 3. Qxd4 a5 4. e4 a4 5. Nf3 Nh6 6. Nc3 f6 7. Bxh6 gxh6 8.
                 Bd3 e5 9. Nxe5 fxe5 10. Qxe5+ Qe7 11. Qxh8 c6 12. O-O-O Qg7 13. Qxg7 Bxg7 14.
                 Rhe1 Bd4 15. Ne2 Bxf2 16. Rf1 Be3+ 17. Kb1 d6 18. Rf3 Bg5 19. Rdf1 a3 20. Rf8+
@@ -70,14 +84,6 @@ export default function NewchessboardUI(props) {
                 46. g5 Kh7 47. Kc1 Kg8 48. Kd2 Kh7 49. Ke3 Kg7 50. Kf4 Kh7 51. Kg4 Kg8 52. h6
                 Kh7 53. Kh5 Kh8 54. g6 Kg8 55. Kg5 Kh8 56. Rf8`
                 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
-            </div>
-            <div style={{
-                width: '15%',
-            }}>
-                Move history
-                <br></br>
-                <Movelistcanvas moveList={posMoves} currentCounter={moveCounter} changeCounter={setMoveCounter} />
-                {/* {Math.floor(Math.random() * 11)} */}
             </div>
         </div>
     )

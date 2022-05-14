@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import Newchessboard from '../../components/newchessboardUI/newchessboard';
 import NewchessboardUI from '../../components/newchessboardUI/newchessboardUI';
 import Topnavbar from '../../components/topnavbar';
+import Bottomnavbar from '../../components/bottomnavbar';
 
 export default function FirstPost() {
     const [size, setSize] = useState({ heigth: 8 * 140, width: 8 * 140 })
@@ -52,9 +53,9 @@ export default function FirstPost() {
                 <title>Chesswiki</title>
             </Head>
             <Topnavbar />
-            <h1>New edit page for Chesswiki</h1>
             {/* <NewchessboardUI chessboardUISize={size.width != undefined ? size.width : 1280} /> */}
             {<NewchessboardUI chessboardUISize={size.width} />}
+            <Bottomnavbar />
         </div>
     )
 }

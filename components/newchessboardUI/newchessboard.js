@@ -88,7 +88,7 @@ export default function Newchessboard(props) {
             height: 'auto'
         }}>
             {boardSquares}
-            {`currentmove: ${props.moveCounter}`}
+            {/* {`currentmove: ${props.moveCounter}`} */}
         </div>
     )
 }

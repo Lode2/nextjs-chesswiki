@@ -90,6 +90,6 @@ export default function Movelistcanvas(props) {
     }
 
     return (
-        <div style={{ whiteSpace: 'pre-line' }}>{useList}</div>
+        <div style={{ whiteSpace: 'pre-line', height: '448px', overflow: 'scroll' }}>{useList}</div>
     )
 }

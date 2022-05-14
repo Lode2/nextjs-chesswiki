@@ -1,0 +1,70 @@
+/* TOPNAVBAR */
+
+.topnavbar {
+    /* background-color: rgb(116, 105, 105); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    height: 50px;
+    color: inherit;
+    /* border: 2px solid red; */
+    /* border-radius: 5px; */
+    margin: 0 30px 0 30px;
+}
+
+.topnavbar .link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    /* background-color: rgb(116, 105, 105); */
+    border-radius: 15px;
+    height: inherit;
+    color: inherit;
+    padding: 0 20px 0 20px;
+    margin: 0 10px 0 10px;
+}
+
+.topnavbar .link:hover {
+    background-color: rgb(116, 105, 105);
+    color: black;
+}
+
+
+/* BOTTOMNAVBAR */
+
+.bottomnavbar {
+    width: 100%;
+    height: 120px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-gap: 3px;
+    order: 3;
+    grid-template-areas:
+        " a a b b c c "
+        " a a b b c c "
+        " a a b b d e "
+        " f f f f d e "
+        " f f f f g h "
+        " f f f f g h ";
+}
+
+.bottomnavbar>.items {
+    background-color: rgb(116, 105, 105);
+    align-items: center;
+    justify-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottomnavbar>.items .link {
+    text-decoration: none;
+    height: inherit;
+    color: inherit;
+}
+
+.bottomnavbar>.items .link:hover {
+    color: black;
+}

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import navStyles from './navbar.module.css'
 
 export default function Topnavbar() {
     // LOGO: route back to home page
@@ -6,11 +7,11 @@ export default function Topnavbar() {
     // Study chess openings
     // Add chess openings
     return (
-        <div style={{ display: 'flex', marginLeft: '50px', marginRight: '50px', justifyContent: 'space-around', border: '2px black solid' }}>
-            <Link href="/">HOME</Link>
-            <Link href="/">EXPLORE CHESS OPENINGS</Link>
-            <Link href="/">STUDY CHESS OPENINGS</Link>
-            <Link href="/">ADD CHESS OPENINGS</Link>
-        </div>
+        <nav className={navStyles.topnavbar}>
+            <Link href="/"><a className={navStyles.link}>HOME</a></Link>
+            <Link href="/"><a className={navStyles.link}>EXPLORE CHESS OPENINGS</a></Link>
+            <Link href="/"><a className={navStyles.link}>STUDY CHESS OPENINGS</a></Link>
+            <Link href="/"><a className={navStyles.link}>ADD CHESS OPENINGS</a></Link>
+        </nav>
     )
 }
