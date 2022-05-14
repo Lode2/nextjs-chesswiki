@@ -3,6 +3,7 @@ import Positionexplanationcanvas from "./positionexplanationcanvas"
 import Movelistcanvas from "./movelistcanvas"
 import { IconButton, Button, TextField } from "@mui/material"
 import { Delete } from '@mui/icons-material'
+import { ArrowRight } from '@mui/icons-material'
 import { useState, useRef } from 'react'
 
 export default function NewchessboardUI(props) {
@@ -52,6 +53,10 @@ export default function NewchessboardUI(props) {
                     <IconButton aria-label="delete">
                         <Delete />
                     </IconButton>
+                    <IconButton aria-label="arrowright" color="secondary">
+                        <ArrowRight />
+                    </IconButton>
+
                 </div>
             </div>
             <div style={{ width: '15%', margin: '0 50px 0 25px' }}>
@@ -85,7 +90,7 @@ export default function NewchessboardUI(props) {
                 Kh7 53. Kh5 Kh8 54. g6 Kg8 55. Kg5 Kh8 56. Rf8`
                 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
             </div>
-        </div>
+        </div >
     )
 }
 
