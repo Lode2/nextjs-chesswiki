@@ -13,3 +13,18 @@
 .backToHome {
   margin: 3rem 0 0;
 }
+
+.faButton {
+  width: 25%;
+  height: 40px;
+  background-color: inherit;
+  color: inherit;
+  border: 1px solid white;
+  border-radius: 0;
+}
+
+.faButton:hover,
+.faButton:hover>* {
+  background-color: gray;
+  color: black;
+}

@@ -2,6 +2,9 @@ import Newchessboard from "./newchessboard"
 import Positionexplanationcanvas from "./positionexplanationcanvas"
 import Movelistcanvas from "./movelistcanvas"
 import { useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faForwardStep, faBackwardStep, faCaretRight, faCaretLeft } from "@fortawesome/free-solid-svg-icons"
+import styles from '../layout.module.css'
 
 export default function NewchessboardUI(props) {
     // console.log('rendering newchessboardui')
@@ -20,7 +23,6 @@ export default function NewchessboardUI(props) {
         "5. Nf3 by white.",
         "Black short-castles its king to safety.",
         "White follows black's lead, and castles short.",]
-    const selectMoveButtonStyle = { border: '1px solid white', borderRadius: '0', backgroundColor: 'inherit', color: 'inherit' }
 
     return (
         <div style={{
@@ -40,10 +42,18 @@ export default function NewchessboardUI(props) {
             <div style={{ width: 0.5 * boardSize + 'px', margin: '0 0 0 0', }}>
                 <Newchessboard chessboardSize={boardSize} FEN={posFEN} theoryMoves={posMoves} moveCounter={moveCounter} />
                 <div style={{ display: 'flex', flexFlow: 'row', justifyContent: 'center' }}>
-                    <button style={selectMoveButtonStyle} onClick={() => { setMoveCounter(0) }}>First move</button>
-                    <button style={selectMoveButtonStyle} onClick={() => { setMoveCounter(moveCounter > 0 ? (moveCounter - 1) : (moveCounter)) }}>Previous move</button>
-                    <button style={selectMoveButtonStyle} onClick={() => { setMoveCounter(moveCounter < (posMoves.length) ? (moveCounter + 1) : moveCounter) }}>Next move</button>
-                    <button style={selectMoveButtonStyle} onClick={() => { setMoveCounter(posMoves.length) }}>Last move</button>
+                    <button className={styles.faButton} onClick={() => { setMoveCounter(0) }}>
+                        <FontAwesomeIcon icon={faBackwardStep} />
+                    </button>
+                    <button className={styles.faButton} onClick={() => { setMoveCounter(moveCounter > 0 ? (moveCounter - 1) : (moveCounter)) }}>
+                        <FontAwesomeIcon icon={faCaretLeft} />
+                    </button>
+                    <button className={styles.faButton} onClick={() => { setMoveCounter(moveCounter < (posMoves.length) ? (moveCounter + 1) : moveCounter) }}>
+                        <FontAwesomeIcon icon={faCaretRight} />
+                    </button>
+                    <button className={styles.faButton} onClick={() => { setMoveCounter(posMoves.length) }}>
+                        <FontAwesomeIcon icon={faForwardStep} />
+                    </button>
                 </div>
             </div>
             <div style={{ width: '15%', margin: '0 50px 0 25px' }}>
