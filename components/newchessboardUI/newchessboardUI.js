@@ -1,9 +1,6 @@
 import Newchessboard from "./newchessboard"
 import Positionexplanationcanvas from "./positionexplanationcanvas"
 import Movelistcanvas from "./movelistcanvas"
-import { IconButton, Button, TextField } from "@mui/material"
-import { Delete } from '@mui/icons-material'
-import { ArrowRight } from '@mui/icons-material'
 import { useState, useRef } from 'react'
 
 export default function NewchessboardUI(props) {
@@ -44,18 +41,26 @@ export default function NewchessboardUI(props) {
             <div style={{ width: 0.5 * boardSize + 'px', margin: '0 0 0 0', }}>
                 <Newchessboard chessboardSize={boardSize} FEN={posFEN} theoryMoves={posMoves} moveCounter={moveCounter} />
                 <div>
-                    <Button onClick={() => {
+                    <button onClick={() => {
+                        setMoveCounter(moveCounter > 0 ? (moveCounter - 1) : (moveCounter))
+                    }}>Previous move
+                    </button>
+                    <button onClick={() => {
+                        setMoveCounter(moveCounter < (posMoves.length) ? (moveCounter + 1) : moveCounter)
+                    }}>Next move
+                    </button>
+                    {/* <Button onClick={() => {
                         setMoveCounter(moveCounter > 0 ? (moveCounter - 1) : (moveCounter))
                     }} size="small" variant="contained">Previous move</Button>
                     <Button onClick={() => {
                         setMoveCounter(moveCounter < (posMoves.length) ? (moveCounter + 1) : moveCounter)
-                    }} size="small" variant="contained">Next move</Button>
-                    <IconButton aria-label="delete">
+                    }} size="small" variant="contained">Next move</Button> */}
+                    {/* <IconButton aria-label="delete">
                         <Delete />
                     </IconButton>
                     <IconButton aria-label="arrowright" color="secondary">
                         <ArrowRight />
-                    </IconButton>
+                    </IconButton> */}
 
                 </div>
             </div>
