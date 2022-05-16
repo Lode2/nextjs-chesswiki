@@ -1,3 +1,4 @@
+import "@fortawesome/fontawesome-svg-core/styles.css"
 import Newchessboard from "./newchessboard"
 import Positionexplanationcanvas from "./positionexplanationcanvas"
 import Movelistcanvas from "./movelistcanvas"
@@ -6,8 +7,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faForwardStep, faBackwardStep, faCaretRight, faCaretLeft } from "@fortawesome/free-solid-svg-icons"
 import styles from '../layout.module.css'
 
+// stop 
+import { config } from '@fortawesome/fontawesome-svg-core'
+config.autoAddCss = false
+
+
 export default function NewchessboardUI(props) {
-    // console.log('rendering newchessboardui')
+    console.log('rendering newchessboardui')
     const boardSize = props.chessboardUISize > 1000 ? 0.8 * props.chessboardUISize : 800;
     const [posFEN, setposFEN] = useState('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')
     const [posMoves, setposMoves] = useState(makePosMovesList('1. e4 Nf6 2. e5 d5 3. exd6 e6 4. Bd3 Be7 5. Nf3 O-O 6. O-O *'))

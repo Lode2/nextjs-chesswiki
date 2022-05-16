@@ -1,7 +1,8 @@
 import { useState, useMemo, useEffect } from 'react'
 
 export default function Movelistcanvas(props) {
-    // console.log('rendering movelistcanvas')
+    console.log('rendering movelistcanvas')
+
     const [newList, setNewList] = useState()
     const [useList, setUseList] = useState()
     const [oldListLength, setOldListLength] = useState()
@@ -21,11 +22,10 @@ export default function Movelistcanvas(props) {
         if (props.currentCounter === 0 && oldListLength === 0) { // new opening loaded
             setUseList('')
         } else if (props.currentCounter > oldListLength) { // next move made
-            setOldListLength(props.currentCounter)
-
             const highLightedMoveList = [...newList].slice(0, props.currentCounter - 1)
             highLightedMoveList[props.currentCounter] = createStyledMoveElement(props.moveList[props.currentCounter - 1], props.currentCounter - 1)
 
+            setOldListLength(props.currentCounter)
             setUseList(highLightedMoveList)
         } else { // previous move made
             const highLightedMoveList = [...newList].slice(0, oldListLength)
