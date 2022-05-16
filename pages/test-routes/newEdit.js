@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import Head from 'next/head'
-import Script from 'next/script'
-import Button from '@mui/material/Button';
 import { useState, useEffect } from 'react'
 import Newchessboard from '../../components/newchessboardUI/newchessboard';
 import NewchessboardUI from '../../components/newchessboardUI/newchessboardUI';
