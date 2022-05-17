@@ -2,7 +2,7 @@ import Chesspiece from "./chesspiece"
 
 export default function Newchessboardsquare(props) {
     // top if squareId is number, bottom if squareId is string
-    const squareIdPosition = typeof props.squareNumber === 'number' ? { top: '0' } : { bottom: '0' }
+    const squareIdPosition = typeof props.squareId === 'number' ? { top: '0' } : { bottom: '0' }
     return (
         <div style={{
             position: 'relative',
@@ -20,7 +20,7 @@ export default function Newchessboardsquare(props) {
 
             {/* the square id on the bottom left */}
             <div style={Object.assign({ position: "absolute", color: props.squareColor === 'light' ? '#a52a2a' : '#f5f5dc' }, squareIdPosition)}>
-                {props.squareNumber}
+                {props.squareId}
             </div>
         </div>
     )
