@@ -75,7 +75,7 @@ export default function Newchessboard(props) {
     // create a list of chessboard squares
     function createSquareProp(rawList) {
         return rawList.map(item => {
-            return <Newchessboardsquare key={item.index} squareNumber={item.index} squareId={item.squareId} chessPiece={item.chessPiece} squareColor={item.squareColor} size={squareSize} />
+            return <Newchessboardsquare key={item.index} squareNumber={item.squareIdNotation !== null ? item.squareIdNotation : ''} squareId={item.squareId} chessPiece={item.chessPiece} squareColor={item.squareColor} size={squareSize} />
         })
     }
 

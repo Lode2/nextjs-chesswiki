@@ -1,17 +1,20 @@
-import "@fortawesome/fontawesome-svg-core/styles.css"
+// components
 import Newchessboard from "./newchessboard"
 import Positionexplanationcanvas from "./positionexplanationcanvas"
 import Movelistcanvas from "./movelistcanvas"
 import Engineevalbar from "./engineevalbar"
+// hooks
 import { useState } from 'react'
+// fontawesome icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faForwardStep, faBackwardStep, faCaretRight, faCaretLeft } from "@fortawesome/free-solid-svg-icons"
+// styles
 import styles from '../layout.module.css'
 
 // stop fontawesome icons from loading in too big
+import "@fortawesome/fontawesome-svg-core/styles.css"
 import { config } from '@fortawesome/fontawesome-svg-core'
 config.autoAddCss = false
-
 
 export default function NewchessboardUI(props) {
     // console.log('rendering newchessboardui')
@@ -36,13 +39,12 @@ export default function NewchessboardUI(props) {
         <div style={{
             display: 'flex',
             flexDirection: "row",
-            // marginLeft: '75px',
             justifyContent: 'center',
             flexFlow: 'wrap',
             width: '80%',
             height: 'auto',
         }}>
-            <div style={{ display: 'flex', flexBasis: '100%' }}>Queen's pawn opening</div>
+            <div style={{ display: 'flex', justifyContent: 'center', flexBasis: '100%' }}><h1 style={{ margin: '10px' }}>Queen's pawn opening</h1></div>
             <div style={{ width: '25%', height: 0.5 * boardSize + 'px', margin: '0 0 0 0', padding: '0 0 0 0' }}>
                 <Positionexplanationcanvas info={positionInformation} move={moveCounter} />
             </div>
@@ -50,7 +52,7 @@ export default function NewchessboardUI(props) {
                 <Engineevalbar evaluation={positionEvaluation} move={moveCounter}></Engineevalbar>
                 {/* <span className={styles.tooltipText}>stockfish 14 NNUE</span> */}
             </div>
-            <div style={{ width: 0.5 * boardSize + 'px', margin: '0 0 0 0', }}>
+            <div style={{ width: 0.5 * boardSize + 'px', margin: '0 0 40px 0', }}>
                 <Newchessboard chessboardSize={boardSize} FEN={posFEN} theoryMoves={posMoves} moveCounter={moveCounter} />
                 <div style={{ display: 'flex', flexFlow: 'row', justifyContent: 'center' }}>
                     <button className={styles.faButton} onClick={() => { setMoveCounter(0) }}>
@@ -68,11 +70,10 @@ export default function NewchessboardUI(props) {
                 </div>
             </div>
             <div style={{ width: '18%', height: 0.5 * boardSize + 'px', margin: '0 0 0 0', backgroundColor: 'rgb(116, 105, 105)' }}>
-                {/* Move history */}
-                {/* <br></br> */}
                 <Movelistcanvas moveList={posMoves} currentCounter={moveCounter} changeCounter={setMoveCounter} />
                 {/* {Math.floor(Math.random() * 11)} */}
             </div>
+
 
             {/* next divs for testing purposes */}
             {/* <div style={{ display: 'flex', flexBasis: '100%' }}>
@@ -103,6 +104,6 @@ export default function NewchessboardUI(props) {
 }
 
 function makePosMovesList(str) {
-    // split the moves by recognizing the types of chess moves, credit: https://8bitclassroom.com/2020/08/16/chess-in-regex/
+    // split the moves into a list by recognizing the types of chess moves, credit: https://8bitclassroom.com/2020/08/16/chess-in-regex/
     return str.match(/[O](-[O]){1,2}|[KQRBN]?[a-h]?[1-8]?x?[a-h][1-8](\=[QRBN])?[+#]?/g)
 }

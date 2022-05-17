@@ -1,12 +1,14 @@
 import Chesspiece from "./chesspiece"
 
 export default function Newchessboardsquare(props) {
+    // top if squareId is number, bottom if squareId is string
+    const squareIdPosition = typeof props.squareNumber === 'number' ? { top: '0' } : { bottom: '0' }
     return (
         <div style={{
             position: 'relative',
             width: props.size,
             height: props.size,
-            backgroundColor: props.squareColor === 'dark' ? '#a52a2a' : '#f5f5dc',
+            backgroundColor: props.squareColor === 'light' ? '#f5f5dc' : '#a52a2a',
             WebkitUserSelect: 'none',
             MozUserSelect: 'none',
             msUserSelect: 'none',
@@ -17,18 +19,8 @@ export default function Newchessboardsquare(props) {
             </div>
 
             {/* the square id on the bottom left */}
-            <div style={{
-                position: "absolute",
-                bottom: 0,
-                // color: 'darkblue',
-                backgroundImage: "linear-gradient(to left, indigo, blue, green, orange, red)",
-                WebkitBackgroundClip: "text",
-                color: "transparent"
-            }}>
+            <div style={Object.assign({ position: "absolute", color: props.squareColor === 'light' ? '#a52a2a' : '#f5f5dc' }, squareIdPosition)}>
                 {props.squareNumber}
-                {/* Dit random getal zorgt voor problemen: de server en client vinden verschillende waarden */}
-                {/* dit betekent dat dit twee keer wordt gerund wat niet goed is */}
-                {/* {Math.floor(Math.random() * 11)} */}
             </div>
         </div>
     )
