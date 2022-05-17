@@ -1,8 +1,11 @@
 1. Find out whether animations of moves is possible easily in react.
 2. Work out a design for the view chessboard page, now that the chessboard functionality is done.
-3. Add a bar on the side of the board to view the evaluation from chess engines.
+DONE 3. Add a bar on the side of the board to view the evaluation from chess engines.
 4. Maybe a good idea for the people entering openings: make the page so that for every move they make a new window on the page is
     created. In this window they can easily make the move on the board and add the explanation to the side. Save this input 
     whenever the window is clicked out of.
 5. Make a explore openings page, with the sliders and if possible a tree with all the branches of the openings on it.
 6. Work out the back end.
+7. For users to practice openings, make a learning tab for each opening that provides some typical positions that can be reached
+    after following the theory, where the user needs to make the right move. Much like a chess puzzle, but the user needs to play
+    the move that is suggested in the theory, as opposed to a good move according to a chess engine.

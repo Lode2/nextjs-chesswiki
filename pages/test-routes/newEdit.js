@@ -44,7 +44,7 @@ export default function FirstPost() {
     // }
     return (
         <div style={{
-            backgroundColor: '#171717',
+            backgroundColor: '#232323',
             color: 'white',
         }}>
             <Head>
@@ -52,7 +52,9 @@ export default function FirstPost() {
             </Head>
             <Topnavbar />
             {/* <NewchessboardUI chessboardUISize={size.width != undefined ? size.width : 1280} /> */}
-            {<NewchessboardUI chessboardUISize={size.width} />}
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <NewchessboardUI chessboardUISize={size.width} />
+            </div>
             <Bottomnavbar />
         </div>
     )

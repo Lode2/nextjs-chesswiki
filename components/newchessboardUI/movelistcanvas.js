@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from 'react'
 
 export default function Movelistcanvas(props) {
-    console.log('rendering movelistcanvas')
+    // console.log('rendering movelistcanvas')
 
     const [newList, setNewList] = useState()
     const [useList, setUseList] = useState()
@@ -90,6 +90,6 @@ export default function Movelistcanvas(props) {
     }
 
     return (
-        <div style={{ whiteSpace: 'pre-line', height: '448px', overflow: 'scroll' }}>{useList}</div>
+        <div style={{ whiteSpace: 'pre-line', height: '100%', overflow: 'scroll' }}>{useList}</div>
     )
 }

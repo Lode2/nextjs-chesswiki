@@ -5,7 +5,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons"
 import { faFacebook, faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons"
 
 export default function Bottomnavbar() {
-    console.log('rendering bottomnavbar')
+    // console.log('rendering bottomnavbar')
     return (
         // the i tags are from font awesome
         <nav className={navStyles.bottomnavbar}>

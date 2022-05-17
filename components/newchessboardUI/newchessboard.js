@@ -3,7 +3,7 @@ import Newchessboardsquare from "./newchessboardsquare";
 import Chessgame from '../../public/model/chess'
 
 export default function Newchessboard(props) {
-    console.log('rendering newchessboard')
+    // console.log('rendering newchessboard')
     const chessgame = useMemo(() => new Chessgame(props.FEN, props.theoryMoves), [props.FEN, props.theoryMoves])
     const cb = useMemo(() => chessgame.loadOpening(), [props.FEN, props.theoryMoves])
     const startingPos = useMemo(() => chessgame.getPosition(), [props.FEN, props.theoryMoves])

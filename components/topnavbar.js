@@ -2,7 +2,7 @@ import Link from 'next/link'
 import navStyles from './navbar.module.css'
 
 export default function Topnavbar() {
-    console.log('rendering topnavbar')
+    // console.log('rendering topnavbar')
     // LOGO: route back to home page
     // Explore chess openings
     // Study chess openings

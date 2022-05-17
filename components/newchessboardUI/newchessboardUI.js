@@ -2,18 +2,19 @@ import "@fortawesome/fontawesome-svg-core/styles.css"
 import Newchessboard from "./newchessboard"
 import Positionexplanationcanvas from "./positionexplanationcanvas"
 import Movelistcanvas from "./movelistcanvas"
+import Engineevalbar from "./engineevalbar"
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faForwardStep, faBackwardStep, faCaretRight, faCaretLeft } from "@fortawesome/free-solid-svg-icons"
 import styles from '../layout.module.css'
 
-// stop 
+// stop fontawesome icons from loading in too big
 import { config } from '@fortawesome/fontawesome-svg-core'
 config.autoAddCss = false
 
 
 export default function NewchessboardUI(props) {
-    console.log('rendering newchessboardui')
+    // console.log('rendering newchessboardui')
     const boardSize = props.chessboardUISize > 1000 ? 0.8 * props.chessboardUISize : 800;
     const [posFEN, setposFEN] = useState('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')
     const [posMoves, setposMoves] = useState(makePosMovesList('1. e4 Nf6 2. e5 d5 3. exd6 e6 4. Bd3 Be7 5. Nf3 O-O 6. O-O *'))
@@ -29,6 +30,7 @@ export default function NewchessboardUI(props) {
         "5. Nf3 by white.",
         "Black short-castles its king to safety.",
         "White follows black's lead, and castles short.",]
+    const positionEvaluation = [0.2, -0.9, 0.4, 3.2, 3.6, 7.4, 6.6, 7.0, 7.1, 9.7, 8.6, 8.7, 8.0, 8.2, 7.9, 8.9, 8.9, 8.8, 9.1, 9.1, 8.7, 9.2, 9.2, 9.2, 8.8, 9.6, 8.9, 9.0, 9.0, 9.2, 9.3, 9.8, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
 
     return (
         <div style={{
@@ -37,14 +39,17 @@ export default function NewchessboardUI(props) {
             // marginLeft: '75px',
             justifyContent: 'center',
             flexFlow: 'wrap',
-            width: '100%',
+            width: '80%',
             height: 'auto',
         }}>
-            <div style={{ width: '25%', margin: '0 0 0 50px', padding: '0 10px 0 0' }}>
-                <b>Position explanation canvas</b>
+            <div style={{ display: 'flex', flexBasis: '100%' }}>Queen's pawn opening</div>
+            <div style={{ width: '25%', height: 0.5 * boardSize + 'px', margin: '0 0 0 0', padding: '0 0 0 0' }}>
                 <Positionexplanationcanvas info={positionInformation} move={moveCounter} />
             </div>
-            {/* {console.log(boardSize)} */}
+            <div className={styles.evalTooltip} style={{ height: 0.5 * boardSize + 'px', width: '2%' }}>
+                <Engineevalbar evaluation={positionEvaluation} move={moveCounter}></Engineevalbar>
+                {/* <span className={styles.tooltipText}>stockfish 14 NNUE</span> */}
+            </div>
             <div style={{ width: 0.5 * boardSize + 'px', margin: '0 0 0 0', }}>
                 <Newchessboard chessboardSize={boardSize} FEN={posFEN} theoryMoves={posMoves} moveCounter={moveCounter} />
                 <div style={{ display: 'flex', flexFlow: 'row', justifyContent: 'center' }}>
@@ -62,7 +67,7 @@ export default function NewchessboardUI(props) {
                     </button>
                 </div>
             </div>
-            <div style={{ width: '15%', margin: '0 50px 0 25px' }}>
+            <div style={{ width: '18%', height: 0.5 * boardSize + 'px', margin: '0 0 0 0', backgroundColor: 'rgb(116, 105, 105)' }}>
                 {/* Move history */}
                 {/* <br></br> */}
                 <Movelistcanvas moveList={posMoves} currentCounter={moveCounter} changeCounter={setMoveCounter} />
@@ -70,7 +75,7 @@ export default function NewchessboardUI(props) {
             </div>
 
             {/* next divs for testing purposes */}
-            <div style={{ display: 'flex', flexBasis: '100%' }}>
+            {/* <div style={{ display: 'flex', flexBasis: '100%' }}>
                 <input type="text" id="startingpos"></input>
                 <input type="text" id="theorymoves"></input>
                 <button onClick={() => {
@@ -90,8 +95,9 @@ export default function NewchessboardUI(props) {
                 g4 Kg6 40. e5 dxe5 41. Rxe5 Kh6 42. Rf5 Kg7 43. h4 Kh7 44. h5 Kh6 45. Be8 Kg7
                 46. g5 Kh7 47. Kc1 Kg8 48. Kd2 Kh7 49. Ke3 Kg7 50. Kf4 Kh7 51. Kg4 Kg8 52. h6
                 Kh7 53. Kh5 Kh8 54. g6 Kg8 55. Kg5 Kh8 56. Rf8`
+                <br></br>
                 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
-            </div>
+            </div> */}
         </div>
     )
 }
