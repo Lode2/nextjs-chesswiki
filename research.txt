@@ -28,8 +28,12 @@ Thinking machine: shows what a engine is thinking when you play a move: https://
 An article discussing how to visualise your opening repertoire: https://natesolon.github.io/blog/tree#planting-a-tree
 Analyse option much like SCID: http://scid.sourceforge.net/ or CPT: https://www.chesspositiontrainer.com/index.php/en/features
 Listed in the comments are some chess repertoire analysis tools: https://chess.stackexchange.com/questions/34896/is-there-a-free-online-chess-repertoire-tool
+Great blog on using d3js in react: https://wattenberger.com/blog/react-and-d3
 
+
+Installed d3 and resize-observer-polyfill for the tree currently.
 
 MUSIC:
 Erik Satie: Gnossienne No. 1, 2, 3
 Chopin Nocturnes
+https://www.youtube.com/watch?v=-7jjo8UICjQ

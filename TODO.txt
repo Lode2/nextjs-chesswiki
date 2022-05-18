@@ -9,3 +9,5 @@ DONE 3. Add a bar on the side of the board to view the evaluation from chess eng
 7. For users to practice openings, make a learning tab for each opening that provides some typical positions that can be reached
     after following the theory, where the user needs to make the right move. Much like a chess puzzle, but the user needs to play
     the move that is suggested in the theory, as opposed to a good move according to a chess engine.
+8. Make a opening hierarchical tree showing all the first moves that make up a opening name. When clicked, open another tree
+    that explores the different variations in the opening. Show transpositions using dotted lines.

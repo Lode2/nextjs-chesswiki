@@ -3,8 +3,25 @@ import Head from 'next/head'
 import { useState, useEffect } from 'react'
 import Topnavbar from '../../components/topnavbar';
 import Bottomnavbar from '../../components/bottomnavbar';
+import HierarchicalTree from '../../components/hierarchicalTree';
 
 export default function FirstPost() {
+    const testData = {
+        name: '1',
+        children: [
+            {
+                name: '2',
+                children: [
+                    {
+                        name: '2.2'
+                    }
+                ]
+            },
+            {
+                name: '3'
+            }
+        ]
+    }
     return (
         <div style={{
             backgroundColor: '#232323',
@@ -15,7 +32,7 @@ export default function FirstPost() {
             </Head>
             <Topnavbar />
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                hi
+                <HierarchicalTree data={testData}></HierarchicalTree>
             </div>
             <Bottomnavbar />
         </div>

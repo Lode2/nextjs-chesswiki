@@ -12,8 +12,10 @@
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
     "chess.js": "^0.13.1",
+    "d3": "^7.4.4",
     "next": "latest",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "resize-observer-polyfill": "^1.5.1"
   }
 }
