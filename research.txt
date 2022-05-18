@@ -1,0 +1,35 @@
+Chess openings can be seen as hierarchical data, which can be visualized in a multitude of ways, such
+    as: https://observablehq.com/@d3/gallery#hierarchies, or: https://observablehq.com/@d3/zoomable-circle-packing.
+
+Data tree using lichess game database: https://www.chessroots.com/
+Tree hierarchy of named openings: https://named-openings-galore.com/
+chess opening suggestor: https://github.com/pmm248/ChessOpeningRecommender
+Stats about win percentage on certain moves: https://mishalrahman.com/cs171-project2/
+Wikipedia has lots of pages on certain openings, example: https://en.wikipedia.org/wiki/Colle_System
+Really cool animated canvasses: http://paperjs.org/examples/
+https://www.reddit.com/r/chess/comments/13ykm3/a_personal_project_i_was_working_for_the_past_4/
+Idea to maybe add as data visualisation (https://www.reddit.com/r/chess/comments/1szfec/chess_datainformation_visualization/): https://i.imgur.com/x0H6vxw.jpg
+Visualisation of piece survival and move data per opening: https://jkunst.com/blog/posts/2015-10-30-visualizing-chess-data-with-ggplot/
+Cool opening tree: https://blog.ebemunk.com/a-visual-look-at-2-million-chess-games/
+Maybe something like this as well (interest in chess over the years): https://www.stelayordanova.com/blog/researching-chess-google-trends-data-visualization/
+Interesting data analysis, especially to graph the probability of moving a certain piece at a certain move number, plotting
+    lines for beginners and advanced players: https://www.kaggle.com/code/ironicninja/visualizing-chess-game-length-and-piece-movement/notebook#piecemovement2
+Interesting paper about chess evolution: https://people.cs.nctu.edu.tw/~yushuen/data/ChessVis14.pdf
+Chess data visualisation in D3JS: https://github.com/ebemunk/chess-dataviz
+Different ways of visualising the moves pieces make: https://observablehq.com/@ee2dev/visualizing-chess-games
+Chess rating of players sorted by country, could be an idea to add a data analysis on rating by country, age, gender etc. on my 
+    website, the example afore mentioned: https://knoema.com/airkrsb/chess-ratings
+Interesting analysis of multiple chess topics, the articles belonging to the series are linked at the bottom of the page:
+    http://www.randalolson.com/2014/11/02/the-evolution-of-chess-openings-and-why-gifs-make-for-bad-data-visualizations/
+Add functionality for players to upload their games and for the website to create data visualisation on their games.
+Analyse app: https://www.chessvis.com/
+Cool visualisation of all the top players: https://public.tableau.com/app/profile/jagarwal.ranjith/viz/ChessClassicalplayersandBlitz/VIZ
+Thinking machine: shows what a engine is thinking when you play a move: https://www.bewitched.com/chess/
+An article discussing how to visualise your opening repertoire: https://natesolon.github.io/blog/tree#planting-a-tree
+Analyse option much like SCID: http://scid.sourceforge.net/ or CPT: https://www.chesspositiontrainer.com/index.php/en/features
+Listed in the comments are some chess repertoire analysis tools: https://chess.stackexchange.com/questions/34896/is-there-a-free-online-chess-repertoire-tool
+
+
+MUSIC:
+Erik Satie: Gnossienne No. 1, 2, 3
+Chopin Nocturnes

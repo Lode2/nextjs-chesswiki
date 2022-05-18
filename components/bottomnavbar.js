@@ -4,6 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons"
 import { faFacebook, faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons"
 
+// stop fontawesome icons from loading in too big
+import "@fortawesome/fontawesome-svg-core/styles.css"
+import { config } from '@fortawesome/fontawesome-svg-core'
+config.autoAddCss = false
+
 export default function Bottomnavbar() {
     // console.log('rendering bottomnavbar')
     return (

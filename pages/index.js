@@ -17,6 +17,7 @@ export default function Home() {
         </p>
       </section>
       <Link href="/test-routes/newEdit"><a>new Edit js</a></Link><br></br>
+      <Link href="/test-routes/treeStructure"><a>d3 tree structure</a></Link><br></br>
     </Layout>
   )
 }
