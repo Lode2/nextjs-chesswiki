@@ -20,7 +20,6 @@
   background-color: inherit;
   color: inherit;
   border: 1px solid white;
-  border-radius: 0;
 }
 
 .faButton:hover,
@@ -29,26 +28,26 @@
   color: black;
 }
 
-/* 
+
+/* engine evaluation tooltip */
 .evalTooltip {
   position: relative;
   display: inline-block;
-  border-bottom: 1px dotted black;
 }
 
 .evalTooltip .tooltipText {
   visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
+  width: 160px;
   position: absolute;
-  z-index: 1;
-  bottom: 150%;
+  z-index: 3;
+  background-color: gray;
+  border-radius: 15px;
+  padding: 5px 0;
+  top: 0;
+  text-align: center;
   left: 50%;
-  margin-left: -60px;
+  margin-left: -80px;
+  transform: translateY(-75px);
 }
 
 .evalTooltip .tooltipText::after {
@@ -59,9 +58,9 @@
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: black transparent transparent transparent;
+  border-color: gray transparent transparent transparent;
 }
 
-.evalTooltip:hover .tooltipText {
+.evalTooltip :first-child:hover+.tooltipText {
   visibility: visible;
-} */
+}

@@ -34,6 +34,7 @@ export default function NewchessboardUI(props) {
         "Black short-castles its king to safety.",
         "White follows black's lead, and castles short.",]
     const positionEvaluation = [0.2, -0.9, 0.4, 3.2, 3.6, 7.4, 6.6, 7.0, 7.1, 9.7, 8.6, 8.7, 8.0, 8.2, 7.9, 8.9, 8.9, 8.8, 9.1, 9.1, 8.7, 9.2, 9.2, 9.2, 8.8, 9.6, 8.9, 9.0, 9.0, 9.2, 9.3, 9.8, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+    const evaluationData = ['Stockfish 14 NNUE depth: 40', 'Stockfish 14 NNUE depth: 40', 'Stockfish 14 NNUE depth: 40', 'Stockfish 14 NNUE depth: 40', 'Stockfish 14 NNUE depth: 40', 'Stockfish 14 NNUE depth: 40', 'Stockfish 14 NNUE depth: 40', 'Stockfish 14 NNUE depth: 40', 'Stockfish 14 NNUE depth: 40', 'Stockfish 14 NNUE depth: 40', 'Stockfish 14 NNUE depth: 40']
 
     return (
         <div style={{
@@ -50,7 +51,7 @@ export default function NewchessboardUI(props) {
             </div>
             <div className={styles.evalTooltip} style={{ height: 0.5 * boardSize + 'px', width: '2%' }}>
                 <Engineevalbar evaluation={positionEvaluation} move={moveCounter}></Engineevalbar>
-                {/* <span className={styles.tooltipText}>stockfish 14 NNUE</span> */}
+                <span className={styles.tooltipText}>{evaluationData[moveCounter] !== undefined ? evaluationData[moveCounter] : 'No engine evaluation data available'}</span>
             </div>
             <div style={{ width: 0.5 * boardSize + 'px', margin: '0 0 40px 0', }}>
                 <Newchessboard chessboardSize={boardSize} FEN={posFEN} theoryMoves={posMoves} moveCounter={moveCounter} />

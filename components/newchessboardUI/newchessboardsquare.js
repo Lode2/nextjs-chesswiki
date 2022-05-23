@@ -14,7 +14,7 @@ export default function Newchessboardsquare(props) {
             msUserSelect: 'none',
             UserSelect: 'none'
         }}>
-            <div style={{ position: "absolute", }}>
+            <div style={{ position: "absolute", height: props.size }}>
                 {props.chessPiece === null ? '' : <Chesspiece src={props.chessPiece} size={props.size} />}
             </div>
 

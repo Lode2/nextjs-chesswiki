@@ -37,6 +37,8 @@ function TreeChart({ data }) {
     // we save data to see if it changed
     const previouslyRenderedData = usePrevious(data);
 
+    const [divWidth, divHeight] = [800, 600]
+
     // will be called initially and on every data change
     useEffect(() => {
         const svg = select(svgRef.current);
@@ -44,8 +46,18 @@ function TreeChart({ data }) {
         // use dimensions from useResizeObserver,
         // but use getBoundingClientRect on initial render
         // (dimensions are null for the first render)
-        const { width, height } =
-            dimensions || wrapperRef.current.getBoundingClientRect();
+        const { width, height } = {
+            "x": 50,
+            "y": 50,
+            "width": divWidth,
+            "height": divHeight,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+        }
+        // dimensions || wrapperRef.current.getBoundingClientRect();
+        // console.log(dimensions)
 
         // transform hierarchical data
         const root = hierarchy(data);
@@ -119,7 +131,7 @@ function TreeChart({ data }) {
     }, [data, dimensions, previouslyRenderedData]);
 
     return (
-        <div ref={wrapperRef} style={{ marginBottom: "2rem" }}>
+        <div ref={wrapperRef} style={{ display: 'flex', justifyContent: 'center', height: divHeight + 'px', width: divWidth + 'px', border: 'blue solid 2px' }}>
             <svg ref={svgRef}></svg>
         </div>
     );

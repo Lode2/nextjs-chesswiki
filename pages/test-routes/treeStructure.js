@@ -31,9 +31,12 @@ export default function FirstPost() {
                 <title>Chesswiki</title>
             </Head>
             <Topnavbar />
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <HierarchicalTree data={testData}></HierarchicalTree>
+            <div style={{ height: '1000px' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', border: 'red dotted 2px' }}>
+                    <HierarchicalTree data={testData}></HierarchicalTree>
+                </div>
             </div>
+
             <Bottomnavbar />
         </div>
     )
