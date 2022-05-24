@@ -19,22 +19,7 @@ config.autoAddCss = false
 export default function NewchessboardUI(props) {
     // console.log('rendering newchessboardui')
     const boardSize = props.chessboardUISize > 1000 ? 0.8 * props.chessboardUISize : 800;
-    const [posFEN, setposFEN] = useState('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')
-    const [posMoves, setposMoves] = useState(makePosMovesList('1. e4 Nf6 2. e5 d5 3. exd6 e6 4. Bd3 Be7 5. Nf3 O-O 6. O-O *'))
     const [moveCounter, setMoveCounter] = useState(0)
-    const positionInformation = ["1. e4, one of the most common opening moves.",
-        "Nf6 is not the most common responce.",
-        "2. e5, attacking the knight.",
-        "The knight remains under attack.",
-        "3. exd6, white captures en passant.",
-        "Black pushes the e pawn.",
-        "White developes its first piece, the white squared bishop.",
-        "Black responds by also developing a bishop.",
-        "5. Nf3 by white.",
-        "Black short-castles its king to safety.",
-        "White follows black's lead, and castles short.",]
-    const positionEvaluation = [0.2, -0.9, 0.4, 3.2, 3.6, 7.4, 6.6, 7.0, 7.1, 9.7, 8.6, 8.7, 8.0, 8.2, 7.9, 8.9, 8.9, 8.8, 9.1, 9.1, 8.7, 9.2, 9.2, 9.2, 8.8, 9.6, 8.9, 9.0, 9.0, 9.2, 9.3, 9.8, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
-    const evaluationData = ['Stockfish 14 NNUE depth: 40', 'Stockfish 14 NNUE depth: 40', 'Stockfish 14 NNUE depth: 40', 'Stockfish 14 NNUE depth: 40', 'Stockfish 14 NNUE depth: 40', 'Stockfish 14 NNUE depth: 40', 'Stockfish 14 NNUE depth: 40', 'Stockfish 14 NNUE depth: 40', 'Stockfish 14 NNUE depth: 40', 'Stockfish 14 NNUE depth: 40', 'Stockfish 14 NNUE depth: 40']
 
     return (
         <div style={{
@@ -47,14 +32,14 @@ export default function NewchessboardUI(props) {
         }}>
             <div style={{ display: 'flex', justifyContent: 'center', flexBasis: '100%' }}><h1 style={{ margin: '10px' }}>Queen's pawn opening</h1></div>
             <div style={{ width: '25%', height: 0.5 * boardSize + 'px', margin: '0 0 0 0', padding: '0 0 0 0' }}>
-                <Positionexplanationcanvas info={positionInformation} move={moveCounter} />
+                <Positionexplanationcanvas info={props.openingData.moveInfo} move={moveCounter} />
             </div>
             <div className={styles.evalTooltip} style={{ height: 0.5 * boardSize + 'px', width: '2%' }}>
-                <Engineevalbar evaluation={positionEvaluation} move={moveCounter}></Engineevalbar>
-                <span className={styles.tooltipText}>{evaluationData[moveCounter] !== undefined ? evaluationData[moveCounter] : 'No engine evaluation data available'}</span>
+                <Engineevalbar evaluation={props.openingData.moveEval} move={moveCounter}></Engineevalbar>
+                <span className={styles.tooltipText}>{props.openingData.evalInfo[moveCounter] !== undefined ? props.openingData.evalInfo[moveCounter] : 'No engine evaluation data'}</span>
             </div>
             <div style={{ width: 0.5 * boardSize + 'px', margin: '0 0 40px 0', }}>
-                <Newchessboard chessboardSize={boardSize} FEN={posFEN} theoryMoves={posMoves} moveCounter={moveCounter} />
+                <Newchessboard chessboardSize={boardSize} FEN={props.openingData.startingPos} theoryMoves={props.openingData.moves} moveCounter={moveCounter} />
                 <div style={{ display: 'flex', flexFlow: 'row', justifyContent: 'center' }}>
                     <button className={styles.faButton} onClick={() => { setMoveCounter(0) }}>
                         <FontAwesomeIcon icon={faBackwardStep} />
@@ -62,16 +47,16 @@ export default function NewchessboardUI(props) {
                     <button className={styles.faButton} onClick={() => { setMoveCounter(moveCounter > 0 ? (moveCounter - 1) : (moveCounter)) }}>
                         <FontAwesomeIcon icon={faCaretLeft} />
                     </button>
-                    <button className={styles.faButton} onClick={() => { setMoveCounter(moveCounter < (posMoves.length) ? (moveCounter + 1) : moveCounter) }}>
+                    <button className={styles.faButton} onClick={() => { setMoveCounter(moveCounter < (props.openingData.moves.length) ? (moveCounter + 1) : moveCounter) }}>
                         <FontAwesomeIcon icon={faCaretRight} />
                     </button>
-                    <button className={styles.faButton} onClick={() => { setMoveCounter(posMoves.length) }}>
+                    <button className={styles.faButton} onClick={() => { setMoveCounter(props.openingData.moves.length) }}>
                         <FontAwesomeIcon icon={faForwardStep} />
                     </button>
                 </div>
             </div>
             <div style={{ width: '18%', height: 0.5 * boardSize + 'px', margin: '0 0 0 0', backgroundColor: 'rgb(116, 105, 105)' }}>
-                <Movelistcanvas moveList={posMoves} currentCounter={moveCounter} changeCounter={setMoveCounter} />
+                <Movelistcanvas moveList={props.openingData.moves} currentCounter={moveCounter} changeCounter={setMoveCounter} />
                 {/* {Math.floor(Math.random() * 11)} */}
             </div>
 

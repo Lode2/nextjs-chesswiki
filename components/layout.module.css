@@ -26,6 +26,7 @@
 .faButton:hover>* {
   background-color: gray;
   color: black;
+  cursor: pointer;
 }
 
 

@@ -5,19 +5,14 @@ import Link from 'next/link'
 
 export default function Home() {
   return (
-    <Layout home>
+    <>
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <p>[Your Self Introduction]</p>
-        <p>
-          (This is a sample website - you’ll be building a site like this on{' '}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
-        </p>
-      </section>
       <Link href="/test-routes/newEdit"><a>new Edit js</a></Link><br></br>
       <Link href="/test-routes/treeStructure"><a>d3 tree structure</a></Link><br></br>
-    </Layout>
+      Finished pages:<br></br>
+      <Link href="/view-opening"><a>View opening</a></Link><br></br>
+    </>
   )
 }

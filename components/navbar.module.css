@@ -18,7 +18,7 @@
     align-items: center;
     text-decoration: none;
     /* background-color: rgb(116, 105, 105); */
-    border-radius: 15px;
+    border-radius: 0 0 15px 15px;
     height: inherit;
     color: inherit;
     padding: 0 20px 0 20px;

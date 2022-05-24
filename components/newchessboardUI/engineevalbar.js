@@ -8,7 +8,7 @@ export default function Engineevalbar(props) {
         <div style={{ position: 'relative', height: '100%' }}>
             <div style={{ height: whiteHeight + '%', backgroundColor: 'white', width: '100%' }}></div>
             <div style={{ height: 100 - whiteHeight + '%', backgroundColor: 'black', width: '100%' }}></div>
-            <div style={Object.assign({ position: 'absolute', fontSize: '15px' }, evalPosition)}>{Math.abs(currentEval) === 10 ? Math.abs(currentEval) : Math.abs(currentEval).toFixed(1)}</div>
+            <div style={Object.assign({ position: 'absolute', fontSize: '15px', WebkitUserSelect: 'none', MozUserSelect: 'none', msUserSelect: 'none', UserSelect: 'none' }, evalPosition)}>{Math.abs(currentEval) === 10 ? Math.abs(currentEval) : Math.abs(currentEval).toFixed(1)}</div>
         </div>
     )
 }
