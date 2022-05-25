@@ -29,18 +29,9 @@ export default function viewOpening(props) {
     const [openingData, setOpeningData] = useState(data)
 
     return (
-        <div style={{
-            backgroundColor: '#232323',
-            color: 'white',
-        }}>
-            <Head>
-                <title>Chesswiki view opening</title>
-            </Head>
-            <Topnavbar />
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <NewchessboardUI chessboardUISize={size.width} openingData={openingData} />
-            </div>
-            <Bottomnavbar />
+
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <NewchessboardUI chessboardUISize={size.width} openingData={openingData} />
         </div>
     )
 }
