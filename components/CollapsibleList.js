@@ -1,4 +1,4 @@
-import styles from './'
+// import styles from './'
 
 export default function CollapsibleList(props) {
   const list = [

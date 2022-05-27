@@ -1,0 +1,24 @@
+.moveStyling {
+    all: unset;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 5px;
+    padding-left: 3px;
+    padding-right: 3px;
+    margin-left: 5px;
+}
+
+.moveStyling:hover {
+    background-color: gray;
+}
+
+.currentMoveStyling {
+    all: unset;
+    text-decoration: underline;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 5px;
+    padding-left: 3px;
+    padding-right: 3px;
+    margin-left: 5px;
+}

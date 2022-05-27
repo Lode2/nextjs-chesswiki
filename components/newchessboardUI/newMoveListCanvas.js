@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from 'react'
 import styles from '../moveList.module.css'
 
-export default function MoveListCanvas(props) {
+export default function newMoveListCanvas(props) {
 
     const [newList, setNewList] = useState()
     const [useList, setUseList] = useState()

@@ -2,6 +2,7 @@
 import Newchessboard from "./newchessboard"
 import Positionexplanationcanvas from "./positionexplanationcanvas"
 import Movelistcanvas from "./movelistcanvas"
+// import Newmovelistcanvas from "./newMoveListCanvas"
 import Engineevalbar from "./engineevalbar"
 // hooks
 import { useState } from 'react'
