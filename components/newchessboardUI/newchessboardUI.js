@@ -1,9 +1,8 @@
 // components
-import Newchessboard from "./newchessboard"
-import Positionexplanationcanvas from "./positionexplanationcanvas"
-import Movelistcanvas from "./movelistcanvas"
-// import Newmovelistcanvas from "./newMoveListCanvas"
-import Engineevalbar from "./engineevalbar"
+import ChessBoard from "./newchessboard"
+import PositionExplanationCanvas from "./positionexplanationcanvas"
+import MovelistCanvas from "./movelistcanvas"
+import EngineEvalBar from "./engineevalbar"
 // hooks
 import { useState } from 'react'
 // fontawesome icons
@@ -28,19 +27,19 @@ export default function NewchessboardUI(props) {
             flexDirection: "row",
             justifyContent: 'center',
             flexFlow: 'wrap',
-            width: '80%',
+            width: '100%',
             height: 'auto',
         }}>
             <div style={{ display: 'flex', justifyContent: 'center', flexBasis: '100%' }}><h1 style={{ margin: '10px' }}>Queen's pawn opening</h1></div>
             <div style={{ width: '25%', height: 0.5 * boardSize + 'px', margin: '0 0 0 0', padding: '0 0 0 0' }}>
-                <Positionexplanationcanvas info={props.openingData.moveInfo} move={moveCounter} />
+                <PositionExplanationCanvas info={props.openingData.moveInfo} move={moveCounter} />
             </div>
             <div className={styles.evalTooltip} style={{ height: 0.5 * boardSize + 'px', width: '2%' }}>
-                <Engineevalbar evaluation={props.openingData.moveEval} move={moveCounter}></Engineevalbar>
+                <EngineEvalBar evaluation={props.openingData.moveEval} move={moveCounter}></EngineEvalBar>
                 <span className={styles.tooltipText}>{props.openingData.evalInfo[moveCounter] !== undefined ? props.openingData.evalInfo[moveCounter] : 'No engine evaluation data'}</span>
             </div>
             <div style={{ width: 0.5 * boardSize + 'px', margin: '0 0 40px 0', }}>
-                <Newchessboard chessboardSize={boardSize} FEN={props.openingData.startingPos} theoryMoves={props.openingData.moves} moveCounter={moveCounter} />
+                <ChessBoard chessboardSize={boardSize} FEN={props.openingData.startingPos} theoryMoves={props.openingData.moves} moveCounter={moveCounter} />
                 <div style={{ display: 'flex', flexFlow: 'row', justifyContent: 'center' }}>
                     <button className={styles.faButton} onClick={() => { setMoveCounter(0) }}>
                         <FontAwesomeIcon icon={faBackwardStep} />
@@ -57,7 +56,7 @@ export default function NewchessboardUI(props) {
                 </div>
             </div>
             <div style={{ width: '18%', height: 0.5 * boardSize + 'px', margin: '0 0 0 0', backgroundColor: 'rgb(116, 105, 105)' }}>
-                <Movelistcanvas moveList={props.openingData.moves} currentCounter={moveCounter} changeCounter={setMoveCounter} />
+                <MovelistCanvas moveList={props.openingData.moves} currentCounter={moveCounter} changeCounter={setMoveCounter} />
                 {/* {Math.floor(Math.random() * 11)} */}
             </div>
 
