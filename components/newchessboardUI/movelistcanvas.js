@@ -77,7 +77,7 @@ export default function Movelistcanvas(props) {
     }
 
     const changeMove = (moveNr) => {
-        console.log(moveNr + 1)
+        // console.log(moveNr + 1)
         props.changeCounter(moveNr + 1)
     }
 
