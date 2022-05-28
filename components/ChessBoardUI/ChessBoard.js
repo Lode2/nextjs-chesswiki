@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import Newchessboardsquare from "./newchessboardsquare";
+import Newchessboardsquare from "./ChessBoardSquare";
 import Chessgame from '../../public/model/chess'
 
 export default function Newchessboard(props) {

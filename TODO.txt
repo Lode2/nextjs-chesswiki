@@ -11,3 +11,9 @@ DONE 3. Add a bar on the side of the board to view the evaluation from chess eng
     the move that is suggested in the theory, as opposed to a good move according to a chess engine.
 8. Make a opening hierarchical tree showing all the first moves that make up a opening name. When clicked, open another tree
     that explores the different variations in the opening. Show transpositions using dotted lines.
+
+
+TODAY:
+Check where to replace inline styles or custom onhover events with css. 
+Look up what is common practice considering styling. For example I saw a styles folder in the root directory.
+Finish the collapsible list component.

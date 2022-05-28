@@ -1,4 +1,4 @@
-import Chesspiece from "./chesspiece"
+import Chesspiece from "./ChessPiece"
 
 export default function Newchessboardsquare(props) {
     // top if squareId is number, bottom if squareId is string

@@ -1,8 +1,3 @@
-import Link from 'next/link'
-import Head from 'next/head'
-import { useState, useEffect } from 'react'
-import Topnavbar from '../../components/topnavbar';
-import Bottomnavbar from '../../components/bottomnavbar';
 import HierarchicalTree from '../../components/hierarchicalTree';
 
 export default function treeStructure() {

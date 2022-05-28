@@ -1,15 +1,15 @@
 // components
-import ChessBoard from "./newchessboard"
-import PositionExplanationCanvas from "./positionexplanationcanvas"
-import MovelistCanvas from "./movelistcanvas"
-import EngineEvalBar from "./engineevalbar"
+import ChessBoard from "./ChessBoard"
+import PositionExplanationCanvas from "./PositionExplanationCanvas"
+import MovelistCanvas from "./MoveListCanvas"
+import EngineEvalBar from "./EngineEvalBar"
 // hooks
 import { useState } from 'react'
 // fontawesome icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faForwardStep, faBackwardStep, faCaretRight, faCaretLeft } from "@fortawesome/free-solid-svg-icons"
 // styles
-import styles from '../layout.module.css'
+import styles from '../../styles/layout.module.css'
 
 // stop fontawesome icons from loading in too big
 import "@fortawesome/fontawesome-svg-core/styles.css"

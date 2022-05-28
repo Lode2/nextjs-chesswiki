@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useState } from 'react'
-import NewchessboardUI from '../components/newchessboardUI/newchessboardUI';
+import NewchessboardUI from '../components/ChessBoardUI/ChessBoardUI';
 import Topnavbar from '../components/topnavbar';
 import Bottomnavbar from '../components/bottomnavbar';
 
