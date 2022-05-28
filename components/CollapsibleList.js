@@ -1,4 +1,4 @@
-// import styles from './'
+import styles from '../styles/collapseList.module.css'
 
 export default function CollapsibleList(props) {
   const list = [
@@ -28,22 +28,7 @@ export default function CollapsibleList(props) {
       ]
     }
   ]
-  function renderParent(parent) {
-    const renderedChildren = parent.children.map((item, index) => {
-      if (item.type === 'child') {
-        return <li key={parent.name + ' child ' + index}><div>{item.name + ', ' + parent.name + ' child ' + index}</div></li>
-      } else {
-        // another parent
-        return renderParent(item)
-      }
-    })
-    return (
-      <div>
-        <div className="parentWrapper"><h3 style={{ margin: '0' }}>{parent.name}</h3></div>
-        <div className="childrenWrapper"><ul style={{ margin: '0' }}>{renderedChildren}</ul></div>
-      </div>
-    )
-  }
+
   return (
     <>
       {renderParent(list[0])}
@@ -51,6 +36,36 @@ export default function CollapsibleList(props) {
 
     </>
   )
+}
+
+function renderParent(parent) {
+  const renderedChildren = parent.children.map((item, index) => {
+    if (item.type === 'child') {
+      return <li key={parent.name + ' child ' + index}><div>{item.name + ', ' + parent.name + ' child ' + index}</div></li>
+    } else {
+      // another parent
+      return renderParent(item)
+    }
+  })
+  return (
+    <div>
+      <div className={styles.parentWrapper} onClick={toggleChildren}><h3 style={{ margin: '0' }}>{parent.name}</h3></div>
+      <div className={styles.childrenWrapper}><ul style={{ margin: '0' }}>{renderedChildren}</ul></div>
+    </div>
+  )
+}
+// an entire thread about collapse animations: https://stackoverflow.com/questions/3508605/how-can-i-transition-height-0-to-height-auto-using-css
+function toggleChildren(e) {
+  const parentElement = e.currentTarget
+  const childrenWrapper = parentElement.nextElementSibling // sibling because the children wrapper is a sibling
+  // childrenWrapper.className = styles.collapsedChildrenWrapper
+  // childrenWrapper.classList.toggle(styles.collapsedChildrenWrapper)
+  if (!childrenWrapper.style.height || childrenWrapper.style.height == '0px') {
+    childrenWrapper.style.height = Array.prototype.reduce.call(childrenWrapper.childNodes, function (p, c) { return p + (c.offsetHeight || 0); }, 0) + 'px';
+  } else {
+    childrenWrapper.style.height = '0px';
+  }
+
 }
 
 

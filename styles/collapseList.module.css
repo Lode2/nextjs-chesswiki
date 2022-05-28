@@ -1,0 +1,21 @@
+.parentWrapper {
+    border: 2px blue solid;
+}
+
+/* .childrenWrapper {
+    border: 2px red dotted;
+    height: 0;
+    transition: height 0.15s ease-out;
+    overflow: hidden;
+} */
+
+/* .collapsedChildrenWrapper {
+    height: 100%;
+    transition: height 0.15s ease-in;
+} */
+
+.childrenWrapper {
+    height: 0px;
+    transition: height 0.3s ease;
+    overflow: hidden;
+}
