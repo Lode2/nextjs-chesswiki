@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import navStyles from '../styles/navbar.module.css'
+import navStyles from '../../styles/navbar.module.css'
 
 export default function Topnavbar() {
     // console.log('rendering topnavbar')

@@ -3,8 +3,8 @@ import Head from 'next/head'
 import { useState, useEffect } from 'react'
 import Newchessboard from '../../components/newchessboardUI/newchessboard';
 import NewchessboardUI from '../../components/newchessboardUI/newchessboardUI';
-import Topnavbar from '../../components/topnavbar';
-import Bottomnavbar from '../../components/bottomnavbar';
+import Topnavbar from '../../components/Layout/TopNavbar';
+import Bottomnavbar from '../../components/Layout/BottomNavbar';
 
 export default function FirstPost() {
     const [size, setSize] = useState({ heigth: 8 * 140, width: 8 * 140 })

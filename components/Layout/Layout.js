@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import Bottomnavbar from './bottomnavbar'
-import Topnavbar from './topnavbar'
+import Bottomnavbar from './BottomNavbar'
+import Topnavbar from './TopNavbar'
 
 export default function Layout({ children }) {
     return (

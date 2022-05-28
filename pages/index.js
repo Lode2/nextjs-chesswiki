@@ -8,7 +8,7 @@ export default function Home() {
       <Head>
         <title>Chesswiki</title>
       </Head>
-      <Link href="/test-routes/newEdit"><a>new Edit js</a></Link><br></br>
+      <Link href="/test-routes/newEdit_deprecated"><a>new Edit js (deprecated, DONT CLICK)</a></Link><br></br>
       <Link href="/test-routes/treeStructure"><a>d3 tree structure</a></Link><br></br>
       <Link href="/test-routes/testList"><a>Collapsible list</a></Link><br></br>
       Finished pages:<br></br>

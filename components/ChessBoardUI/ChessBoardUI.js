@@ -27,7 +27,7 @@ export default function NewchessboardUI(props) {
             flexDirection: "row",
             justifyContent: 'center',
             flexFlow: 'wrap',
-            width: '100%',
+            width: '80%',
             height: 'auto',
         }}>
             <div style={{ display: 'flex', justifyContent: 'center', flexBasis: '100%' }}><h1 style={{ margin: '10px' }}>Queen's pawn opening</h1></div>
