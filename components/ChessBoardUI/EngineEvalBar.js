@@ -1,6 +1,6 @@
 
 
-export default function Engineevalbar(props) {
+export default function EngineEvalBar(props) {
     const currentEval = props.move - 1 === -1 ? 0.2 : props.evaluation[props.move - 1]
     const evalPosition = currentEval >= 0 ? { top: '0', color: 'black' } : { bottom: '0', color: 'white' }
     const whiteHeight = (currentEval + 10) * 5

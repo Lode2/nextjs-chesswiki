@@ -9,7 +9,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css"
 import { config } from '@fortawesome/fontawesome-svg-core'
 config.autoAddCss = false
 
-export default function Bottomnavbar() {
+export default function BottomNavBar() {
     // console.log('rendering bottomnavbar')
     return (
         // the i tags are from font awesome

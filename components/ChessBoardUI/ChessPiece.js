@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export default function Chesspiece(props) {
+export default function ChessPiece(props) {
     const imgsrc = '/images/' + props.src + '.png';
     const pieceName = (props.src[1] === 'b' ? 'black' : 'white') + ' ' + shorthandToPieceName(props.src[0]);
     return (

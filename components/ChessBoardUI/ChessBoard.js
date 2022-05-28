@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import Newchessboardsquare from "./ChessBoardSquare";
 import Chessgame from '../../public/model/chess'
 
-export default function Newchessboard(props) {
+export default function ChessBoard(props) {
     // console.log('rendering newchessboard')
     const chessgame = useMemo(() => new Chessgame(props.FEN, props.theoryMoves), [props.FEN, props.theoryMoves])
     const cb = useMemo(() => chessgame.loadOpening(), [props.FEN, props.theoryMoves])

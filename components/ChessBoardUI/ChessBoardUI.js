@@ -9,38 +9,31 @@ import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faForwardStep, faBackwardStep, faCaretRight, faCaretLeft } from "@fortawesome/free-solid-svg-icons"
 // styles
-import styles from '../../styles/layout.module.css'
+import styles from '../../styles/chessBoard.module.css'
 
 // stop fontawesome icons from loading in too big
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import { config } from '@fortawesome/fontawesome-svg-core'
 config.autoAddCss = false
 
-export default function NewchessboardUI(props) {
+export default function ChessBoardUI(props) {
     // console.log('rendering newchessboardui')
     const boardSize = props.chessboardUISize > 1000 ? 0.8 * props.chessboardUISize : 800;
     const [moveCounter, setMoveCounter] = useState(0)
 
     return (
-        <div style={{
-            display: 'flex',
-            flexDirection: "row",
-            justifyContent: 'center',
-            flexFlow: 'wrap',
-            width: '80%',
-            height: 'auto',
-        }}>
-            <div style={{ display: 'flex', justifyContent: 'center', flexBasis: '100%' }}><h1 style={{ margin: '10px' }}>Queen's pawn opening</h1></div>
-            <div style={{ width: '25%', height: 0.5 * boardSize + 'px', margin: '0 0 0 0', padding: '0 0 0 0' }}>
+        <div className={styles.chessBoardUIWrapper} style={{ width: '80%', height: 'auto' }}>
+            <div className={styles.titleWrapper}><h1 style={{ margin: '10px' }}>{props.openingData.name}</h1></div>
+            <div className={styles.positionExplanationCanvasWrapper} style={{ width: '25%', height: 0.5 * boardSize + 'px' }}>
                 <PositionExplanationCanvas info={props.openingData.moveInfo} move={moveCounter} />
             </div>
-            <div className={styles.evalTooltip} style={{ height: 0.5 * boardSize + 'px', width: '2%' }}>
+            <div className={styles.evalWrapper} style={{ height: 0.5 * boardSize + 'px', width: '2%' }}>
                 <EngineEvalBar evaluation={props.openingData.moveEval} move={moveCounter}></EngineEvalBar>
                 <span className={styles.tooltipText}>{props.openingData.evalInfo[moveCounter] !== undefined ? props.openingData.evalInfo[moveCounter] : 'No engine evaluation data'}</span>
             </div>
-            <div style={{ width: 0.5 * boardSize + 'px', margin: '0 0 40px 0', }}>
+            <div style={{ width: 0.5 * boardSize + 'px', margin: '0 0 40px 0' }}>
                 <ChessBoard chessboardSize={boardSize} FEN={props.openingData.startingPos} theoryMoves={props.openingData.moves} moveCounter={moveCounter} />
-                <div style={{ display: 'flex', flexFlow: 'row', justifyContent: 'center' }}>
+                <div className={styles.buttonWrapper}>
                     <button className={styles.faButton} onClick={() => { setMoveCounter(0) }}>
                         <FontAwesomeIcon icon={faBackwardStep} />
                     </button>
@@ -55,9 +48,8 @@ export default function NewchessboardUI(props) {
                     </button>
                 </div>
             </div>
-            <div style={{ width: '18%', height: 0.5 * boardSize + 'px', margin: '0 0 0 0', backgroundColor: 'rgb(116, 105, 105)' }}>
+            <div className={styles.moveListWrapper} style={{ width: '18%', height: 0.5 * boardSize + 'px' }}>
                 <MovelistCanvas moveList={props.openingData.moves} currentCounter={moveCounter} changeCounter={setMoveCounter} />
-                {/* {Math.floor(Math.random() * 11)} */}
             </div>
 
 

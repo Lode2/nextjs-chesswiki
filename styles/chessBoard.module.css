@@ -1,19 +1,4 @@
-.container {
-  max-width: 36rem;
-  padding: 0 1rem;
-  margin: 3rem auto 6rem;
-}
-
-.header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.backToHome {
-  margin: 3rem 0 0;
-}
-
+/* fontawesome icons styling */
 .faButton {
   width: 25%;
   height: 40px;
@@ -31,12 +16,12 @@
 
 
 /* engine evaluation tooltip */
-.evalTooltip {
+.evalWrapper {
   position: relative;
   display: inline-block;
 }
 
-.evalTooltip .tooltipText {
+.evalWrapper .tooltipText {
   visibility: hidden;
   width: 160px;
   position: absolute;
@@ -51,7 +36,7 @@
   transform: translateY(-75px);
 }
 
-.evalTooltip .tooltipText::after {
+.evalWrapper .tooltipText::after {
   content: "";
   position: absolute;
   top: 100%;
@@ -62,6 +47,36 @@
   border-color: gray transparent transparent transparent;
 }
 
-.evalTooltip :first-child:hover+.tooltipText {
+.evalWrapper :first-child:hover+.tooltipText {
   visibility: visible;
+}
+
+/* some wrapper styling */
+.chessBoardUIWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-flow: wrap;
+}
+
+.titleWrapper {
+  display: flex;
+  justify-content: center;
+  flex-basis: 100%;
+}
+
+.buttonWrapper {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+
+.moveListWrapper {
+  background-color: rgb(116, 105, 105);
+  margin: 0 0 0 0;
+}
+
+.positionExplanationCanvasWrapper {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
 }
