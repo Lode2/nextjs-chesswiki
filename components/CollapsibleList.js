@@ -38,8 +38,8 @@ export default function CollapsibleList(props) {
 
   return (
     <>
-      {newrenderParent(list[0])}
-      {newrenderParent(list[1])}
+      {renderParent(list[0])}
+      {renderParent(list[1])}
     </>
   )
 }
@@ -49,34 +49,15 @@ function renderParent(parent) {
     if (item.type === 'child') {
       return <li key={parent.name + ' child ' + index}><div>{item.name + ', ' + parent.name + ' child ' + index}</div></li>
     } else {
-      // another parent
+      // has another parent
       return renderParent(item)
     }
   })
   return (
-    <li>
-      <details key={'collapsible list parent' + parent.name}>
-        <summary className={styles.parentWrapper}><h3 style={{ margin: '0' }}>{parent.name}</h3></summary>
-        <div className={styles.childrenWrapper}><ul style={{ margin: '0' }}>{renderedChildren}</ul></div>
-      </details>
-    </li>
-  )
-}
-
-function newrenderParent(parent) {
-  const renderedChildren = parent.children.map((item, index) => {
-    if (item.type === 'child') {
-      return <li key={parent.name + ' child ' + index}><div>{item.name + ', ' + parent.name + ' child ' + index}</div></li>
-    } else {
-      // has another parent
-      return newrenderParent(item)
-    }
-  })
-  return (
-    <li key={'collapsible list parent' + parent.name}>
-      <div className={styles.parentWrapper} onClick={toggleChildren}><h3 style={{ margin: '0' }}>{parent.name}</h3></div>
+    <div key={'collapsible list parent' + parent.name}>
+      <div className={styles.parentWrapper} onClick={toggleChildren}><h3 style={{ margin: '0', padding: '0' }}>{parent.name}</h3></div>
       <div className={styles.childrenWrapper}><ul style={{ margin: '0' }}>{renderedChildren}</ul></div>
-    </li>
+    </div>
   )
 }
 
@@ -103,8 +84,6 @@ function toggleChildren(e) {
   }
 }
 
-// When opening a child parent, the grandparent's height increased 
-// a little too much, as can be seen at the bottom of the grandparent wrapper (border).
 function updateParentHeight(parent, addHeight, expand) {
   const hasParent = parent.closest("." + styles.childrenWrapper)
   addHeight = expand ? addHeight : -1 * parseInt(addHeight)

@@ -1,47 +1,30 @@
 .parentWrapper {
-    /* border: 2px blue solid; */
     list-style: none;
-}
-
-/* .childrenWrapper {
-    border: 2px red dotted;
-    height: 0;
-    transition: height 0.15s ease-out;
-    overflow: hidden;
-} */
-
-/* .collapsedChildrenWrapper {
-    height: 100%;
-    transition: height 0.15s ease-in;
-} */
-
-.childrenWrapper {
-    height: 0px;
-    transition: height 0.3s ease;
-    overflow: hidden;
-    /* border: 2px red dotted; */
-}
-
-
-/* for details, summary tactic */
-/* .parentWrapper {
-    border: 2px blue solid;
-    list-style: none;
+    background-color: rgb(62, 62, 62);
     cursor: pointer;
+    width: auto;
+    /* border: 2px blue solid; */
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-} */
+}
 
-/* .parentWrapper[open] {
-    background-color: yellow;
-} */
+.parentWrapper:hover,
+.parentWrapper:active {
+    background-color: black;
+}
 
-/* .childrenWrapper { */
-/* height: 0px;
-    transition: height 0.3s ease;
-    overflow: hidden; */
-/* cursor: pointer;
-border: 2px red dotted;
-} */
+.childrenWrapper {
+    background-color: rgb(104, 104, 104);
+    height: 0px;
+    transition: height 0.1s ease;
+    border-top: 0;
+    overflow: hidden;
+    width: auto;
+}
+
+.childrenWrapper ul {
+    list-style-type: none;
+    padding: 0 0 0 10px;
+}
