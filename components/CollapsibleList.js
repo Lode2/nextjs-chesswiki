@@ -1,5 +1,6 @@
 import styles from '../styles/collapseList.module.css'
 
+// also called: multi-level accordion menu
 export default function CollapsibleList(props) {
   const list = [
     {
@@ -33,7 +34,6 @@ export default function CollapsibleList(props) {
     <>
       {renderParent(list[0])}
       {renderParent(list[1])}
-
     </>
   )
 }
@@ -48,26 +48,14 @@ function renderParent(parent) {
     }
   })
   return (
-    <div>
-      <div className={styles.parentWrapper} onClick={toggleChildren}><h3 style={{ margin: '0' }}>{parent.name}</h3></div>
-      <div className={styles.childrenWrapper}><ul style={{ margin: '0' }}>{renderedChildren}</ul></div>
-    </div>
+    <li>
+      <details key={'collapsible list parent' + parent.name}>
+        <summary className={styles.parentWrapper}><h3 style={{ margin: '0' }}>{parent.name}</h3></summary>
+        <div className={styles.childrenWrapper}><ul style={{ margin: '0' }}>{renderedChildren}</ul></div>
+      </details>
+    </li>
   )
 }
-// an entire thread about collapse animations: https://stackoverflow.com/questions/3508605/how-can-i-transition-height-0-to-height-auto-using-css
-function toggleChildren(e) {
-  const parentElement = e.currentTarget
-  const childrenWrapper = parentElement.nextElementSibling // sibling because the children wrapper is a sibling
-  // childrenWrapper.className = styles.collapsedChildrenWrapper
-  // childrenWrapper.classList.toggle(styles.collapsedChildrenWrapper)
-  if (!childrenWrapper.style.height || childrenWrapper.style.height == '0px') {
-    childrenWrapper.style.height = Array.prototype.reduce.call(childrenWrapper.childNodes, function (p, c) { return p + (c.offsetHeight || 0); }, 0) + 'px';
-  } else {
-    childrenWrapper.style.height = '0px';
-  }
-
-}
-
 
 // TEMPLATE:
 // <>
@@ -110,4 +98,49 @@ function toggleChildren(e) {
 //       </li>
 //     </ul>
 //   </div>
+// </>
+
+//details, summary template:
+// <>
+// <div>
+//   Listname
+//   <details>
+//     <summary><div>Parent: Ruy</div></summary>
+//     <div>
+//       <ul>
+//         <li><div>Mainline</div></li>
+//         <li><div>sideline 1</div></li>
+//         <li><div>sideline 2</div></li>
+//         <li><div>sideline 3</div></li>
+//         <li><div>sideline 4</div></li>
+//       </ul>
+//     </div>
+//   </details>
+
+//   <details>
+//     <summary><div>Parent: Giucci Piano</div></summary>
+//     <div>
+//       <ul>
+//         <li><div>Mainline</div></li>
+//         <li>
+//           <details>
+//             <summary><div>Parent: second mainline</div></summary>
+//             <div>
+//               <ul>
+//                 <li><div>sideline 1</div></li>
+//                 <li><div>sideline 2</div></li>
+//                 <li><div>sideline 3</div></li>
+//               </ul>
+//             </div>
+//           </details>
+
+//         </li>
+//         <li><div>sideline 1</div></li>
+//         <li><div>sideline 2</div></li>
+//         <li><div>sideline 3</div></li>
+//         <li><div>sideline 4</div></li>
+//       </ul>
+//     </div>
+//   </details>
+// </div>
 // </>
