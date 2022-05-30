@@ -1,5 +1,5 @@
 .parentWrapper {
-    border: 2px blue solid;
+    /* border: 2px blue solid; */
     list-style: none;
 }
 
@@ -19,7 +19,7 @@
     height: 0px;
     transition: height 0.3s ease;
     overflow: hidden;
-    border: 2px red dotted;
+    /* border: 2px red dotted; */
 }
 
 

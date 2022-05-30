@@ -19,7 +19,13 @@ export default function CollapsibleList(props) {
           name: 'second mainline', type: 'parent', children: [
             { name: 'sideline 1', type: 'child' },
             { name: 'sideline 2', type: 'child' },
-            { name: 'sideline 3', type: 'child' },
+            {
+              name: 'sideline 3', type: 'parent', children: [
+                { name: 'sideline 1', type: 'child' },
+                { name: 'sideline 2', type: 'child' },
+              ]
+            },
+            { name: 'sideline 4', type: 'child' },
           ]
         },
         { name: 'sideline 1', type: 'child' },
@@ -62,7 +68,7 @@ function newrenderParent(parent) {
     if (item.type === 'child') {
       return <li key={parent.name + ' child ' + index}><div>{item.name + ', ' + parent.name + ' child ' + index}</div></li>
     } else {
-      // another parent
+      // has another parent
       return newrenderParent(item)
     }
   })
@@ -81,117 +87,35 @@ function toggleChildren(e) {
 
   if (!childrenWrapper.style.height || childrenWrapper.style.height == '0px') { // opening a wrapper
     const addHeight = Array.prototype.reduce.call(childrenWrapper.childNodes, function (p, c) {
-      console.log(childrenWrapper)
       return p + (c.offsetHeight || 0);
     }, 0)
+
     // the new height of its own wrapper
     childrenWrapper.style.height = addHeight + 'px'
-
-    // checking if there needs to be height increased in a wrapper up in the parent tree
-    const hasParent = parentElement.closest("." + styles.childrenWrapper)
-    if (hasParent) {
-      // this parent has its own parent
-      hasParent.style.height = (parseInt(hasParent.style.height.slice(0, -2)) + addHeight) + 'px'
-      console.log(parseInt(hasParent.style.height.slice(0, -2)) + childrenWrapper.scrollHeight)
-    }
+    // increasing height of parent element if necessary
+    updateParentHeight(parentElement, addHeight, true)
 
   } else { // closing a wrapper
-    // checking if there needs to be height decreased in a wrapper up in the parent tree
-    const hasParent = parentElement.closest("." + styles.childrenWrapper)
-    if (hasParent) {
-      // this parent has its own parent
-      hasParent.style.height = (parseInt(hasParent.style.height.slice(0, -2)) - parseInt(childrenWrapper.style.height)) + 'px'
-      console.log(parseInt(hasParent.style.height.slice(0, -2)) + childrenWrapper.scrollHeight)
-    }
+    // decreasing height of parent element if necessary
+    updateParentHeight(parentElement, childrenWrapper.style.height, false)
+    // the new height of its own wrapper
     childrenWrapper.style.height = '0px';
   }
 }
 
+// When opening a child parent, the grandparent's height increased 
+// a little too much, as can be seen at the bottom of the grandparent wrapper (border).
+function updateParentHeight(parent, addHeight, expand) {
+  const hasParent = parent.closest("." + styles.childrenWrapper)
+  addHeight = expand ? addHeight : -1 * parseInt(addHeight)
 
-// TEMPLATE:
-// <>
-//   <div>
-//     Listname
-//     <ul>
-//       <li>
-//         <div>Parent: Ruy</div>
-//         <div>
-//           <ul>
-//             <li><div>Mainline</div></li>
-//             <li><div>sideline 1</div></li>
-//             <li><div>sideline 2</div></li>
-//             <li><div>sideline 3</div></li>
-//             <li><div>sideline 4</div></li>
-//           </ul>
-//         </div>
-//       </li>
-//       <li>
-//         <div>Parent: Giucci Piano</div>
-//         <div>
-//           <ul>
-//             <li><div>Mainline</div></li>
-//             <li>
-//               <div>Parent: second mainline</div>
-//               <div>
-//                 <ul>
-//                   <li><div>sideline 1</div></li>
-//                   <li><div>sideline 2</div></li>
-//                   <li><div>sideline 3</div></li>
-//                 </ul>
-//               </div>
-//             </li>
-//             <li><div>sideline 1</div></li>
-//             <li><div>sideline 2</div></li>
-//             <li><div>sideline 3</div></li>
-//             <li><div>sideline 4</div></li>
-//           </ul>
-//         </div>
-//       </li>
-//     </ul>
-//   </div>
-// </>
+  if (hasParent) {
+    // updating the parent's height
+    hasParent.style.height = (parseInt(hasParent.style.height.slice(0, -2)) + addHeight) + 'px'
 
-//details, summary template:
-// <>
-// <div>
-//   Listname
-//   <details>
-//     <summary><div>Parent: Ruy</div></summary>
-//     <div>
-//       <ul>
-//         <li><div>Mainline</div></li>
-//         <li><div>sideline 1</div></li>
-//         <li><div>sideline 2</div></li>
-//         <li><div>sideline 3</div></li>
-//         <li><div>sideline 4</div></li>
-//       </ul>
-//     </div>
-//   </details>
-
-//   <details>
-//     <summary><div>Parent: Giucci Piano</div></summary>
-//     <div>
-//       <ul>
-//         <li><div>Mainline</div></li>
-//         <li>
-//           <details>
-//             <summary><div>Parent: second mainline</div></summary>
-//             <div>
-//               <ul>
-//                 <li><div>sideline 1</div></li>
-//                 <li><div>sideline 2</div></li>
-//                 <li><div>sideline 3</div></li>
-//               </ul>
-//             </div>
-//           </details>
-
-//         </li>
-//         <li><div>sideline 1</div></li>
-//         <li><div>sideline 2</div></li>
-//         <li><div>sideline 3</div></li>
-//         <li><div>sideline 4</div></li>
-//       </ul>
-//     </div>
-//   </details>
-// </div>
-// </>
+    // checking if there is another parent that needs its height updated using recursion
+    if (hasParent.closest('.' + styles.childrenWrapper + ' :not(' + 'div' + ')')) {
+      updateParentHeight(hasParent.previousSibling, expand ? addHeight : -1 * parseInt(addHeight), expand)
+    }
+  }
+}
