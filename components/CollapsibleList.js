@@ -32,8 +32,8 @@ export default function CollapsibleList(props) {
 
   return (
     <>
-      {renderParent(list[0])}
-      {renderParent(list[1])}
+      {newrenderParent(list[0])}
+      {newrenderParent(list[1])}
     </>
   )
 }
@@ -57,46 +57,54 @@ function renderParent(parent) {
   )
 }
 
-// function renderParent(parent) {
-//   const renderedChildren = parent.children.map((item, index) => {
-//     if (item.type === 'child') {
-//       return <li key={parent.name + ' child ' + index}><div>{item.name + ', ' + parent.name + ' child ' + index}</div></li>
-//     } else {
-//       // another parent
-//       return renderParent(item)
-//     }
-//   })
-//   return (
-//     <li key={'collapsible list parent' + parent.name}>
-//       <div className={styles.parentWrapper} onClick={toggleChildren}><h3 style={{ margin: '0' }}>{parent.name}</h3></div>
-//       <div className={styles.childrenWrapper}><ul style={{ margin: '0' }}>{renderedChildren}</ul></div>
-//     </li>
-//   )
-// }
+function newrenderParent(parent) {
+  const renderedChildren = parent.children.map((item, index) => {
+    if (item.type === 'child') {
+      return <li key={parent.name + ' child ' + index}><div>{item.name + ', ' + parent.name + ' child ' + index}</div></li>
+    } else {
+      // another parent
+      return newrenderParent(item)
+    }
+  })
+  return (
+    <li key={'collapsible list parent' + parent.name}>
+      <div className={styles.parentWrapper} onClick={toggleChildren}><h3 style={{ margin: '0' }}>{parent.name}</h3></div>
+      <div className={styles.childrenWrapper}><ul style={{ margin: '0' }}>{renderedChildren}</ul></div>
+    </li>
+  )
+}
 
 // an entire thread about collapse animations: https://stackoverflow.com/questions/3508605/how-can-i-transition-height-0-to-height-auto-using-css
 function toggleChildren(e) {
   const parentElement = e.currentTarget
-  const childrenWrapper = parentElement.nextElementSibling // sibling because the children wrapper is a sibling
-  // childrenWrapper.className = styles.collapsedChildrenWrapper
-  // childrenWrapper.classList.toggle(styles.collapsedChildrenWrapper)
-  if (!childrenWrapper.style.height || childrenWrapper.style.height == '0px') {
-    console.log(childrenWrapper.offsetHeight)
-    childrenWrapper.style.height = childrenWrapper.scrollHeight + 'px'
-    // Array.prototype.reduce.call(childrenWrapper.childNodes, function (p, c) {
-    //   console.log(childrenWrapper)
-    //   return p + (c.offsetHeight || 0);
-    // }, 0) + 'px';
-  } else {
+  const childrenWrapper = parentElement.nextElementSibling
+
+  if (!childrenWrapper.style.height || childrenWrapper.style.height == '0px') { // opening a wrapper
+    const addHeight = Array.prototype.reduce.call(childrenWrapper.childNodes, function (p, c) {
+      console.log(childrenWrapper)
+      return p + (c.offsetHeight || 0);
+    }, 0)
+    // the new height of its own wrapper
+    childrenWrapper.style.height = addHeight + 'px'
+
+    // checking if there needs to be height increased in a wrapper up in the parent tree
+    const hasParent = parentElement.closest("." + styles.childrenWrapper)
+    if (hasParent) {
+      // this parent has its own parent
+      hasParent.style.height = (parseInt(hasParent.style.height.slice(0, -2)) + addHeight) + 'px'
+      console.log(parseInt(hasParent.style.height.slice(0, -2)) + childrenWrapper.scrollHeight)
+    }
+
+  } else { // closing a wrapper
+    // checking if there needs to be height decreased in a wrapper up in the parent tree
+    const hasParent = parentElement.closest("." + styles.childrenWrapper)
+    if (hasParent) {
+      // this parent has its own parent
+      hasParent.style.height = (parseInt(hasParent.style.height.slice(0, -2)) - parseInt(childrenWrapper.style.height)) + 'px'
+      console.log(parseInt(hasParent.style.height.slice(0, -2)) + childrenWrapper.scrollHeight)
+    }
     childrenWrapper.style.height = '0px';
   }
-
-  // var panel = childrenWrapper;
-  // if (panel.style.maxHeight) {
-  //   panel.style.maxHeight = null;
-  // } else {
-  //   panel.style.maxHeight = panel.scrollHeight + "px";
-  // }
 }
 
 

@@ -1,21 +1,47 @@
 .parentWrapper {
     border: 2px blue solid;
     list-style: none;
+}
+
+/* .childrenWrapper {
+    border: 2px red dotted;
+    height: 0;
+    transition: height 0.15s ease-out;
+    overflow: hidden;
+} */
+
+/* .collapsedChildrenWrapper {
+    height: 100%;
+    transition: height 0.15s ease-in;
+} */
+
+.childrenWrapper {
+    height: 0px;
+    transition: height 0.3s ease;
+    overflow: hidden;
+    border: 2px red dotted;
+}
+
+
+/* for details, summary tactic */
+/* .parentWrapper {
+    border: 2px blue solid;
+    list-style: none;
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
+} */
 
-.parentWrapper[open] {
+/* .parentWrapper[open] {
     background-color: yellow;
-}
+} */
 
-.childrenWrapper {
-    /* height: 0px;
+/* .childrenWrapper { */
+/* height: 0px;
     transition: height 0.3s ease;
     overflow: hidden; */
-    cursor: pointer;
-    border: 2px red dotted;
-}
+/* cursor: pointer;
+border: 2px red dotted;
+} */
