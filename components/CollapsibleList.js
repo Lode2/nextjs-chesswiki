@@ -2,44 +2,9 @@ import styles from '../styles/collapseList.module.css'
 
 // also called: multi-level accordion menu
 export default function CollapsibleList(props) {
-  const list = [
-    {
-      name: 'Rúy Lopez', type: 'parent', children: [
-        { name: 'mainline', type: 'child' },
-        { name: 'sideline', type: 'child' },
-        { name: 'sideline', type: 'child' },
-        { name: 'sideline', type: 'child' },
-        { name: 'sideline', type: 'child' },
-      ]
-    },
-    {
-      name: 'Giucci Piano', type: 'parent', children: [
-        { name: 'mainline', type: 'child' },
-        {
-          name: 'second mainline', type: 'parent', children: [
-            { name: 'sideline 1', type: 'child' },
-            { name: 'sideline 2', type: 'child' },
-            {
-              name: 'sideline 3', type: 'parent', children: [
-                { name: 'sideline 1', type: 'child' },
-                { name: 'sideline 2', type: 'child' },
-              ]
-            },
-            { name: 'sideline 4', type: 'child' },
-          ]
-        },
-        { name: 'sideline 1', type: 'child' },
-        { name: 'sideline 2', type: 'child' },
-        { name: 'sideline 3', type: 'child' },
-        { name: 'sideline 4', type: 'child' },
-      ]
-    }
-  ]
-
   return (
     <>
-      {renderParent(list[0])}
-      {renderParent(list[1])}
+      {props.list.map((item) => { return renderParent(item) })}
     </>
   )
 }
@@ -54,8 +19,11 @@ function renderParent(parent) {
     }
   })
   return (
-    <div key={'collapsible list parent' + parent.name}>
-      <div className={styles.parentWrapper} onClick={toggleChildren}><h3 style={{ margin: '0', padding: '0' }}>{parent.name}</h3></div>
+    <div key={'collapsible list parent' + parent.name} style={{ width: '75%' }}>
+      <li className={styles.parentWrapper} onClick={toggleChildren}>
+        <div><i className={styles.arrow}></i></div>
+        <h3 style={{ padding: '0' }}>{parent.name}</h3>
+      </li>
       <div className={styles.childrenWrapper}><ul style={{ margin: '0' }}>{renderedChildren}</ul></div>
     </div>
   )
@@ -66,6 +34,16 @@ function toggleChildren(e) {
   const parentElement = e.currentTarget
   const childrenWrapper = parentElement.nextElementSibling
 
+  // toggling between styles when the parent element is clicked
+  if (parentElement.style.backgroundColor === 'rgb(34, 34, 34)') {
+    parentElement.style.backgroundColor = 'rgb(62, 62, 62)'
+    parentElement.querySelector('.' + styles.arrow).style.transform = 'rotate(-135deg)'
+  } else {
+    parentElement.style.backgroundColor = 'rgb(34, 34, 34)'
+    parentElement.querySelector('.' + styles.arrow).style.transform = 'rotate(45deg)'
+  }
+
+  // calculating the new height of all the parents after a list has been opened
   if (!childrenWrapper.style.height || childrenWrapper.style.height == '0px') { // opening a wrapper
     const addHeight = Array.prototype.reduce.call(childrenWrapper.childNodes, function (p, c) {
       return p + (c.offsetHeight || 0);

@@ -14,4 +14,3 @@ DONE 3. Add a bar on the side of the board to view the evaluation from chess eng
 
 
 TODAY:
-Finish the collapsible list component.

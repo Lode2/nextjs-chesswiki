@@ -3,16 +3,32 @@
     background-color: rgb(62, 62, 62);
     cursor: pointer;
     width: auto;
-    /* border: 2px blue solid; */
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
 }
 
-.parentWrapper:hover,
-.parentWrapper:active {
-    background-color: black;
+.parentWrapper h3,
+.parentWrapper div {
+    width: fit-content;
+    display: inline;
+    margin: 3px;
+}
+
+.arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    transition: transform 0.1s ease;
+}
+
+.parentWrapper:hover {
+    /* !important used because the hover needs to overrule the style set by javascript  */
+    background-color: rgb(34, 34, 34) !important;
 }
 
 .childrenWrapper {
@@ -22,9 +38,33 @@
     border-top: 0;
     overflow: hidden;
     width: auto;
+    position: relative;
+    padding-left: 0.75rem;
+}
+
+/* the vertical line  */
+.childrenWrapper:before {
+    content: "";
+    width: 10px;
+    display: block;
+    border-left: 2px solid black;
+    top: 0.9rem;
+    bottom: 0.75rem;
+    position: absolute;
 }
 
 .childrenWrapper ul {
     list-style-type: none;
     padding: 0 0 0 10px;
+}
+
+/* horizontal lines pointing towards every li */
+.childrenWrapper ul li:before {
+    content: "";
+    display: block;
+    border-top: 2px solid black;
+    left: .75rem;
+    width: 0.4rem;
+    position: absolute;
+    transform: translateY(15px);
 }
