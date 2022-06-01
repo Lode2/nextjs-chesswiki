@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import Newchessboardsquare from "./ChessBoardSquare";
+import Chessboardsquare from "./ChessBoardSquare";
 import Chessgame from '../../public/model/chess'
 
 export default function ChessBoard(props) {
@@ -75,7 +75,7 @@ export default function ChessBoard(props) {
     // create a list of chessboard squares
     function createSquareProp(rawList) {
         return rawList.map(item => {
-            return <Newchessboardsquare key={item.index} squareNumber={item.index} squareId={item.squareIdNotation !== null ? item.squareIdNotation : ''} chessPiece={item.chessPiece} squareColor={item.squareColor} size={squareSize} />
+            return <Chessboardsquare key={item.index} squareNumber={item.index} squareId={item.squareIdNotation !== null ? item.squareIdNotation : ''} chessPiece={item.chessPiece} squareColor={item.squareColor} size={squareSize} />
         })
     }
 

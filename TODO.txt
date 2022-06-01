@@ -11,6 +11,17 @@ DONE 3. Add a bar on the side of the board to view the evaluation from chess eng
     the move that is suggested in the theory, as opposed to a good move according to a chess engine.
 8. Make a opening hierarchical tree showing all the first moves that make up a opening name. When clicked, open another tree
     that explores the different variations in the opening. Show transpositions using dotted lines.
+9. Deploy website to a server (find out whether ssr or static)
+10. Make a login option, also add a view my profile page.
 
 
 TODAY:
+1. Playing chessboardui component.
+2. Revisiting the size settings inside the chesboardui component so there is great customizability for it. Also add options
+    for if you need a evalbar or movelist, (just let booleans be passed to the components).
+3. A component that shows a couple of moves over a couple seconds, this can be used for preview a opening in a small window 
+    for example. This component would obviously only show the chessboard, not movelist etc.
+4. Edit the collapsible list component so the li's are clickable.
+5. Find out what the d3 input schema for the tree structure is, in order to find inspiration on how to improve my own schema in 
+    the collapsible list component.
+

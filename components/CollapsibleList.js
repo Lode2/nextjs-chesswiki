@@ -1,4 +1,4 @@
-import styles from '../styles/collapseList.module.css'
+import styles from '../styles/collapsibleList.module.css'
 
 // also called: multi-level accordion menu
 export default function CollapsibleList(props) {
@@ -13,8 +13,7 @@ function renderParent(parent) {
   const renderedChildren = parent.children.map((item, index) => {
     if (item.type === 'child') {
       return <li key={parent.name + ' child ' + index}><div>{item.name + ', ' + parent.name + ' child ' + index}</div></li>
-    } else {
-      // has another parent
+    } else { // has another parent
       return renderParent(item)
     }
   })
@@ -64,14 +63,14 @@ function toggleChildren(e) {
 
 function updateParentHeight(parent, addHeight, expand) {
   const hasParent = parent.closest("." + styles.childrenWrapper)
-  addHeight = expand ? addHeight : -1 * parseInt(addHeight)
 
   if (hasParent) {
+    addHeight = expand ? addHeight : -1 * parseInt(addHeight)
     // updating the parent's height
     hasParent.style.height = (parseInt(hasParent.style.height.slice(0, -2)) + addHeight) + 'px'
 
     // checking if there is another parent that needs its height updated using recursion
-    if (hasParent.closest('.' + styles.childrenWrapper + ' :not(' + 'div' + ')')) {
+    if (hasParent.closest('.' + styles.childrenWrapper + ' :not(div)')) {
       updateParentHeight(hasParent.previousSibling, expand ? addHeight : -1 * parseInt(addHeight), expand)
     }
   }
