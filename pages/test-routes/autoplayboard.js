@@ -10,8 +10,16 @@ export default function autoplayboard() {
 
     return (
         <>
-            <button onClick={() => { setFocus(focus === true ? false : true) }}>Toggle whether the board should update or not (simulating if in focus or not)</button>
-            <AutoPlayChessBoard boardSize={800} openingData={data} inFocus={focus} />
+            <button onClick={() => { setFocus(focus === true ? false : true) }}>Toggle board</button>
+            <div className='boardwrapper' style={{ height: '400px', width: '400px', border: '2px solid red', visibility: 'visible' }}>
+                <AutoPlayChessBoard boardSize={600} openingData={data} inFocus={focus} />
+            </div>
         </>
     )
+}
+function myFunction() {
+    // console.log(e)
+    // e.currentTarget.style.height = e.currentTarget.style.height === '100px' ? '10px' : '100px'
+    // e.currentTarget.style.width = e.currentTarget.style.width === '100px' ? '10px' : '100px'
+    e.currentTarget.style.visibility = 'hidden'
 }
