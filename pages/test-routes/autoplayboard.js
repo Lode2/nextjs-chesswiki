@@ -6,13 +6,13 @@ export default function autoplayboard() {
         startingPos: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
         moves: ['e4', 'Nf6', 'e5', 'd5', 'exd6', 'e6', 'Bd3', 'Be7', 'Nf3', 'O-O', 'O-O',],
     }
-    const [focus, setFocus] = useState(true)
+    const [focus, setFocus] = useState(false)
 
     return (
         <>
             <button onClick={() => { setFocus(focus === true ? false : true) }}>Toggle board</button>
             <div className='boardwrapper' style={{ height: '400px', width: '400px', border: '2px solid red', visibility: 'visible' }}>
-                <AutoPlayChessBoard boardSize={780} openingData={data} inFocus={focus} />
+                <AutoPlayChessBoard boardSize={399} openingData={data} inFocus={focus} />
             </div>
         </>
     )

@@ -8,7 +8,8 @@ export default function ChessBoard(props) {
     const cb = useMemo(() => chessgame.loadOpening(), [props.FEN, props.theoryMoves])
     const startingPos = useMemo(() => chessgame.getPosition(), [props.FEN, props.theoryMoves])
 
-    const squareSize = props.chessboardSize * 0.5 * 0.125
+    console.log(`Input size: ${props.chessboardSize}, width: ${props.chessboardSize}, square size: ${props.chessboardSize * 0.125}`)
+    const squareSize = props.chessboardSize * 0.125
     const [pieceArray, setPieceArray] = useState(startingPos)
     const [boardSquares, setBoardSquares] = useState(createSquareProp(startingPos))
     const [moveCounter, setMoveCounter] = useState(props.moveCounter)
@@ -84,8 +85,8 @@ export default function ChessBoard(props) {
             display: "flex",
             flexDirection: "row",
             flexWrap: "wrap-reverse",
-            width: props.chessboardSize * 0.5,
-            height: 'auto'
+            width: props.chessboardSize,
+            height: props.chessboardSize
         }}>
             {boardSquares}
             {/* {`currentmove: ${props.moveCounter}`} */}

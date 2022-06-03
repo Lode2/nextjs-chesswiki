@@ -6,15 +6,15 @@ export default function ChessBoardSquare(props) {
     return (
         <div style={{
             position: 'relative',
-            width: props.size,
-            height: props.size,
+            width: props.size + 'px',
+            height: props.size + 'px',
             backgroundColor: props.squareColor === 'light' ? '#f5f5dc' : '#a52a2a',
             WebkitUserSelect: 'none',
             MozUserSelect: 'none',
             msUserSelect: 'none',
             UserSelect: 'none'
         }}>
-            <div style={{ position: "absolute", height: props.size, width: props.size }}>
+            <div style={{ position: "absolute", height: props.size + 'px', width: props.size + 'px' }}>
                 {props.chessPiece === null ? '' : <Chesspiece src={props.chessPiece} size={props.size} />}
             </div>
 

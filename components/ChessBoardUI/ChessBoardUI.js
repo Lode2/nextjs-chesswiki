@@ -18,20 +18,20 @@ config.autoAddCss = false
 
 export default function ChessBoardUI(props) {
     // console.log('rendering newchessboardui')
-    const boardSize = props.chessboardUISize > 1000 ? 0.8 * props.chessboardUISize : 800;
+    const boardSize = props.chessboardUISize;
     const [moveCounter, setMoveCounter] = useState(0)
 
     return (
         <div className={styles.chessBoardUIWrapper} style={{ width: '80%', height: 'auto' }}>
             <div className={styles.titleWrapper}><h1 style={{ margin: '10px' }}>{props.openingData.name}</h1></div>
-            <div className={styles.positionExplanationCanvasWrapper} style={{ width: '25%', height: 0.5 * boardSize + 'px' }}>
+            <div className={styles.positionExplanationCanvasWrapper} style={{ width: '25%', height: boardSize + 'px' }}>
                 <PositionExplanationCanvas info={props.openingData.moveInfo} move={moveCounter} />
             </div>
-            <div className={styles.evalWrapper} style={{ height: 0.5 * boardSize + 'px', width: '2%' }}>
+            <div className={styles.evalWrapper} style={{ height: boardSize + 'px', width: '2%' }}>
                 <EngineEvalBar evaluation={props.openingData.moveEval} move={moveCounter}></EngineEvalBar>
                 <span className={styles.tooltipText}>{props.openingData.evalInfo[moveCounter] !== undefined ? props.openingData.evalInfo[moveCounter] : 'No engine evaluation data'}</span>
             </div>
-            <div style={{ width: 0.5 * boardSize + 'px', margin: '0 0 40px 0' }}>
+            <div style={{ width: boardSize + 'px', margin: '0 0 40px 0' }}>
                 <ChessBoard chessboardSize={boardSize} FEN={props.openingData.startingPos} theoryMoves={props.openingData.moves} moveCounter={moveCounter} />
                 <div className={styles.buttonWrapper}>
                     <button className={styles.faButton} onClick={() => { setMoveCounter(0) }}>
@@ -48,7 +48,7 @@ export default function ChessBoardUI(props) {
                     </button>
                 </div>
             </div>
-            <div className={styles.moveListWrapper} style={{ width: '18%', height: 0.5 * boardSize + 'px' }}>
+            <div className={styles.moveListWrapper} style={{ width: '18%', height: boardSize + 'px' }}>
                 <MovelistCanvas moveList={props.openingData.moves} currentCounter={moveCounter} changeCounter={setMoveCounter} />
             </div>
 

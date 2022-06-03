@@ -5,7 +5,7 @@ import Topnavbar from '../components/topnavbar';
 import Bottomnavbar from '../components/bottomnavbar';
 
 export default function viewOpening(props) {
-    const [size, setSize] = useState({ heigth: 8 * 140, width: 8 * 140 })
+    const [size, setSize] = useState({ heigth: 500, width: 500 })
     const data = props.info === undefined ?
         {
             // dummy opening, when no opening info (object of length 0) has been passed to this page
