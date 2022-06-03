@@ -32,7 +32,7 @@ export default function ChessBoardUI(props) {
                 <span className={styles.tooltipText}>{props.openingData.evalInfo[moveCounter] !== undefined ? props.openingData.evalInfo[moveCounter] : 'No engine evaluation data'}</span>
             </div>
             <div style={{ width: boardSize + 'px', margin: '0 0 40px 0' }}>
-                <ChessBoard chessboardSize={boardSize} FEN={props.openingData.startingPos} theoryMoves={props.openingData.moves} moveCounter={moveCounter} />
+                <ChessBoard chessboardSize={boardSize / 8} FEN={props.openingData.startingPos} theoryMoves={props.openingData.moves} moveCounter={moveCounter} />
                 <div className={styles.buttonWrapper}>
                     <button className={styles.faButton} onClick={() => { setMoveCounter(0) }}>
                         <FontAwesomeIcon icon={faBackwardStep} />

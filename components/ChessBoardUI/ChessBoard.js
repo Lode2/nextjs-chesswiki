@@ -8,11 +8,12 @@ export default function ChessBoard(props) {
     const cb = useMemo(() => chessgame.loadOpening(), [props.FEN, props.theoryMoves])
     const startingPos = useMemo(() => chessgame.getPosition(), [props.FEN, props.theoryMoves])
 
-    console.log(`Input size: ${props.chessboardSize}, width: ${props.chessboardSize}, square size: ${props.chessboardSize * 0.125}`)
-    const squareSize = props.chessboardSize * 0.125
+    const boardSize = props.chessboardSize * 8
+    const squareSize = boardSize * 0.125
     const [pieceArray, setPieceArray] = useState(startingPos)
     const [boardSquares, setBoardSquares] = useState(createSquareProp(startingPos))
     const [moveCounter, setMoveCounter] = useState(props.moveCounter)
+    // console.log(moveCounter, props.moveCounter)
 
     useEffect(() => {
         // console.log('inside newchessboard useeffect')
@@ -59,7 +60,6 @@ export default function ChessBoard(props) {
             // 4. Put it back into our array. N.B. we *are* mutating the array here, but that's why we made a copy first
             items[square.props.squareNumber] = item;
         })
-
         return items
     }
 
@@ -85,8 +85,8 @@ export default function ChessBoard(props) {
             display: "flex",
             flexDirection: "row",
             flexWrap: "wrap-reverse",
-            width: props.chessboardSize,
-            height: props.chessboardSize
+            width: boardSize,
+            height: boardSize
         }}>
             {boardSquares}
             {/* {`currentmove: ${props.moveCounter}`} */}
