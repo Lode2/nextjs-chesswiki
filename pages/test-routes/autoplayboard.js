@@ -12,7 +12,7 @@ export default function autoplayboard() {
         <>
             <button onClick={() => { setFocus(focus === true ? false : true) }}>Toggle board</button>
             <div className='boardwrapper' style={{ height: '400px', width: '400px', border: '2px solid red', visibility: 'visible' }}>
-                <AutoPlayChessBoard boardSize={600} openingData={data} inFocus={focus} />
+                <AutoPlayChessBoard boardSize={100} openingData={data} inFocus={focus} />
             </div>
         </>
     )

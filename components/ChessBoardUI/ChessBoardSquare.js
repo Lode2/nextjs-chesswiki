@@ -20,7 +20,7 @@ export default function ChessBoardSquare(props) {
 
             {/* the square id on the bottom or top left, only if necessary */}
             {props.squareId === undefined ? '' :
-                <div style={Object.assign({ position: "absolute", color: props.squareColor === 'light' ? '#a52a2a' : '#f5f5dc', fontSize: props.size / 2, height: props.size / 2, width: props.size / 2, textAlign: 'top' }, squareIdPosition)}>
+                <div style={Object.assign({ display: 'inline', position: "absolute", color: props.squareColor === 'light' ? '#a52a2a' : '#f5f5dc', fontSize: props.size / 3, height: props.size / 2, width: props.size / 2, verticalAlign: 'text-top' }, squareIdPosition)}>
                     {props.squareId}
                 </div>
             }

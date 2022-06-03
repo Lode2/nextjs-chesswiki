@@ -4,9 +4,9 @@ export default function ChessPiece(props) {
     const imgsrc = '/images/' + props.src + '.png';
     const pieceName = (props.src[1] === 'b' ? 'black' : 'white') + ' ' + shorthandToPieceName(props.src[0]);
     return (
-        <>
-            <Image src={imgsrc} alt={pieceName} width={props.size} height={props.size} />
-        </>
+        <div style={{ position: 'relative', height: 'inherit' }}>
+            <Image src={imgsrc} alt={pieceName} width={props.size} height={props.size} layout='fill' />
+        </div>
     )
 }
 
