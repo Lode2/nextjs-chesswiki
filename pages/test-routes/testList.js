@@ -37,7 +37,7 @@ export default function testList() {
 
     return (
         <div>
-            <CollapsibleList list={list} />
+            <CollapsibleList listStructure={list} />
         </div>
     )
 }

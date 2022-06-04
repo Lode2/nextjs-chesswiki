@@ -9,7 +9,7 @@ export default function OnHoverChessBoard(props) {
         if (focus) {
             return (
                 <span className={styles.tooltipText}>
-                    <AutoPlayChessBoard boardSize={props.boardSize} openingData={props.data} inFocus={true} />
+                    <AutoPlayChessBoard boardSize={props.boardSize} openingData={props.moveData} inFocus={true} />
                 </span>
             )
         } else {
@@ -18,7 +18,7 @@ export default function OnHoverChessBoard(props) {
     }
     return (
         <>
-            <div className={styles.evalWrapper} onMouseEnter={() => setFocus(true)} onMouseLeave={() => setFocus(false)} style={{ margin: '100px 0 0 200px' }}>
+            <div className={styles.evalWrapper} onMouseEnter={() => setFocus(true)} onMouseLeave={() => setFocus(false)}>
                 {props.hoverMeElement}
                 {board()}
             </div>

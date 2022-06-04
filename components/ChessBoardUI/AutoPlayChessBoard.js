@@ -10,7 +10,7 @@ export default function AutoPlayChessBoard({ boardSize, openingData }) {
                 if (move === openingData.moves.length) { return 0 }
                 return move + 1
             })
-        }, 1000)
+        }, 750)
         return () => { clearInterval(countdown) }
     }, [])
 

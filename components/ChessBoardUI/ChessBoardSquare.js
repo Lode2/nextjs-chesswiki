@@ -37,6 +37,8 @@ export default function ChessBoardSquare(props) {
     return (
         <div style={{
             position: 'relative',
+            display: 'block',
+            margin: '0',
             width: props.size + 'px',
             height: props.size + 'px',
             backgroundColor: props.squareColor === 'light' ? '#f5f5dc' : '#a52a2a',
@@ -45,9 +47,9 @@ export default function ChessBoardSquare(props) {
             msUserSelect: 'none',
             UserSelect: 'none'
         }}>
-            <div style={{ position: "absolute", height: props.size + 'px', width: props.size + 'px', zIndex: '3' }}>
-                {props.chessPiece === null ? '' : <Chesspiece src={props.chessPiece} size={props.size} />}
-            </div>
+            {props.chessPiece === null ? '' : <div style={{ display: 'block', margin: '0', position: "absolute", height: props.size + 'px', width: props.size + 'px', zIndex: '3' }}>
+                <Chesspiece src={props.chessPiece} size={props.size} />
+            </div>}
 
             {/* the square id on the bottom or top left, only if necessary */}
             {squareInfo()}

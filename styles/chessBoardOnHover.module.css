@@ -5,17 +5,18 @@
 
 .evalWrapper .tooltipText {
     visibility: hidden;
-    width: 250px;
+    /* width: 200px; */
     position: absolute;
     z-index: 3;
-    background-color: gray;
+    background-color: beige;
+    width: auto;
     /* border-radius: 15px; */
-    /* padding: 5px 0; */
+    padding: 2px;
     top: 0;
     text-align: center;
     left: 50%;
     margin-left: -80px;
-    transform: translateY(-75px);
+    transform: translateY(calc(-175px));
 }
 
 .evalWrapper .tooltipText::after {
@@ -26,9 +27,9 @@
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: gray transparent transparent transparent;
+    border-color: beige transparent transparent transparent;
 }
 
-.evalWrapper :first-child+.tooltipText {
+.evalWrapper :first-child:hover+.tooltipText {
     visibility: visible;
 }

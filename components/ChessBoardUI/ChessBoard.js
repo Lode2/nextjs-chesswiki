@@ -85,6 +85,7 @@ export default function ChessBoard(props) {
             display: "flex",
             flexDirection: "row",
             flexWrap: "wrap-reverse",
+            margin: '0',
             width: boardSize,
             height: boardSize
         }}>

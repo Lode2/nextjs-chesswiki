@@ -1,11 +1,11 @@
 import Head from 'next/head'
 import { useState } from 'react'
-import NewchessboardUI from '../components/ChessBoardUI/ChessBoardUI';
-import Topnavbar from '../components/topnavbar';
-import Bottomnavbar from '../components/bottomnavbar';
+import NewchessboardUI from '../../components/ChessBoardUI/ChessBoardUI';
+import Topnavbar from '../../components/Layout/TopNavbar';
+import Bottomnavbar from '../../components/Layout/BottomNavbar';
 
 export default function viewOpening(props) {
-    const [size, setSize] = useState({ heigth: 500, width: 500 })
+    const [size, setSize] = useState({ heigth: 400, width: 400 })
     const data = props.info === undefined ?
         {
             // dummy opening, when no opening info (object of length 0) has been passed to this page
